@@ -118,8 +118,6 @@ O público-alvo do site DesligaAi são principalmente jovens e adultos entre 15 
 
 # Product Design
 
-![Product Design](images/Product%20Design.jpg)
-
 ## Histórias de Usuários
 
 ![Histórias de Usuários](files/Histórias%20de%20Usuários.pdf)
