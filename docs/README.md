@@ -2,14 +2,16 @@
 
 Informações básicas do projeto.
 
-* **Projeto:** [NOME DO PROJETO]
-* **Repositório GitHub:** [LINK PARA O REPOSITÓRIO NO GITHUB]
+* **Projeto:** [Desliga AI]
+* **Repositório GitHub:** [https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-2-ti1-2401100-desligaai.git]
 * **Membros da equipe:**
 
-  * [Fulano](https://github.com/fulano) ⚠️ EXEMPLO ⚠️
-  * [Beltrano](https://github.com/beltrano) ⚠️ EXEMPLO ⚠️
-  * [Cicrano](https://github.com/cicrano) ⚠️ EXEMPLO ⚠️
-
+  * [João Pedro](https://github.com/joaopedro003) 
+  * [Eduardo Pêgo](https://github.com/Eduardo-Pegoz) 
+  * [Pedro Henrique](https://github.com/ProezaDEV)
+  * [Arthur Mendes](https://github.com/arthurlmendes)
+  * [Evelyn Costa](https://github.com/Evycostzocn)
+  * [Gabriel Henrique](https://github.com/GabrielHFV)
 A documentação do projeto é estruturada da seguinte forma:
 
 1. Introdução
@@ -20,19 +22,17 @@ A documentação do projeto é estruturada da seguinte forma:
 6. Solução
 7. Referências Bibliográficas
 
-✅ [Documentação de Design Thinking (MIRO)](files/processo-dt.pdf)
+✅ [Documentação de Design Thinking (MIRO)](files/G6%20(5).pdf)
 
 # Contexto
 
-Detalhes sobre o espaço de problema, os objetivos do projeto, sua justificativa e público-alvo.
+O uso excessivo de vídeos curtos e redes sociais tem se tornado um fenômeno global, especialmente entre jovens e adultos conectados. Plataformas como TikTok, Instagram Reels e YouTube Shorts, embora ofereçam entretenimento rápido, acabam estimulando o consumo compulsivo e diminuindo o tempo destinado a atividades offline, como leitura, esportes e convivência social. Esse cenário tem gerado impactos negativos, como queda na produtividade, aumento da ansiedade e prejuízos ao bem-estar emocional.
+
+Nesse contexto, surge o site DesligaAi, uma plataforma digital voltada para incentivar a desconexão consciente, oferecendo ferramentas interativas que auxiliam o usuário no autoconhecimento, no monitoramento de hábitos digitais e na adoção de alternativas saudáveis fora do ambiente virtual.
 
 ## Problema
 
-**✳️✳️✳️ COLOQUE AQUI O SEU TEXTO ✳️✳️✳️**
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Nesse momento você deve apresentar o problema que a sua aplicação deve resolver. No entanto, não é a hora de comentar sobre a aplicação. Descreva também o contexto em que essa aplicação será usada, se houver: empresa, tecnologias, etc. Novamente, descreva apenas o que de fato existir, pois ainda não é a hora de apresentar requisitos detalhados ou projetos.
+> Muitos usuários enfrentam dificuldades em controlar o tempo gasto em redes sociais e, consequentemente, em manter hábitos saudáveis no dia a dia. A ausência de estratégias acessíveis e motivacionais para reduzir a dependência dos vídeos curtos contribui para a perpetuação desse comportamento viciante. Dessa forma, torna-se necessário desenvolver uma solução tecnológica que, ao invés de restringir de forma rígida, estimule mudanças positivas por meio de acompanhamento, reflexão e incentivo a atividades offline.
 >
 > **Orientações**:
 >
@@ -44,9 +44,26 @@ Detalhes sobre o espaço de problema, os objetivos do projeto, sua justificativa
 
 **✳️✳️✳️ COLOQUE AQUI O SEU TEXTO ✳️✳️✳️**
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Aqui você deve descrever os objetivos do trabalho indicando que o objetivo geral é desenvolver um software para solucionar o problema apresentado acima. Apresente também alguns (pelo menos 2) objetivos específicos dependendo de onde você vai querer concentrar a sua prática investigativa, ou como você vai aprofundar no seu trabalho.
+> Objetivo Geral
+
+Desenvolver o site DesligaAi, uma plataforma interativa que auxilie seus usuários a reduzir o vício em vídeos curtos, promovendo equilíbrio digital e bem-estar por meio de ferramentas de autoconhecimento, monitoramento de hábitos e incentivo a atividades offline.
+
+Objetivos Específicos
+
+- Disponibilizar um Mapa de Emoções que, a partir das respostas do usuário, sugira atividades offline personalizadas.
+
+- Criar quizzes interativos sobre hábitos digitais, fornecendo dicas e perfis de uso.
+
+- Oferecer um temporizador de desconexão com mensagens motivacionais.
+
+- Permitir o registro e a visualização de gráficos sobre o tempo de uso das redes sociais.
+
+- Gerar atividades offline aleatórias e propor desafios rápidos de desconexão.
+
+- Implantar um sistema de mural de conquistas com recompensas simbólicas (badges e troféus).
+
+- Disponibilizar funcionalidades adicionais, como checklists de tarefas offline, modo foco e compartilhamento de conquistas.
+
 >
 > **Orientações**:
 >
@@ -54,26 +71,18 @@ Detalhes sobre o espaço de problema, os objetivos do projeto, sua justificativa
 
 ## Justificativa
 
-**✳️✳️✳️ COLOQUE AQUI O SEU TEXTO ✳️✳️✳️**
+A criação do site DesligaAi se justifica pela crescente preocupação com os efeitos negativos do consumo exagerado de vídeos curtos e redes sociais. Diversos estudos apontam a relação entre o uso excessivo dessas plataformas e problemas como procrastinação, déficit de atenção, distúrbios do sono e impactos emocionais.
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Descreva a importância ou a motivação para trabalhar com esta aplicação que você escolheu. Indique as razões pelas quais você escolheu seus objetivos específicos ou as razões para aprofundar em certos aspectos do software.
->
-> O grupo de trabalho pode fazer uso de questionários, entrevistas e dados estatísticos, que podem ser apresentados, com o objetivo de esclarecer detalhes do problema que será abordado pelo grupo.
->
+Diante desse cenário, é essencial oferecer uma alternativa tecnológica que não apenas monitore o tempo de uso, mas que também empodere o usuário a desenvolver consciência sobre seus hábitos e o motive a buscar atividades offline prazerosas e saudáveis. Além disso, a proposta tem relevância social, pois promove qualidade de vida, autocontrole e equilíbrio digital em uma sociedade cada vez mais conectada.
+
 > **Orientações**:
 >
 > - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
 
 ## Público-Alvo
 
-**✳️✳️✳️ COLOQUE AQUI O SEU TEXTO ✳️✳️✳️**
+O público-alvo do site DesligaAi são principalmente jovens e adultos entre 15 e 35 anos, que fazem uso frequente de redes sociais, especialmente de vídeos curtos, e que desejam reduzir sua dependência dessas plataformas. Também podem se beneficiar pessoas que buscam melhorar sua produtividade, equilíbrio emocional e qualidade de vida por meio da diminuição do tempo gasto em ambientes digitais.
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Descreva o mercado para o qual a solução está sendo desenvolvida, detalhando um pouco mais sobre o perfil dos usuários: conhecimentos prévios, relação com a tecnologia, relações hierárquicas, etc. Adicione informações sobre o público-alvo por meio de uma descrição textual ou por meio do mapa de stakeholders, ou como o grupo achar mais conveniente.
->
 > **Orientações**:
 >
 > - [Público-alvo: o que é, tipos, como definir seu público e exemplos](https://klickpages.com.br/blog/publico-alvo-o-que-e/)
@@ -83,28 +92,22 @@ Detalhes sobre o espaço de problema, os objetivos do projeto, sua justificativa
 
 ## Etapa de Entendimento
 
-**✳️✳️✳️ APRESENTE OS ARTEFATOS DA ETAPA  ✳️✳️✳️**
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Nessa etapa, vamos trabalhar com a metdologia de Design Thinking para compreender com maior profundidade o problema a ser tratado. Nesse processo, vamos elaborar:
->
-> * **Matriz CSD**: também conhecida por Matriz de Alinhamento, é uma ferramenta utilizada no Design Thinking para organizar informações e facilitar o processo de tomada de decisão e solução de problemas;
-> * **Mapa de stakeholders**: ferramenta que nos permite compreender o grupo de pessoas e entidades que devemos estudar e conversar para entender mais sobre o problema
-> * **Entrevistas qualitativas**: série de entrevistas qualitativas para validar suposições e solucionar as dúvidas com as principais pessoas envolvidas;
-> * **Highlights de pesquisa**: um compilado do levantamento realizado por meio das entrevistas.
+![Descrição da imagem](images/WhatsApp%20Image%202025-09-27%20at%2013.12.07.jpeg)
+![Descrição da documento](files/entrevistas.pdf)
+![Descrição da imagem](images/Highlights%20de%20pesquisa%2001.jpg)
+![Descrição da imagem](images/Highlights%20de%20pesquisa02.jpg)
 
 ## Etapa de Definição
 
 ### Personas
 
-**✳️✳️✳️ APRESENTE OS DIAGRAMAS DE PERSONAS ✳️✳️✳️**
+![Exemplo de proposta de valor](images/persona%2001.jpg)
+![Exemplo de proposta de valor](images/persona%2002.jpg)
+![Exemplo de proposta de valor](images/persona%2003.jpg)
+![Exemplo de proposta de valor](images/persona%2004.jpg)
+![Exemplo de proposta de valor](images/persona%2005.jpg)
 
-![Exemplo de proposta de valor](images/exemplo-persona.png)
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
 >
-> Relacione as personas identificadas no seu projeto e os respectivos mapas de empatia. Lembre-se que você deve ser enumerar e descrever precisamente e de forma personalizada todos os principais envolvidos com a solução almeja.
 >
 > **Orientações**:
 >
@@ -115,20 +118,11 @@ Detalhes sobre o espaço de problema, os objetivos do projeto, sua justificativa
 
 # Product Design
 
-Nesse momento, vamos transformar os insights e validações obtidos em soluções tangíveis e utilizáveis. Essa fase envolve a definição de uma proposta de valor, detalhando a prioridade de cada ideia e a consequente criação de wireframes, mockups e protótipos de alta fidelidade, que detalham a interface e a experiência do usuário.
+![Product Design](images/Product%20Design.jpg)
 
 ## Histórias de Usuários
 
-Com base na análise das personas foram identificadas as seguintes histórias de usuários:
-
-| EU COMO...`PERSONA` | QUERO/PRECISO ...`FUNCIONALIDADE`        | PARA ...`MOTIVO/VALOR`               |
-| --------------------- | ------------------------------------------ | -------------------------------------- |
-| Usuário do sistema   | Registrar minhas tarefas ⚠️ EXEMPLO ⚠️ | Não esquecer de fazê-las             |
-| Administrador         | Alterar permissões ⚠️ EXEMPLO ⚠️      | Permitir que possam administrar contas |
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Apresente aqui as histórias de usuário que são relevantes para o projeto de sua solução. As Histórias de Usuário consistem em uma ferramenta poderosa para a compreensão das necessidades de cada persona. Se possível, agrupe as histórias de usuário por contexto, para facilitar consultas recorrentes à essa parte do documento.
+![Histórias de Usuários](files/Histórias%20de%20Usuários.pdf)
 >
 > **Orientações**:
 >
@@ -137,15 +131,7 @@ Com base na análise das personas foram identificadas as seguintes histórias de
 
 ## Proposta de Valor
 
-**✳️✳️✳️ APRESENTE O DIAGRAMA DA PROPOSTA DE VALOR PARA CADA PERSONA ✳️✳️✳️**
-
-##### Proposta de valor para Persona XPTO ⚠️ EXEMPLO ⚠️
-
-![Exemplo de proposta de valor](images/exemplo-proposta-valor.png)
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> O mapa da proposta de valor é uma ferramenta que nos ajuda a definir qual tipo de produto ou serviço melhor atende às personas definidas anteriormente.
+![proposta de valor](files/proposta%20de%20valor.pdf)
 
 ## Requisitos
 
@@ -153,29 +139,13 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 ### Requisitos Funcionais
 
-| ID     | Descrição do Requisito                                   | Prioridade |
-| ------ | ---------------------------------------------------------- | ---------- |
-| RF-001 | Permitir que o usuário cadastre tarefas ⚠️ EXEMPLO ⚠️ | ALTA       |
-| RF-002 | Emitir um relatório de tarefas no mês ⚠️ EXEMPLO ⚠️ | MÉDIA     |
+![Requisitos Funcionais](files/Requisitos%20Funcionais%20%20(2).pdf)
 
 ### Requisitos não Funcionais
 
-| ID      | Descrição do Requisito                                                              | Prioridade |
-| ------- | ------------------------------------------------------------------------------------- | ---------- |
-| RNF-001 | O sistema deve ser responsivo para rodar em um dispositivos móvel ⚠️ EXEMPLO ⚠️ | MÉDIA     |
-| RNF-002 | Deve processar requisições do usuário em no máximo 3s ⚠️ EXEMPLO ⚠️          | BAIXA      |
+![Requisitos não Funcionais](files/Requisitos%20Não%20Funcionais%20%20(1).pdf)
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Os requisitos de um projeto são classificados em dois grupos:
->
-> - [Requisitos Funcionais (RF)](https://pt.wikipedia.org/wiki/Requisito_funcional):
->   correspondem a uma funcionalidade que deve estar presente na plataforma (ex: cadastro de usuário).
-> - [Requisitos Não Funcionais (RNF)](https://pt.wikipedia.org/wiki/Requisito_n%C3%A3o_funcional):
->   correspondem a uma característica técnica, seja de usabilidade, desempenho, confiabilidade, segurança ou outro (ex: suporte a dispositivos iOS e Android).
->
-> Lembre-se que cada requisito deve corresponder à uma e somente uma característica alvo da sua solução. Além disso, certifique-se de que todos os aspectos capturados nas Histórias de Usuário foram cobertos.
->
+
 > **Orientações**:
 >
 > - [O que são Requisitos Funcionais e Requisitos Não Funcionais?](https://codificar.com.br/requisitos-funcionais-nao-funcionais/)
@@ -185,58 +155,25 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 Artefatos relacionados com a interface e a interacão do usuário na proposta de solução.
 
-### Wireframes
-
-Estes são os protótipos de telas do sistema.
-
-**✳️✳️✳️ COLOQUE AQUI OS PROTÓTIPOS DE TELAS COM TÍTULO E DESCRIÇÃO ✳️✳️✳️**
-
-##### TELA XPTO ⚠️ EXEMPLO ⚠️
-
-Descrição para a tela XPTO
-
-![Exemplo de wireframe](images/exemplo-wireframe.png)
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Wireframes são protótipos das telas da aplicação usados em design de interface para sugerir a estrutura de um site web e seu relacionamentos entre suas páginas. Um wireframe web é uma ilustração semelhante ao layout de elementos fundamentais na interface.
->
-> **Orientações**:
->
-> - [Ferramentas de Wireframes](https://rockcontent.com/blog/wireframes/)
-> - [Figma](https://www.figma.com/)
-> - [Adobe XD](https://www.adobe.com/br/products/xd.html#scroll)
-> - [MarvelApp](https://marvelapp.com/developers/documentation/tutorials/)
 
 ### User Flow
 
 **✳️✳️✳️ COLOQUE AQUI O DIAGRAMA DE FLUXO DE TELAS ✳️✳️✳️**
 
-![Exemplo de fluxo de telas](images/exemplo-userflow.png)
+![fluxo de telas](images/fluxo%20de%20telas.jpg)
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Fluxo de usuário (User Flow) é uma técnica que permite ao desenvolvedor mapear todo fluxo de telas do site ou app. Essa técnica funciona para alinhar os caminhos e as possíveis ações que o usuário pode fazer junto com os membros de sua equipe.
->
-> **Orientações**:
->
-> - [User Flow: O Quê É e Como Fazer?](https://medium.com/7bits/fluxo-de-usu%C3%A1rio-user-flow-o-que-%C3%A9-como-fazer-79d965872534)
-> - [User Flow vs Site Maps](http://designr.com.br/sitemap-e-user-flow-quais-as-diferencas-e-quando-usar-cada-um/)
-> - [Top 25 User Flow Tools &amp; Templates for Smooth](https://www.mockplus.com/blog/post/user-flow-tools)
 
 ### Protótipo Interativo
 
-**✳️✳️✳️ COLOQUE AQUI UM IFRAME COM SEU PROTÓTIPO INTERATIVO ✳️✳️✳️**
 
-✅ [Protótipo Interativo (MarvelApp)](https://marvelapp.com/prototype/4hd6091?emb=1&iosapp=false&frameless=false)  ⚠️ EXEMPLO ⚠️
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Um protótipo interativo apresenta o projeto de interfaces e permite ao usuário navegar pelas funcionalidades como se estivesse lidando com o software pronto. Utilize as mesmas ferramentas de construção de wireframes para montagem do seu protótipo interativo. Inclua o link para o protótipo interativo do projeto.
+ [Protótipo Interativo (figma)](files/projeto_desligaai.pdf)  
+
+
 
 # Metodologia
 
-Detalhes sobre a organização do grupo e o ferramental empregado.
+[Metodologia](images/Metodologia.jpg)  
 
 ## Ferramentas
 
