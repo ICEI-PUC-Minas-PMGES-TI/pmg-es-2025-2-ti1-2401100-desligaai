@@ -52,6 +52,132 @@ nav ul {
     list-style: none;
 }
 
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.atividade-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/*cubo magico*/
+.cubo-container {
+    background-color: #240046;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    width: 400px;
+    height: 300px;
+}
+
+.cubo {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    transform-style: preserve-3d;
+    transform: rotateX(20deg) rotateY(30deg);
+    margin-bottom: 30px;
+}
+
+.cubo.girando {
+    animation: girar 2s linear;
+}
+.cubo div {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 2px solid #fff;
+    opacity: 0.9;
+}
+
+.face-frente {
+    transform: translateZ(50px);
+    background-color: #240046;
+}
+
+.face-tras {
+    transform: rotateY(180deg) translateZ(50px);
+    background-color: #3c096c;
+}
+
+.face-direita {
+    transform: rotateY(90deg) translateZ(50px);
+    background-color: #5a189a;
+}
+
+.face-esquerda {
+    transform: rotateY(-90deg) translateZ(50px);
+    background-color: #7b2cbf;
+}
+
+.face-cima {
+    transform: rotateX(90deg) translateZ(50px);
+    background-color: #9d4edd;
+}
+
+.face-baixo {
+    transform: rotateX(-90deg) translateZ(50px);
+    background-color: #c77dff;
+}
+
+@keyframes girar {
+    from {
+        transform: rotateX(20) rotateY(30);
+    }
+
+    to {
+        transform: rotateX(380deg) rotateY(390deg);
+    }
+}
+
+#atividadeGerada {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #10002b;
+    font-weight: bold;
+    min-height: 50px;
+    width: 300px;
+    opacity: 1;
+    transition: opacity 0.6s ease-in-out;
+}
+
+.fade {
+    opacity: 0;
+}
+
+
+/*botão*/
+#btnPlay {
+    padding: 10px 25px;
+    background-color: #5a189a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#btnPlay:hover {
+    margin-top: 20px;
+    font-size: 15px;
+    color: #10002b;
+    font-weight: bold;
+    min-height: 50px;
+    width: 300px;
+}
+
+
 footer {
     grid-area: footer;
     text-align: center;
