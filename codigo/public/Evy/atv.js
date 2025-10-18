@@ -38,3 +38,30 @@ btnPlay.addEventListener("click", () => {
         atividadeGerada.classList.remove("fade");
     }, 600);
 });
+
+window.addEventListener("load", () => {
+    const mensagemInicial = document.createElement("p" );
+    mensagemInicial.textContent = "✨ Pronto(a) pra se desconectar?";
+    mensagemInicial.style.color = "#5a189a";
+    mensagemInicial.style.fontWeight = "bold";
+    mensagemInicial.style.marginTop = "15px";
+    mensagemInicial.style.transition = "opacity 1s ease-in-out";
+
+    document.querySelector(".atividade-section").appendChild(mensagemInicial);
+
+    setTimeout(() => {
+        mensagemInicial.style.opacity = "0";
+        setTimeout(() => mensagemInicial.remove(), 1000);
+    }, 3000);
+});
+
+btnPlay.addEventListener("mouseover", () => {
+    cubo.style.transform = "rotateX(25deg) rotateY(35deg) scale(1.1)";
+});
+
+
+btnPlay.addEventListener("mouseout", () => {
+    cubo.style.transform = "rotateX(20deg) rotateY(30deg) scale(1)";
+});
+
+
