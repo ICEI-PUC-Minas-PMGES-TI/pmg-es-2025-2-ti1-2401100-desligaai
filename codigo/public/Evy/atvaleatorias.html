@@ -11,20 +11,20 @@
         <div class="logo">
             <img alt="logo" src="logo desligAi.jpg">
             <h1>📵DesligaAi</h1>
-        </div>  
-        <nav>
-            <ul>
-                <li><a>Home |</a></li>
-                <li><a>Produtos |</a></li>
-                <li><a>Quem somos |</a></li>
-                <li><a>Contato</a></li>
-            </ul>
-        </nav>
+        </div>
     </header>
 
     <div class="container">
         <main>
             <section class="atividade-section">
+                <div class="crud-container">
+                    <h2>Gerenciar atividades</h2>
+                    <input type="text" id="novaAtividade" placeholder="Digite uma atividade">
+                    <button id="btnAdicionar">Adicionar</button>
+
+                    <button id="btnToggleLista">Exibir atividades</button>
+                    <ul id="listaAtividades"></ul>
+                </div>
                 <div class="cubo-container">
                     <div class="cubo" id="cubo">
                         <div class="face-frente"></div>
@@ -37,7 +37,7 @@
                 </div>
 
                 <button id="btnPlay">🎲 Mostrar Atividade</button>
-                <div class="atividade gerada" id="atividadeGerada">
+                <div class="atividade-gerada" id="atividadeGerada">
                     Aperte o botão para gerar uma atividade offline!
                 </div>
             </section>
