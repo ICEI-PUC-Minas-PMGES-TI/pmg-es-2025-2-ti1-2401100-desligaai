@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desliga AI - Quiz de Uso Digital</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div id="start-screen" class="screen active">
+            <div class="title">DESLIGA AI</div>
+            <h2>Descubra seu perfil de uso digital!</h2>
+            <p>Responda o quiz e veja como melhorar seus hábitos online.</p>
+            <div class="button" onclick="startQuiz()">Iniciar Quiz</div>
+        </div>
+        <div id="quiz-screen" class="screen">
+            <div class="progress">
+                <div id="progress-bar" class="progress-bar" style="width: 0%;"></div>
+            </div>
+            <div id="question" class="question"></div>
+            <div id="options"></div>
+        </div>
+        <div id="result-screen" class="screen">
+            <h2 id="result-title"></h2>
+            <p id="result-desc"></p>
+            <div class="tips">
+                <h3>Gatilhos Prováveis</h3>
+                <ul id="tips-list"></ul>
+            </div>
+            <div class="button" onclick="restartQuiz()">Refazer Quiz</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
