@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="timer.css">
-    <title>Timer</title>
+    <title>Timer Circular - DesligaAi</title>
 </head>
 <body>
     <header>
@@ -16,10 +16,15 @@
 
     <div class="container">
         <main>
-            <section class="config-timer">
+            <!-- ===== TIMER CIRCULAR ===== -->
+            <section class="timer-section">
+                <div class="timer-circle">
+                    <span id="intervalType">FOCO</span>
+                    <span id="cycleDisplay">Ciclo 1/4</span>
+                    <span id="time-display">00:00</span>
+                </div>
 
-                <h2>Configuração do Timer</h2>
-                <form id="timerForm">
+                <form id="timerForm" class="timer-config">
                     <div class="form-group">
                         <label for="focusTime">Tempo de foco (min):</label>
                         <input type="number" id="focusTime" name="focusTime" min="1" value="25" required>
@@ -35,22 +40,20 @@
                         <input type="number" id="cycles" name="cycles" min="1" value="4" required>
                     </div>
 
-                    <button type="submit" class="btn-start">Iniciar Timer</button>
+                    <div class="timer-options">
+                        <button type="button" data-time="15">15 min</button>
+                        <button type="button" data-time="30">30 min</button>
+                        <button type="button" data-time="60">60 min</button>
+                    </div>
+
+                    <button type="submit" id="start-timer">Iniciar</button>
+                    <button type="button" id="pauseBtn" class="btn-control" disabled>Pausar</button>
+                    <button type="button" id="resetBtn" class="btn-control" disabled>Reiniciar</button>
                 </form>
             </section>
 
-            <section class="timer-display">
-                <h2>⌛ Timer</h2>
-                <div id="intervalType">Aguardando início...</div>
-                <div id="timeDisplay">00:00</div>
-
-                <div class="controls">
-                    <button id="pauseBtn" class="btn-control" disabled>▶️Pausar</button>
-                    <button id="resetBtn" class="btn-control" disabled>↩️Reiniciar</button>
-                </div>
-            </section>
-
-            <section class="history">
+            <!-- ===== HISTÓRICO ===== -->
+            <section class="history-section">
                 <h2>Histórico de Sessões</h2>
                 <table id="historyTable">
                     <thead>
@@ -59,19 +62,43 @@
                             <th>Tipo</th>
                             <th>Duração (min)</th>
                             <th>Detalhes</th>
+                            <th>Ações</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <!-- Historico será preenchido dinamicamente pelo JS -->
-                    </tbody>
+                    <tbody></tbody>
                 </table>
+            </section>
+
+            <!-- ===== SCORES ===== -->
+            <section class="scores-section">
+                <h2>Score</h2>
+                <table id="scoresTable">
+                    <thead>
+                        <tr>
+                            <th>Pontuação</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <!-- Form simplificado apenas para atualizar manualmente se necessário -->
+                <form id="scoreForm">
+                    <input type="number" id="playerScore" placeholder="Pontuação" required>
+                    <button type="submit">Salvar Score</button>
+                </form>
             </section>
         </main>
     </div>
 
-    <footer><p>&copy 2025 DesligaAi. Todos os direitos reservados</p></footer>
-
+    <footer>
+        <p>&copy; 2025 DesligaAi. Todos os direitos reservados</p>
+    </footer>
 
     <script src="timer.js"></script>
 </body>
 </html>
+
+
+
+
+
