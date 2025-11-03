@@ -1,0 +1,10 @@
+{
+  "user123": {
+    "nome": "Arthur",
+    "tempoTotalMinutos": 480, 
+    "historico": [
+      { "data": "2025-10-28", "tempo": 120 },
+      { "data": "2025-10-29", "tempo": 360 }
+    ]
+  }
+}

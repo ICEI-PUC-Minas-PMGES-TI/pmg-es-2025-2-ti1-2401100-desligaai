@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root{
+    /* Fundo da Página (CLARO) */
+    --bg: #f4f4f4; 
+    
+    /* Cores dos Cards e Elementos (ESCURO - MANTIDO) */
+    --card: #0b1220; 
+    --sidebar-bg: #0b1220; /* Adicionado para clareza */
+    
+    /* Cor do Texto Geral (MUDADO PARA ESCURO) */
+    --text-color: #333333; 
+    
+    /* Cor do Texto Mudo (MUDADO PARA ESCURO) */
+    --muted: #555555; 
+    
+    /* Cores de Destaque */
+    --accent:#60a5fa;
+    --success:#34d399;
+    --danger:#fb7185;
+    
+    /* Borda e Linhas */
+    --border-color: rgba(0, 0, 0, 0.1); 
+}
+
+/* 1. ESTILO DO BODY: Fundo branco e texto geral preto */
+body{
+    font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; 
+    margin:0;
+    /* Usa a nova cor de fundo clara */
+    background-color: var(--bg); 
+    /* Garante que o texto fora dos cards seja preto */
+    color: var(--text-color); 
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+}
+
+/* Estilos Globais */
+.wrap{width:100%;max-width:980px}
+header{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:18px;
+    /* Adiciona borda sutil ao header para contraste */
+    border-bottom: 1px solid var(--border-color); 
+    padding-bottom: 18px;
+}
+h1{font-size:20px;margin:0}
+p.lead{margin:4px 0 0;color:var(--muted);font-size:13px}
+.grid{display:grid;grid-template-columns:1fr 360px;gap:18px}
+
+/* 2. ESTILO DOS CARDS: Mantém fundo escuro e texto branco */
+.card{
+    background:var(--card); /* Fundo escuro */
+    padding:16px;
+    border-radius:12px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.3);
+    /* Garante que o texto DENTRO do card seja branco */
+    color: #e6eef8; 
+}
+
+label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+
+/* 3. ESTILO DOS INPUTS: Mantém inputs escuros com texto claro */
+input[type=text],textarea,input[type=date],input[type=number],select{
+    width:100%;
+    padding:10px;
+    border-radius:8px;
+    background:rgba(255,255,255,0.06); /* Fundo escuro sutil */
+    border:1px solid rgba(255,255,255,0.15); /* Borda clara */
+    color:inherit; /* Cor do texto será herdada (branco) */
+    font-size:14px;
+}
+textarea{min-height:88px;resize:vertical}
+.row{display:flex;gap:10px}
+.btn{display:inline-flex;gap:8px;align-items:center;justify-content:center;padding:8px 12px;border-radius:10px;border:0;background:var(--accent);color:#07203a;cursor:pointer}
+.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)}
+.list{max-height:420px;overflow:auto;margin-top:12px}
+
+/* 4. MANTÉM OS ESTILOS ESCUROS INTERNOS */
+.entry{padding:10px;border-radius:10px;margin-bottom:10px;border:1px solid rgba(255,255,255,0.03);display:flex;justify-content:space-between;gap:10px;align-items:center}
+.meta{font-size:13px;color:var(--muted)}
+.meta b{color:#e6eef8}
+.small{font-size:12px;color:var(--muted)}
+.controls{display:flex;gap:8px}
+.pill{background:rgba(255,255,255,0.03);padding:6px 8px;border-radius:999px;font-size:13px}
+.stats{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.stat{background:rgba(255,255,255,0.02);padding:10px;border-radius:10px;min-width:120px}
+canvas{width:100%;height:120px;border-radius:8px;background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent)}
+footer{margin-top:12px;color:var(--muted);font-size:13px}
+@media(max-width:880px){.grid{grid-template-columns:1fr} .card.right{order:-1}}
+
+/* Estilos do Checklist */
+.checklist-section { margin-top: 24px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.06); }
+.checklist-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.checklist-header h3 { margin: 0; }
+.checklist-input-group { display: flex; gap: 8px; margin-bottom: 12px; }
+.checklist-input-group input { flex: 1; }
+.checklist-item { display: flex; align-items: center; justify-content: space-between; padding: 8px; border-radius: 8px; transition: background 0.2s ease; cursor: pointer; }
+.checklist-item:hover { background: rgba(255,255,255,0.05); }
+.checklist-item.completed .task-text { text-decoration: line-through; color: var(--muted); }
+.task-actions { display: flex; gap: 8px; }
+.task-actions button { background: none; border: none; color: var(--muted); cursor: pointer; transition: color 0.2s; }
+.task-actions button:hover { color: #fff; }
+.percentage-pill { padding: 4px 8px; border-radius: 999px; font-weight: bold; font-size: 14px; background: rgba(255,255,255,0.1); }

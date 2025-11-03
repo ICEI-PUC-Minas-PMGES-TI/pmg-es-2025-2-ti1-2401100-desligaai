@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Registro de Progresso Diário - Parar com Vídeos Curtos</title>
+    <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <div>
+                <h1>Registro de Progresso Diário</h1>
+                <p class="lead">Acompanhe seus dias sem vídeos curtos. Simples, local e privado.</p>
+            </div>
+           
+        </header>
+
+        <div class="grid">
+            <section class="card">
+                <form id="entryForm">
+                    <label for="date">Data</label>
+                    <input type="date" id="date" required />
+
+                    <div class="row" style="gap:8px;margin-top:8px">
+                        <div style="flex:1">
+                            <label for="minutes">Minutos sem vídeos hoje</label>
+                            <input type="number" id="minutes" min="0" placeholder="ex: 120" required />
+                        </div>
+                        <div style="width:130px">
+                            <label for="craving">Intensidade do desejo</label>
+                            <select id="craving">
+                                <option value="0">0 - Nenhum</option>
+                                <option value="1">1 - Fraco</option>
+                                <option value="2">2 - Moderado</option>
+                                <option value="3">3 - Forte</option>
+                                <option value="4">4 - Muito forte</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <label for="mood" style="margin-top:8px">Humor</label>
+                    <input type="text" id="mood" placeholder="ex: Produtivo, Ansioso..." />
+
+                    <label for="notes" style="margin-top:8px">Anotações / Estratégias</label>
+                    <textarea id="notes" placeholder="O que funcionou hoje? Quais gatilhos?"></textarea>
+
+                    <div style="display:flex;gap:8px;margin-top:10px;align-items:center;">
+                        <button class="btn" type="submit">Salvar dia</button>
+                        <button class="btn ghost" id="clearAll" type="button">Limpar tudo</button>
+                    </div>
+                    
+                    <input id="importFile" type="file" accept="application/json" style="display:none" />
+                </form>
+
+                <div class="checklist-section">
+                    <div class="checklist-header">
+                        <h3>Atividades do Dia</h3>
+                        <div id="checklist-percentage" class="percentage-pill">0%</div>
+                    </div>
+                    <div class="checklist-input-group">
+                        <input type="text" id="new-task-input" placeholder="O que você vai fazer hoje?" />
+                        <button class="btn" id="add-task-btn">Adicionar</button>
+                    </div>
+                    <ul id="task-list" style="list-style:none;padding:0;margin:0"></ul>
+                </div>
+                
+                <div class="stats" aria-hidden="false">
+                    <div class="stat">
+                        <div class="small">Total de dias registrados</div>
+                        <div id="totalDays" class="pill">0</div>
+                    </div>
+                    <div class="stat">
+                        <div class="small">Minutos totais sem vídeos</div>
+                        <div id="totalMinutes" class="pill">0</div>
+                    </div>
+                    <div class="stat">
+                        <div class="small">Maior sequência (dias)</div>
+                        <div id="bestStreak" class="pill">0</div>
+                    </div>
+                    <div class="stat">
+                        <div class="small">Média diária (min)</div>
+                        <div id="avgMinutes" class="pill">0</div>
+                    </div>
+                </div>
+
+                <h3 style="margin-top:12px">Gráfico semanal (últimos 7 dias)</h3>
+                <canvas id="chart" width="600" height="120"></canvas>
+
+                <footer>
+                    Dica: registre ao final do dia. Exporte seus dados para backup.
+                </footer>
+            </section>
+
+            <aside class="card right">
+                <div class="row" style="align-items:center;justify-content:space-between">
+                    <div>
+                        <h3 style="margin:0">Entradas</h3>
+                        <div class="small">Edite ou remova dias registrados</div>
+                    </div>
+                    
+                </div>
+
+                <div class="list" id="entriesList" aria-live="polite"></div>
+            </aside>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
