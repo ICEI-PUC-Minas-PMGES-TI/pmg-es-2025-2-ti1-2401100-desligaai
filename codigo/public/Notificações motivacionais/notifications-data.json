@@ -1,0 +1,85 @@
+{
+  "sistema_notificacoes": {
+    "configuracoes": {
+      "frequencia_notificacoes": "3h",
+      "horario_ativo": "08:00-22:00",
+      "dias_ativos": ["segunda", "terça", "quarta", "quinta", "sexta", "sábado", "domingo"]
+    },
+    "notificacoes_genericas": [
+      {
+        "id": "NOT-GEN-001",
+        "tipo": "boas_vindas",
+        "titulo": "👋 Complete seu perfil!",
+        "mensagem": "Personalize sua experiência para receber sugestões de atividades offline baseadas nos seus interesses.",
+        "acao_sugerida": {
+          "texto": "Clique aqui para",
+          "atividade": "criar seu perfil personalizado"
+        },
+        "prioridade": "alta"
+      },
+      {
+        "id": "NOT-GEN-002",
+        "tipo": "beneficios",
+        "titulo": "📱 Reduza seu tempo de tela",
+        "mensagem": "A cada hora offline, você ganha mais foco, criatividade e bem-estar.",
+        "acao_sugerida": {
+          "texto": "Experimente",
+          "atividade": "ficar 15 minutos sem celular agora"
+        },
+        "prioridade": "media"
+      },
+      {
+        "id": "NOT-GEN-003",
+        "tipo": "primeiros_passos",
+        "titulo": "🚀 Comece sua jornada",
+        "mensagem": "Registre seu primeiro tempo offline e veja seu progresso crescer.",
+        "acao_sugerida": {
+          "texto": "Registre",
+          "atividade": "seu primeiro período de desconexão"
+        },
+        "prioridade": "media"
+      }
+    ],
+    "sugestoes_genericas": [
+      {
+        "categoria": "Criatividade",
+        "atividades": [
+          "Desenhar ou rabiscar em um caderno",
+          "Escrever um pequeno poema ou texto criativo",
+          "Fotografar algo interessante ao seu redor"
+        ]
+      },
+      {
+        "categoria": "Movimento",
+        "atividades": [
+          "Fazer 5 minutos de alongamento",
+          "Caminhar pelo quarteirão observando detalhes",
+          "Dançar por uma música inteira"
+        ]
+      },
+      {
+        "categoria": "Mindfulness",
+        "atividades": [
+          "Respirar profundamente por 2 minutos",
+          "Observar as nuvens ou o céu por 5 minutos",
+          "Fechar os olhos e identificar 5 sons diferentes"
+        ]
+      },
+      {
+        "categoria": "Aprendizado",
+        "atividades": [
+          "Ler um capítulo de um livro físico",
+          "Aprender uma palavra nova em outro idioma",
+          "Fazer um quebra-cabeça ou sudoku"
+        ]
+      }
+    ],
+    "metricas_iniciais": {
+      "tempo_total_offline_minutos": 0,
+      "dias_consecutivos": 0,
+      "atividades_realizadas": 0,
+      "nivel_satisfacao": "-",
+      "proxima_meta": "Criar perfil e registrar primeira atividade"
+    }
+  }
+}
