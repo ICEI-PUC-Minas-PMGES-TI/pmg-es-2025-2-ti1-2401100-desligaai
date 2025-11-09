@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Perfil do Usuário</title>
-    <!-- Usar o style.css do grafico conforme solicitado -->
-    <link rel="stylesheet" href="../grafico/style.css">
+  <!-- Usar CSS unificado para a pasta gabriel -->
+  <link rel="stylesheet" href="../gabriel.css">
     <style>
       /* Pequenos ajustes locais para a foto/avatar */
       .photo-wrap{display:flex;justify-content:center;margin-bottom:12px}
@@ -13,13 +13,27 @@
       .avatar{width:120px;height:120px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#2b7cff;color:#fff;font-size:48px}
       .muted{color:#666;margin:6px 0}
       .footer-links{margin-top:18px;display:flex;gap:12px;justify-content:center}
-      .footer-links .btn{background:#2b7cff;color:#fff;padding:8px 12px;border-radius:6px;text-decoration:none}
+  /* Padronizar botões para usar a cor principal do header (via variável CSS) */
+  .footer-links .btn{background:var(--primary);color:#fff;padding:8px 12px;border-radius:6px;text-decoration:none}
       .hidden{display:none}
     </style>
   </head>
   <body>
-    <header>
-      <h1>📵 Desliga Aí - Perfil do Usuário</h1>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">🧠</div>
+                <div class="logo-text">Desliga AI</div>
+            </div>
+            <div class="user-info">
+                <div class="user-avatar">MS</div>
+                <div>
+                    <div class="user-name">Mariana Silva</div>
+                    <div class="user-email">mari.silva@exemplo.com</div>
+                </div>
+            </div>
+        </div>
     </header>
     <main class="container">
       <section class="profile-card">
@@ -48,6 +62,12 @@
         </div>
       </section>
     </main>
+    
+    <footer class="footer footer--center">
+      <div class="container">
+        <p>Desliga Aí © 2025 — Combata o vício em vídeos curtos 💡</p>
+      </div>
+    </footer>
 
     <script src="perfil.js"></script>
   </body>
