@@ -1,0 +1,59 @@
+{
+  "usuario": {
+    "id": "USR-2024-001",
+    "nome": "",
+    "idade": 0,
+    "profissao": "",
+    "cidade": "",
+    "objetivo_principal": "",
+    "tempo_diario_redes_sociais": "",
+    "redes_sociais_mais_utilizadas": []
+  },
+  "mapa_emoções": {
+    "emocao_primaria": "",
+    "emocao_secundaria": "",
+    "gatilhos_emocionais": [],
+    "intensidade_emocional": {
+      "ansiedade": 0,
+      "motivacao": 0,
+      "realizacao": 0,
+      "foco": 0
+    }
+  },
+  "preferencias_offline": {
+    "interesses": [],
+    "objetivos_pessoais": [],
+    "atividades_sugeridas": [
+      {
+        "categoria": "Criatividade",
+        "atividades": [
+          "Fazer um curso de aquarela",
+          "Criar um projeto de sketchbook diário",
+          "Visitar galerias de arte aos finais de semana"
+        ]
+      },
+      {
+        "categoria": "Desenvolvimento Pessoal",
+        "atividades": [
+          "Estabelecer uma rotina de leitura de 30 minutos ao dia",
+          "Praticar journaling matinal",
+          "Fazer caminhadas em parques sem celular"
+        ]
+      },
+      {
+        "categoria": "Empreendedorismo",
+        "atividades": [
+          "Planejar um negócio de ilustração digital",
+          "Participar de feiras de arte locais",
+          "Criar um calendário de metas mensais"
+        ]
+      }
+    ]
+  },
+  "configuracoes": {
+    "limite_diario_redes": 0,
+    "alertas_emocionais": false,
+    "sincronizar_calendario": false,
+    "modo_foco_ativado": false
+  }
+}

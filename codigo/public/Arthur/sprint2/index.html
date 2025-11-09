@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Desliga AI - Espelho do Tempo</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <div>
+                <h1>Espelho do Tempo ⏳</h1>
+                <p class="lead">Visualize o tempo de vida real que você está reconquistando.</p>
+            </div>
+           
+        </header>
+
+        <div class="grid">
+            <section class="card full-width">
+                
+                <div class="espelho-do-tempo-painel" id="espelho-do-tempo-painel">
+                    <h2 style="color: var(--accent); margin-bottom: 20px;">Seu Progresso Acumulado</h2>
+                    
+                    <div id="total-time-display" style="text-align: center; margin-bottom: 30px;">
+                        <p class="small">Tempo Total Longe das Telas:</p>
+                        <h1 id="total-time-value" style="font-size: 3.5em; margin: 10px 0;">0 minutos</h1>
+                        <p id="analogia-message" style="font-style: italic; color: var(--muted-light);">Carregando impacto...</p>
+                    </div>
+
+                    <div style="display:flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+                        <div class="stat-card">
+                            <h4 class="small">Tempo Registrado HOJE</h4>
+                            <p id="time-today" style="font-size: 1.2em; font-weight: bold;">0 min</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4 class="small">Dias de Histórico</h4>
+                            <p id="total-days-count" style="font-size: 1.2em; font-weight: bold;">0</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 style="margin-top:40px; margin-bottom: 15px;">Simulação do Temporizador</h3>
+                
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <input type="number" id="input-desconexao" placeholder="Minutos de desconexão (ex: 30)" value="15" min="1" style="max-width: 200px;">
+                    <button class="btn" id="registrar-desconexao-btn" style="flex-shrink: 0;">Registrar Desconexão</button>
+                    <div id="registro-status" class="small" style="color: var(--success);"></div>
+                </div>
+            </section>
+
+            <aside class="card right" style="padding: 16px; background: transparent; box-shadow: none;">
+                <h3 style="margin-bottom: 10px;">Diário de Reflexão</h3>
+                <p class="small">Após registrar o tempo, sugerimos refletir sobre como você usou esse tempo recuperado.</p>
+                <textarea style="margin-top: 10px; width: 100%; min-height: 150px;" placeholder="O que fiz com meu tempo recuperado hoje?"></textarea>
+            </aside>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

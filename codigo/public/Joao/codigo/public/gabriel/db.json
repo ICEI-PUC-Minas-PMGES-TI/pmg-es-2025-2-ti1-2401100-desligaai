@@ -1,0 +1,18 @@
+{
+  "usuarios": [
+    {
+      "id": 4,
+      "login": "gabriel",
+      "nome": "Gabriel Henrique Fernandes Vieira",
+      "nascimento": "10/04/2005",
+      "idade": 20,
+      "foto": "perfil.jpg"
+    }
+  ],
+  "registros": [
+    { "plataforma": "Instagram", "tempo": 45, "data": "2025-10-28" },
+    { "plataforma": "TikTok", "tempo": 30, "data": "2025-10-28" },
+    { "plataforma": "YouTube", "tempo": 20, "data": "2025-10-29" },
+    { "plataforma": "Kwai", "tempo": 10, "data": "2025-10-30" }
+  ]
+}

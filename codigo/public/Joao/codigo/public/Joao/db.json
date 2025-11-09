@@ -1,0 +1,29 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "text": "Com que frequência você assiste a vídeos curtos por mais de 30 minutos seguidos?",
+      "options": ["Raramente (0)", "Às vezes (1)", "Sempre (2)"]
+    },
+    {
+      "id": 2,
+      "text": "Você sente necessidade de assistir vídeos curtos mesmo sem interesse?",
+      "options": ["Não (0)", "Às vezes (1)", "Sim (2)"]
+    },
+    {
+      "id": 3,
+      "text": "Você ignora tarefas importantes por causa de vídeos curtos?",
+      "options": ["Nunca (0)", "Raramente (1)", "Frequentemente (2)"]
+    },
+    {
+      "id": 4,
+      "text": "Você usa vídeos curtos para evitar sentimentos negativos?",
+      "options": ["Não (0)", "Às vezes (1)", "Sempre (2)"]
+    },
+    {
+      "id": 5,
+      "text": "Quantas vezes por dia você verifica apps de vídeos curtos sem querer?",
+      "options": ["Menos de 5 (0)", "5-10 vezes (1)", "Mais de 10 (2)"]
+    }
+  ]
+}
