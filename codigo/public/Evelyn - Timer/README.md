@@ -14,14 +14,14 @@ Passo a passo para executar o projeto:
     Acesse a pasta onde o projeto está salvo.
     Exemplo:
     cd: caminho/da/sua/pasta
-    ![Foto de exemplo do caminho da pasta](/codigo/public/Evy/exemplocd.png)
+    ![Foto de exemplo do caminho da pasta](/codigo/public/modulos/Evelyn%20-%20atvrandom/exemplocd.png)
 
 2. Abra o arquivo principal no navegador
     Abra o arquivo html que você está avaliando no seu navegador(basta dar duplo clique no arquivo ou abrir via VS Code com "Open with Live Server)
 
     ⚠️ Nesse momento o CRUD ainda não estará funcional, apenas a interface será exibida.
     Exemplo: Página de atividades aleatórias
-    ![Foto de exemplo da página de atividades aleatórias](/codigo/public/Evy/exemploatvaleatorias.png)
+    ![Foto de exemplo da página de atividades aleatórias](/codigo/public/modulos/Evelyn%20-%20atvrandom/exemploatvaleatorias.png)
 
 3. Execute o servidor JSON
     No mesmo terminal, execute o seguinte comando:
@@ -31,7 +31,7 @@ Passo a passo para executar o projeto:
     Depois de rodar, ele mostrará algo como:    
         Index:
         http://localhost:3000/
-    ![Foto de exemplo do terminal](/codigo/public/Evy/exemplonode.png)
+    ![Foto de exemplo do terminal](/codigo/public/modulos/Evelyn%20-%20atvrandom/exemplonode.png)
 
 4. Acesse o link no navegador
     Acesse o link destacado como na imagem anterior
@@ -40,7 +40,7 @@ Passo a passo para executar o projeto:
     Após clicar no link, volte à aba onde abriu o arquivo principal e aperte F5 / Atualizar a página
     Agora o CRUD está funcional
     Exemplo:
-    ![Foto de exemplo do CRUD funcionando](/codigo/public/Evy/exemplocrudfuncional.png)
+    ![Foto de exemplo do CRUD funcionando](/codigo/public/modulos/Evelyn%20-%20atvrandom/exemplocrudfuncional.png)
 
 📝 Observações
 
