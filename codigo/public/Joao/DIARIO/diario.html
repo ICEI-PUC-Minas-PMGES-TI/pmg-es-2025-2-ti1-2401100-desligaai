@@ -1,60 +1,27 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>desligaAi – Diário de Reflexão</title>
-  <link rel="stylesheet" href="diario.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desliga AI - Diário de Reflexão</title>
+  <link rel="stylesheet" href="diario.css">
 </head>
 <body>
+  <main>
+    <h1>📔 Diário de Reflexão Digital</h1>
+    <p>Escreva brevemente como se sentiu após passar menos tempo online.</p>
 
-    <!-- Header -->
-    <header class="header">
-        <div class="header-content">
-            <div class="logo">
-                <div class="logo-icon">🧠</div>
-                <div class="logo-text">Desliga AI</div>
-            </div>
-            <div class="user-info">
-                <div class="user-avatar">MS</div>
-                <div>
-                    <div class="user-name">Mariana Silva</div>
-                    <div class="user-email">mari.silva@exemplo.com</div>
-                </div>
-            </div>
-        </div>
-    </header>
+    <section id="formulario">
+      <textarea id="entrada" placeholder="Exemplo: Hoje me senti mais leve e consegui dormir melhor."></textarea>
+      <button id="btnSalvar">Salvar Reflexão</button>
+    </section>
 
-<div class="container">
-
-  <main class="diary">
-    <div class="prompt">
-      <h2>Como você se sentiu hoje ao passar menos tempo nas telas?</h2>
-      <p>Ex: "Fiquei mais calmo", "Li 20 páginas", "Conversei com alguém de verdade"</p>
-    </div>
-
-    <textarea id="reflection" placeholder="Escreva aqui sua reflexão do dia..."></textarea>
-
-    <button id="save-btn">Salvar Reflexão</button>
-
-    <div id="entries"></div>
+    <section id="lista">
+      <h2>Minhas Reflexões</h2>
+      <ul id="reflexoes"></ul>
+    </section>
   </main>
-</div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <p>Desliga AI &copy; 2024 - Controle seu tempo, reconquiste sua atenção</p>
-            <p>Um movimento digital para combater o vício em redes sociais</p>
-            <div class="footer-links">
-                <a href="#">Política de Privacidade</a>
-                <a href="#">Termos de Uso</a>
-                <a href="#">Suporte</a>
-            </div>
-        </div>
-    </footer>
-
-<script src="diario.js"></script>
+  <script src="diario.js"></script>
 </body>
 </html>
