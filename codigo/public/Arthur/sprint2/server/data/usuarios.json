@@ -1,12 +1,13 @@
 {
   "user123": {
     "nome": "Arthur",
-    "tempoTotalMinutos": 1717,
-    "historico": [
-      
-    ],
-    "reflexoes": [] 
-    
-    
+    "tempoTotalMinutos": 0,
+    "historico": [],
+    "reflexoes": [
+      {
+        "texto": "treinei",
+        "data": "2025-11-10T10:32:35.946Z"
+      }
+    ]
   }
 }
