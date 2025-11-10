@@ -1,28 +1,12 @@
 {
   "user123": {
     "nome": "Arthur",
-    "tempoTotalMinutos": 1650,
+    "tempoTotalMinutos": 1717,
     "historico": [
-      {
-        "data": "2025-11-01",
-        "tempo": 15
-      },
-      {
-        "data": "2025-11-01",
-        "tempo": 15
-      },
-      {
-        "data": "2025-11-01",
-        "tempo": 50
-      },
-      {
-        "data": "2025-11-02",
-        "tempo": 15
-      },
-      {
-        "data": "2025-11-02",
-        "tempo": 1555
-      }
-    ]
+      
+    ],
+    "reflexoes": [] 
+    
+    
   }
 }

@@ -1,34 +1,55 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>desligaAi – Diário de Reflexão</title>
-  <link rel="stylesheet" href="diario.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desliga AI - Diário de Reflexão</title>
+  <link rel="stylesheet" href="diario.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
-<div class="container">
-  <header>
-    <h1>desligaAi</h1>
-    <p>Diário de Reflexão</p>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-content">
+      <div class="logo">
+        <span class="logo-icon">📔</span>
+        <span class="logo-text">Desliga AI</span>
+      </div>
+      <div class="user-info">
+        <div class="user-avatar">EU</div>
+        <span>Diário Pessoal</span>
+      </div>
+    </div>
   </header>
 
-  <main class="diary">
-    <div class="prompt">
-      <h2>Como você se sentiu hoje ao passar menos tempo nas telas?</h2>
-      <p>Ex: "Fiquei mais calmo", "Li 20 páginas", "Conversei com alguém de verdade"</p>
+  <!-- MAIN CONTAINER -->
+  <div class="container">
+    <div class="diary">
+      <div class="prompt">
+        <h2>Como você se sentiu hoje após passar menos tempo online?</h2>
+        <p>Escreva com sinceridade. Este é o seu espaço seguro.</p>
+      </div>
+
+      <textarea id="reflection" placeholder="Exemplo: Hoje me senti mais leve, consegui ler 20 páginas de um livro e dormi mais cedo..."></textarea>
+      <button id="save-btn">Salvar Reflexão</button>
+
+      <div id="entries"></div>
     </div>
+  </div>
 
-    <textarea id="reflection" placeholder="Escreva aqui sua reflexão do dia..."></textarea>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p>Desliga AI • Diário de Reflexão Digital</p>
+      <p>Feito com 💜 para quem quer viver mais no mundo real</p>
+      <div class="footer-links">
+        <a href="#">Sobre</a>
+        <a href="#">Privacidade</a>
+        <a href="#">Contato</a>
+      </div>
+    </div>
+  </footer>
 
-    <button id="save-btn">Salvar Reflexão</button>
-
-    <div id="entries"></div>
-  </main>
-</div>
-
-<script src="diario.js"></script>
+  <script src="diario.js"></script>
 </body>
 </html>

@@ -4,28 +4,38 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Desliga AI - Espelho do Tempo</title>
-<link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="wrap">
-        <header>
-            <div>
-                <h1>Espelho do Tempo ⏳</h1>
-                <p class="lead">Visualize o tempo de vida real que você está reconquistando.</p>
-            </div>
-           
-        </header>
 
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">🧠</div>
+                <div class="logo-text">Desliga AI</div>
+            </div>
+            <div class="user-info">
+                <div class="user-avatar">MS</div>
+                <div>
+                    <div class="user-name">Mariana Silva</div>
+                    <div class="user-email">mari.silva@exemplo.com</div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="wrap">
         <div class="grid">
+            
             <section class="card full-width">
                 
                 <div class="espelho-do-tempo-painel" id="espelho-do-tempo-painel">
-                    <h2 style="color: var(--accent); margin-bottom: 20px;">Seu Progresso Acumulado</h2>
+                    <h2 style="color: var(--accent-lighter); margin-bottom: 20px;">Seu Progresso Acumulado</h2>
                     
                     <div id="total-time-display" style="text-align: center; margin-bottom: 30px;">
                         <p class="small">Tempo Total Longe das Telas:</p>
                         <h1 id="total-time-value" style="font-size: 3.5em; margin: 10px 0;">0 minutos</h1>
-                        <p id="analogia-message" style="font-style: italic; color: var(--muted-light);">Carregando impacto...</p>
+                        <p id="analogia-message" style="font-style: italic; color: var(--accent-lightest);">Carregando impacto...</p>
                     </div>
 
                     <div style="display:flex; justify-content: space-around; flex-wrap: wrap; gap: 20px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
@@ -50,13 +60,33 @@
             </section>
 
             <aside class="card right" style="padding: 16px; background: transparent; box-shadow: none;">
-                <h3 style="margin-bottom: 10px;">Diário de Reflexão</h3>
-                <p class="small">Após registrar o tempo, sugerimos refletir sobre como você usou esse tempo recuperado.</p>
-                <textarea style="margin-top: 10px; width: 100%; min-height: 150px;" placeholder="O que fiz com meu tempo recuperado hoje?"></textarea>
-            </aside>
-        </div>
-    </div>
+                <h3 style="margin-bottom: 10px; color: var(--text-dark);">Diário de Reflexão</h3>
+                <p class="small" style="color: var(--text-medium);">Após registrar o tempo, sugerimos refletir sobre como você usou esse tempo recuperado.</p>
+                
+                <textarea id="diarioTexto" style="margin-top: 10px; width: 100%; min-height: 150px;" placeholder="O que fiz com meu tempo recuperado hoje?"></textarea>
+                
+                <button class="btn" id="salvarDiarioBtn" style="margin-top: 10px; width: 100%; background-color: var(--accent); color: white;">Salvar Reflexão</button>
+                
+                <h4 style="margin-top: 25px; margin-bottom: 10px; color: var(--text-dark);">Histórico de Reflexões:</h4>
+                <div id="historicoDiario" style="max-height: 300px; overflow-y: auto; padding-right: 5px;">
+                    <p class="small">Carregando histórico...</p>
+                </div>
 
+                <button class="btn" id="resetarContagemBtn" style="margin-top: 25px; width: 100%; background-color: #f44336; color: white;">🔴 Resetar Contagem Total</button>
+            </aside>
+            </div>
+    </main>
+    <footer class="footer">
+        <div class="footer-content">
+            <p>Desliga AI &copy; 2024 - Controle seu tempo, reconquiste sua atenção</p>
+            <p>Um movimento digital para combater o vício em redes sociais</p>
+            <div class="footer-links">
+                <a href="#">Política de Privacidade</a>
+                <a href="#">Termos de Uso</a>
+                <a href="#">Suporte</a>
+            </div>
+        </div>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>

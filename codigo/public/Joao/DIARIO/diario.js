@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const saveBtn = document.getElementById('save-btn');
   const entriesContainer = document.getElementById('entries');
 
-  // Carregar entradas
   function loadEntries() {
     const entries = JSON.parse(localStorage.getItem('desligaAi-diario') || '[]');
     entriesContainer.innerHTML = entries.map(entry => `
@@ -12,13 +11,17 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="text">${entry.text.replace(/\n/g, '<br>')}</div>
       </div>
     `).join('');
+    
+    // Scroll suave para a nova entrada
+    if (entries.length > 0) {
+      entriesContainer.scrollTop = 0;
+    }
   }
 
-  // Salvar
   saveBtn.addEventListener('click', () => {
     const text = textarea.value.trim();
     if (!text) {
-      alert('Escreva algo antes de salvar.');
+      alert('😐 Escreva algo antes de salvar.');
       return;
     }
 
@@ -38,11 +41,23 @@ document.addEventListener('DOMContentLoaded', () => {
     textarea.value = '';
     loadEntries();
     
-    // Feedback visual
-    saveBtn.textContent = 'Salvo!';
-    setTimeout(() => saveBtn.textContent = 'Salvar Reflexão', 1500);
+    // Feedback mais elegante
+    const originalText = saveBtn.textContent;
+    saveBtn.textContent = '✨ Salvo com sucesso!';
+    saveBtn.style.background = 'linear-gradient(135deg, #00e676, #00c853)';
+    
+    setTimeout(() => {
+      saveBtn.textContent = originalText;
+      saveBtn.style.background = '';
+    }, 2000);
   });
 
-  // Inicializar
+  // Salvar com Enter + Ctrl (evita salvar só com Enter)
+  textarea.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && e.ctrlKey) {
+      saveBtn.click();
+    }
+  });
+
   loadEntries();
 });
