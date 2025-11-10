@@ -13,14 +13,17 @@ window.addEventListener("DOMContentLoaded", async () => {
     kwai: { nome: "Kwai", img: "https://cdn-icons-png.flaticon.com/512/5968/5968885.png" }
   };
 
-  // Registros em memória — vamos tentar carregar do JSON Server (/registros)
-  // e caso falhe usar /gabriel/db.json (arquivo estático) ou localStorage.
+  // API base (json-server) - quando estiver rodando em http://localhost:3000
+  const API_BASE = 'http://localhost:3000';
+
+  // Registros em memória — vamos tentar carregar do JSON Server (API_BASE + /registros)
+  // e caso falhe usar /gabriel/db.json (arquivo estático). NÃO usar localStorage.
   let registros = [];
 
   async function loadRegistros() {
     // 1) tenta JSON Server
     try {
-      const res = await fetch('/registros');
+  const res = await fetch(`${API_BASE}/registros`);
       if (res.ok) {
         const data = await res.json();
         if (Array.isArray(data) && data.length) {
@@ -34,7 +37,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 
     // 2) fallback para o arquivo estático criado em /gabriel/db.json
     try {
-      const res2 = await fetch('/gabriel/db.json');
+  const res2 = await fetch('/gabriel/db.json');
       if (res2.ok) {
         const blob = await res2.json();
         if (blob && Array.isArray(blob.registros)) {
@@ -46,9 +49,14 @@ window.addEventListener("DOMContentLoaded", async () => {
       console.warn('Não foi possível obter /gabriel/db.json', e);
     }
 
-    // 3) fallback final para localStorage
+    // 3) fallback final para arquivo estático em /gabriel/db.json
     try {
-      registros = JSON.parse(localStorage.getItem('registrosUso')) || [];
+      registros = [];
+      const res3 = await fetch('/gabriel/db.json');
+      if (res3.ok) {
+        const blob = await res3.json();
+        if (blob && Array.isArray(blob.registros)) registros = blob.registros;
+      }
     } catch (e) { registros = []; }
   }
 
@@ -250,7 +258,7 @@ window.addEventListener("DOMContentLoaded", async () => {
     grafico.update();
   }));
 
-  // Não usamos servidor: localStorage é a fonte de verdade
+  // Preferimos o servidor (json-server) quando disponível; fallback para /gabriel/db.json. Não usar localStorage.
 
   // Exibir ícone da plataforma escolhida
   plataformaSelect.addEventListener("change", () => {
@@ -280,9 +288,9 @@ window.addEventListener("DOMContentLoaded", async () => {
       data: data
     };
 
-    // Tenta POSTar no JSON Server
+    // Tenta POSTar no JSON Server; se falhar, mantém apenas em memória e avisa
     try {
-      const res = await fetch('/registros', {
+      const res = await fetch(`${API_BASE}/registros`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(novoRegistro)
@@ -292,14 +300,14 @@ window.addEventListener("DOMContentLoaded", async () => {
         registros.push(created);
       } else {
         registros.push(novoRegistro);
+        alert('Registro adicionado localmente na sessão, mas não foi possível persistir no servidor.');
       }
     } catch (e) {
-      console.warn('POST /registros falhou, salvando localmente', e);
+      console.warn('POST /registros falhou', e);
       registros.push(novoRegistro);
+      alert('Registro adicionado localmente na sessão, mas não foi possível persistir no servidor.');
     }
 
-    // sempre atualiza localStorage para modo offline
-    localStorage.setItem('registrosUso', JSON.stringify(registros));
     atualizarGrafico();
 
     tempoInput.value = "";
@@ -315,10 +323,26 @@ window.addEventListener("DOMContentLoaded", async () => {
   // Limpar todo o progresso
   limparDadosBtn.addEventListener('click', () => {
     if (!confirm('Deseja realmente apagar TODO o progresso? Esta ação não pode ser desfeita.')) return;
-    registros = [];
-    localStorage.removeItem('registrosUso');
-    atualizarGrafico();
-    alert('Todos os registros foram apagados.');
+    // Tenta remover no servidor todos os registros (apenas os que têm id)
+    (async () => {
+      try {
+        const res = await fetch(`${API_BASE}/registros`);
+        if (res.ok) {
+          const srv = await res.json();
+          for (const r of srv) {
+            if (r.id != null) await fetch(`${API_BASE}/registros/${r.id}`, { method: 'DELETE' });
+          }
+          registros = [];
+          atualizarGrafico();
+          alert('Todos os registros foram apagados no servidor.');
+          return;
+        }
+      } catch (e) { /* falha no servidor */ }
+      // se não conseguiu falar com o servidor, apenas limpa a sessão atual
+      registros = [];
+      atualizarGrafico();
+      alert('Registros removidos apenas na sessão (não foi possível acessar o servidor).');
+    })();
   });
 
   // Apagar progresso do dia selecionado
@@ -328,14 +352,33 @@ window.addEventListener("DOMContentLoaded", async () => {
     if (!confirm(`Apagar todos os registros do dia ${dia}?`)) return;
     // Se houver plataformas selecionadas, só removemos registros dessas plataformas
     const selecionadas = plataformasSelecionadas();
-    if (selecionadas.length === 0) {
-      registros = registros.filter(r => r.data !== dia);
-    } else {
-      registros = registros.filter(r => !(r.data === dia && selecionadas.includes(r.plataforma)));
-    }
-    localStorage.setItem('registrosUso', JSON.stringify(registros));
-    atualizarGrafico();
-    alert(`Registros do dia ${dia} apagados.`);
+    // tenta apagar no servidor os registros com id correspondente; se falhar, limpa na sessão
+    (async () => {
+      try {
+        const res = await fetch(`${API_BASE}/registros`);
+        if (res.ok) {
+          const srv = await res.json();
+          for (const r of srv) {
+            if (r.data === dia && (selecionadas.length === 0 || selecionadas.includes(r.plataforma))) {
+              if (r.id != null) await fetch(`${API_BASE}/registros/${r.id}`, { method: 'DELETE' });
+            }
+          }
+          // atualizar lista local reconsultando servidor
+          await loadRegistros();
+          atualizarGrafico();
+          alert(`Registros do dia ${dia} apagados no servidor.`);
+          return;
+        }
+      } catch (e) { /* falha no servidor */ }
+      // fallback: apenas remove na sessão atual
+      if (selecionadas.length === 0) {
+        registros = registros.filter(r => r.data !== dia);
+      } else {
+        registros = registros.filter(r => !(r.data === dia && selecionadas.includes(r.plataforma)));
+      }
+      atualizarGrafico();
+      alert(`Registros do dia ${dia} removidos apenas na sessão (não persistido).`);
+    })();
   });
 
   // Editar progresso do dia: preserva múltiplos registros por plataforma/data
@@ -391,13 +434,55 @@ window.addEventListener("DOMContentLoaded", async () => {
       }
     }
 
-  // salvar e atualizar localmente
-  localStorage.setItem('registrosUso', JSON.stringify(registros));
-  atualizarGrafico();
-    alert('Edição concluída para o dia ' + dia);
+  // tentar sincronizar alterações com o servidor para registros que possuem id
+  (async () => {
+    let synced = true;
+    try {
+      for (const r of registros) {
+        if (r.id != null) {
+          await fetch(`${API_BASE}/registros/${r.id}`, {
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ tempo: r.tempo })
+          });
+        }
+      }
+    } catch (e) { synced = false; console.warn('Falha ao sincronizar alterações com o servidor', e); }
+    atualizarGrafico();
+    alert(synced ? 'Edição concluída e sincronizada com o servidor.' : 'Edição aplicada apenas na sessão (não persistida).');
+  })();
   });
 
   // Ao carregar a página, carrega registros do JSON Server / fallback e atualiza o gráfico
   await loadRegistros();
+  // carregar usuário para o bloco do header (usar id query ou padrão 4)
+  async function loadUserForHeader(){
+    const params = new URLSearchParams(location.search);
+    const id = params.get('id') || params.get('user') || '4';
+    try{
+      // tenta por id numérico
+      if (/^\d+$/.test(String(id))) {
+        const res = await fetch(`${API_BASE}/usuarios/${id}`);
+        if(res.ok){ currentUser = await res.json(); return; }
+      }
+      // tenta por login
+      const resQ = await fetch(`${API_BASE}/usuarios?login=${encodeURIComponent(id)}`);
+      if(resQ.ok){ const arr = await resQ.json(); if(Array.isArray(arr) && arr.length){ currentUser = arr[0]; return; } }
+    }catch(e){ console.warn('Falha ao obter usuário do servidor', e); }
+    try{
+      const res2 = await fetch('/gabriel/db.json');
+      if(res2.ok){ const blob = await res2.json(); if(blob && Array.isArray(blob.usuarios)){ currentUser = blob.usuarios.find(u => String(u.id) === String(id) || String(u.login) === String(id)); }}
+    }catch(_){ /* ignore */ }
+  }
+
+  await loadUserForHeader();
+  if(currentUser){
+    const ua = document.querySelector('.user-avatar');
+    const uname = document.querySelector('.user-name');
+    const uemail = document.querySelector('.user-email');
+    if(ua) ua.textContent = (currentUser.nome||currentUser.login||'U').trim().charAt(0).toUpperCase();
+    if(uname) uname.textContent = currentUser.nome || currentUser.login || '';
+    if(uemail) uemail.textContent = currentUser.login ? `${currentUser.login}@exemplo.com` : '';
+  }
   atualizarGrafico();
 });

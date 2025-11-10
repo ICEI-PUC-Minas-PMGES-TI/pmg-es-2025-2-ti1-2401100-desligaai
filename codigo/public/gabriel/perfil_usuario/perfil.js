@@ -65,7 +65,7 @@
       console.warn('Falha ao buscar via API (id/login)', e);
     }
 
-    // fallback para arquivo estático e localStorage
+    // fallback para arquivo estático (db.json)
     try{
       const res2 = await fetch('/gabriel/db.json');
       if(res2.ok){
@@ -76,9 +76,7 @@
         }
       }
     }catch(_){ /* ignora */ }
-
-    const stored = localStorage.getItem(`perfil-${id}`);
-    return stored ? JSON.parse(stored) : null;
+    return null;
   }
 
   function showData(user){
@@ -159,13 +157,10 @@
       if(!res.ok) throw new Error('PATCH falhou');
       const updated = await res.json();
       currentUser = Object.assign({}, currentUser, updated);
-      localStorage.setItem(`perfil-${id}`, JSON.stringify(currentUser));
       return true;
     }catch(e){
-      console.warn('PATCH /usuarios falhou, salvando sobre em localStorage', e);
-      const key = `perfil-sobre-${id}`;
-      localStorage.setItem(key, text);
-      if(currentUser) currentUser.sobre = text;
+      console.warn('PATCH /usuarios falhou', e);
+      alert('Não foi possível salvar no servidor. Inicie o json-server para persistir as alterações.');
       return false;
     }
   }
@@ -192,12 +187,7 @@
     // Busca o usuário
     let user = await fetchUser(id);
 
-    // Fallback "sobre" salvo localmente
-    const savedSobre = localStorage.getItem(`perfil-sobre-${id}`);
-    if(savedSobre){
-      if(!user) user = {};
-      user.sobre = savedSobre;
-    }
+    // não usar localStorage; confiar apenas no servidor/db.json
 
     showData(user);
 
