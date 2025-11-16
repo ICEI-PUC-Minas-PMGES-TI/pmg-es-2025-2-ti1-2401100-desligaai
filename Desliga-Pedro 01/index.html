@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desliga AI - Reconquiste Seu Tempo Digital</title>
+  <meta name="description" content="Plataforma completa para combater o vício em vídeos curtos e redes sociais. Ferramentas práticas para recuperar o controle do seu tempo e bem-estar digital.">
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+  </head>
+<body>
+
+  <!-- Botão de alternar tema -->
+  <button id="themeToggle" class="theme-toggle btn btn-outline-secondary rounded-circle" aria-label="Alternar tema">
+    <i class="bi bi-sun theme-icon-sun"></i>
+    <i class="bi bi-moon theme-icon-moon"></i>
+  </button>
+
+  <!-- Seção Hero -->
+  <section class="hero-section">
+    <div class="hero-background"></div>
+    <div class="hero-orb orb-1"></div>
+    <div class="hero-orb orb-2"></div>
+    
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10 text-center hero-content">
+          <span class="badge bg-danger mb-4 px-4 py-2">
+            <i class="bi bi-exclamation-triangle me-2"></i>
+            Alerta: O Vício Digital Está Roubando Seu Tempo
+          </span>
+
+          <h1 class="display-2 fw-bold mb-4">
+            <span class="text-gradient">Bem-vindo ao Desliga AI</span>
+          </h1>
+
+          <p class="h3 fw-semibold mb-4">
+            <span class="text-gradient-accent">Equilibre Seu Tempo Digital</span>
+          </p>
+
+          <p class="lead mb-5 text-muted">
+            Uma plataforma completa para ajudar você a recuperar o controle sobre seu tempo
+            e se libertar do vício em vídeos curtos e redes sociais
+          </p>
+
+          <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center mb-5">
+            <button class="btn btn-primary btn-lg px-4" onclick="scrollToSection('emotion-map')">
+              Começar Agora
+              <i class="bi bi-arrow-down ms-2"></i>
+            </button>
+            <button class="btn btn-outline-primary btn-lg px-4" onclick="scrollToSection('tools-preview')">
+              Ver Todas as Ferramentas
+            </button>
+          </div>
+
+          <!-- Estatísticas -->
+          <div class="row g-4 mt-5">
+            <div class="col-md-4">
+              <div class="stat-card">
+                <div class="stat-value text-primary">2.5h</div>
+                <div class="stat-label text-muted">Média diária em reels</div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="stat-card">
+                <div class="stat-value text-info">67%</div>
+                <div class="stat-label text-muted">Sentem-se viciados</div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="stat-card">
+                <div class="stat-value text-danger">↓40%</div>
+                <div class="stat-label text-muted">Redução na produtividade</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção Mapa de Emoções -->
+  <section id="emotion-map" class="py-5">
+    <div class="container">
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-8 text-center">
+          <h2 class="display-4 fw-bold mb-4">
+            Como Você Está Se <span class="text-gradient">Sentindo Agora?</span>
+          </h2>
+          <p class="lead text-muted">
+            Escolha uma emoção e receba sugestões personalizadas de atividades offline
+          </p>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <div class="card shadow-sm">
+            <div class="card-header">
+              <h3 class="card-title mb-0">Mapa de Emoções</h3>
+              <p class="text-muted mb-0 small">Clique em uma emoção para ver sugestões</p>
+            </div>
+            <div class="card-body">
+              <div class="row g-3 mb-4" id="emotionsGrid">
+                <!-- Emoções serão inseridas via JavaScript -->
+              </div>
+
+              <div id="emotionSuggestions" class="emotion-suggestions d-none">
+                <h4 class="mb-3">
+                  <i id="emotionIcon" class="me-2"></i>
+                  Sugestões para quando estiver <span id="emotionLabel"></span>
+                </h4>
+                <ul id="suggestionsList" class="list-unstyled">
+                  <!-- Sugestões serão inseridas via JavaScript -->
+                </ul>
+              </div>
+            </div>
+            <div class="card-footer text-center">
+              <button class="btn btn-primary" onclick="navigateToPage('mapa-emocoes-expandido')">
+                <i class="bi bi-arrow-right-circle me-2"></i>Ver Mapa Completo e Detalhado
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção Quiz de Hábitos -->
+  <section class="py-5 bg-muted">
+    <div class="container">
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-8 text-center">
+          <h2 class="display-4 fw-bold mb-4">
+            Quiz de <span class="text-gradient">Hábitos Digitais</span>
+          </h2>
+          <p class="lead text-muted">
+            Descubra o nível do seu vício em redes sociais
+          </p>
+        </div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="card shadow-sm">
+            <div class="card-header">
+              <div class="d-flex justify-content-between align-items-center">
+                <h3 class="card-title mb-0">Avaliação Rápida</h3>
+                <span id="quizBadge" class="badge bg-secondary"></span>
+              </div>
+              <div id="quizProgress" class="progress mt-3" style="height: 8px;">
+                <div class="progress-bar" role="progressbar" style="width: 0%"></div>
+              </div>
+            </div>
+            <div class="card-body">
+              <!-- Área do Quiz -->
+              <div id="quizContent">
+                <h4 id="quizQuestion" class="mb-4"></h4>
+                <div id="quizOptions" class="d-grid gap-3">
+                  <!-- Opções serão inseridas via JavaScript -->
+                </div>
+              </div>
+
+              <!-- Área de Resultado -->
+              <div id="quizResult" class="d-none">
+                <div class="text-center mb-4">
+                  <h3 id="resultTitle" class="display-5 fw-bold mb-3"></h3>
+                  <p id="resultDescription" class="text-muted mb-3"></p>
+                  <span id="resultBadge" class="badge bg-secondary fs-6 px-4 py-2"></span>
+                </div>
+
+                <div class="bg-light p-4 rounded mb-4">
+                  <h5 class="fw-semibold mb-3">Recomendações para você:</h5>
+                  <ul id="resultTips" class="list-unstyled">
+                    <!-- Dicas serão inseridas via JavaScript -->
+                  </ul>
+                </div>
+
+                <button class="btn btn-primary w-100" onclick="resetQuiz()">
+                  Refazer Quiz
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção Ferramentas -->
+  <section id="tools-preview" class="py-5">
+    <div class="container">
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-8 text-center">
+          <h2 class="display-4 fw-bold mb-4">
+            <span class="text-gradient">Ferramentas</span> Para Sua Transformação
+          </h2>
+          <p class="lead text-muted">
+            Um kit completo de recursos para ajudar você a recuperar o controle do seu tempo
+          </p>
+        </div>
+      </div>
+
+      <div class="row g-4" id="toolsGrid">
+        <!-- Ferramentas serão inseridas via JavaScript -->
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-lg-8 mx-auto">
+          <div class="alert alert-info text-center">
+            <i class="bi bi-lightbulb me-2"></i>
+            <strong>Dica:</strong> Clique em qualquer ferramenta acima para usar
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção Malefícios -->
+  <section class="py-5 bg-muted">
+    <div class="container">
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-8 text-center">
+          <span class="badge bg-danger mb-4 fs-6 px-4 py-2">Conscientização</span>
+          <h2 class="display-4 fw-bold mb-4">
+            Os <span class="text-gradient-accent">Malefícios</span> do Vício Digital
+          </h2>
+          <p class="lead text-muted">
+            Entenda como o uso excessivo de vídeos curtos e redes sociais afeta sua vida
+          </p>
+        </div>
+      </div>
+
+      <div class="row g-4 mb-5" id="harmsGrid">
+        <!-- Malefícios serão inseridos via JavaScript -->
+      </div>
+
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <div class="alert alert-danger border-danger">
+            <h4 class="alert-heading">
+              <i class="bi bi-exclamation-triangle me-2"></i>
+              O Algoritmo é Projetado Para Viciar
+            </h4>
+            <p class="mb-0">
+              As plataformas usam inteligência artificial e psicologia comportamental para mantê-lo rolando infinitamente. 
+              Cada scroll libera dopamina, criando um ciclo viciante similar a jogos de azar. 
+              <strong>Você não está fraco, o sistema foi desenhado para isso.</strong>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção Soluções -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-8 text-center">
+          <h2 class="display-4 fw-bold mb-4">
+            Como Se <span class="text-gradient">Libertar</span> do Vício
+          </h2>
+          <p class="lead text-muted">
+            Passos práticos e comprovados para recuperar o controle do seu tempo
+          </p>
+        </div>
+      </div>
+
+      <div class="row g-4 mb-5" id="solutionsGrid">
+        <!-- Soluções serão inseridas via JavaScript -->
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- OUTRAS PÁGINAS DO SITE (COMENTADAS) -->
+  <!-- ============================================ -->
+  <!-- Todas as páginas abaixo estão no mesmo arquivo, separadas por comentários -->
+  <!-- Use a função navigateToPage('nome-da-pagina') para navegar entre elas -->
+
+
+  <!-- ============================================ -->
+  <!-- PÁGINA: TIMER DE DESAFIO -->
+  <!-- ============================================ -->
+  <section id="page-timer-desafio" class="page-section d-none">
+    <div class="container py-5">
+      <button class="btn btn-outline-secondary mb-4" onclick="navigateToPage('home')">
+        <i class="bi bi-arrow-left me-2"></i>Voltar ao Início
+      </button>
+      
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="card shadow-lg">
+            <div class="card-header text-center">
+              <h2 class="display-5 fw-bold mb-2">
+                <i class="bi bi-stopwatch-fill text-primary me-2"></i>
+                <span class="text-gradient">Timer de Desafio</span>
+              </h2>
+              <p class="text-muted mb-0">Desafie-se a ficar longe das redes sociais</p>
+            </div>
+            <div class="card-body text-center p-5">
+              <div id="timerDisplay" class="display-1 fw-bold mb-4 text-primary">25:00</div>
+              <div class="progress mb-4" style="height: 10px;">
+                <div id="timerProgress" class="progress-bar" role="progressbar" style="width: 0%"></div>
+              </div>
+              <div id="timerMessage" class="alert alert-info mb-4 d-none"></div>
+              <div class="d-flex gap-3 justify-content-center mb-4">
+                <button id="timerPlayPause" class="btn btn-primary btn-lg" onclick="toggleTimer()">
+                  <i class="bi bi-play-fill me-2"></i>Iniciar
+                </button>
+                <button class="btn btn-outline-secondary btn-lg" onclick="resetTimer()">
+                  <i class="bi bi-arrow-clockwise me-2"></i>Reiniciar
+                </button>
+              </div>
+              <div class="card bg-light">
+                <div class="card-body">
+                  <h5 class="fw-bold mb-3">Como usar:</h5>
+                  <ol class="text-start">
+                    <li>Defina um tempo (padrão: 25 minutos)</li>
+                    <li>Clique em "Iniciar" e mantenha o foco</li>
+                    <li>Evite checar redes sociais durante o timer</li>
+                    <li>Celebre quando completar o desafio!</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- PÁGINA: PROGRESSO DIÁRIO -->
+  <!-- ============================================ -->
+  <section id="page-progresso-diario" class="page-section d-none">
+    <div class="container py-5">
+      <button class="btn btn-outline-secondary mb-4" onclick="navigateToPage('home')">
+        <i class="bi bi-arrow-left me-2"></i>Voltar ao Início
+      </button>
+      
+      <div class="row g-4 mb-4">
+        <div class="col-md-4">
+          <div class="card text-center">
+            <div class="card-body">
+              <i class="bi bi-clock-fill text-primary" style="font-size: 3rem;"></i>
+              <h3 class="mt-3" id="mediaDiaria">120 min</h3>
+              <p class="text-muted">Média Diária</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card text-center">
+            <div class="card-body">
+              <i class="bi bi-trophy-fill text-warning" style="font-size: 3rem;"></i>
+              <h3 class="mt-3" id="tempoEconomizado">780 min</h3>
+              <p class="text-muted">Tempo Economizado</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card text-center">
+            <div class="card-body">
+              <i class="bi bi-bullseye text-info" style="font-size: 3rem;"></i>
+              <h3 class="mt-3">120 min</h3>
+              <p class="text-muted">Meta Diária</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card shadow-sm mb-4">
+        <div class="card-header">
+          <h4 class="mb-0">Gráfico Semanal</h4>
+        </div>
+        <div class="card-body">
+          <div id="weeklyChart" class="d-flex align-items-end gap-2" style="height: 200px;">
+            <!-- Gráfico será gerado via JavaScript -->
+          </div>
+        </div>
+      </div>
+
+      <div class="card bg-light">
+        <div class="card-body">
+          <h5 class="fw-bold mb-3">💡 Dicas para melhorar:</h5>
+          <ul>
+            <li>Defina horários específicos para usar redes sociais</li>
+            <li>Use apps de controle de tempo</li>
+            <li>Substitua o hábito por atividades offline</li>
+            <li>Celebre pequenas vitórias diárias</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- PÁGINA: ATIVIDADES OFFLINE -->
+  <!-- ============================================ -->
+  <section id="page-atividades-offline" class="page-section d-none">
+    <div class="container py-5">
+      <button class="btn btn-outline-secondary mb-4" onclick="navigateToPage('home')">
+        <i class="bi bi-arrow-left me-2"></i>Voltar ao Início
+      </button>
+      
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-8 text-center">
+          <h2 class="display-4 fw-bold mb-4">
+            <span class="text-gradient">Atividades Offline</span>
+          </h2>
+          <p class="lead text-muted">Descubra alternativas interessantes para fazer sem telas</p>
+        </div>
+      </div>
+
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-6">
+          <div class="card shadow-lg text-center p-5">
+            <div id="selectedActivityEmoji" class="display-1 mb-3">🚶</div>
+            <h3 id="selectedActivityTitle" class="display-6 mb-3">Caminhar ao ar livre</h3>
+            <p id="selectedActivityDesc" class="text-muted">Uma caminhada pode renovar sua energia e clarear sua mente</p>
+            <button class="btn btn-primary btn-lg mt-4" onclick="shuffleActivity()">
+              <i class="bi bi-shuffle me-2"></i>Sortear Nova Atividade
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-3" id="activitiesGrid">
+        <!-- Atividades serão inseridas via JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- PÁGINA: MURAL DE CONQUISTAS -->
+  <!-- ============================================ -->
+  <section id="page-mural-conquistas" class="page-section d-none">
+    <div class="container py-5">
+      <button class="btn btn-outline-secondary mb-4" onclick="navigateToPage('home')">
+        <i class="bi bi-arrow-left me-2"></i>Voltar ao Início
+      </button>
+      
+      <div class="row justify-content-center mb-4">
+        <div class="col-lg-8 text-center">
+          <h2 class="display-4 fw-bold mb-4">
+            <span class="text-gradient">Mural de Conquistas</span>
+          </h2>
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="fw-bold">Progresso Geral</span>
+                <span id="achievementsProgress" class="badge bg-primary fs-6">3/9</span>
+              </div>
+              <div class="progress" style="height: 20px;">
+                <div class="progress-bar" role="progressbar" style="width: 33%">33%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4" id="achievementsGrid">
+        <!-- Conquistas serão inseridas via JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- PÁGINA: CHECKLIST DIÁRIO -->
+  <!-- ============================================ -->
+  <section id="page-checklist-diario" class="page-section d-none">
+    <div class="container py-5">
+      <button class="btn btn-outline-secondary mb-4" onclick="navigateToPage('home')">
+        <i class="bi bi-arrow-left me-2"></i>Voltar ao Início
+      </button>
+      
+      <div class="row justify-content-center mb-4">
+        <div class="col-lg-8">
+          <h2 class="display-4 fw-bold mb-4 text-center">
+            <span class="text-gradient">Checklist Diário</span>
+          </h2>
+          
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="fw-bold">Progresso</span>
+                <span id="checklistProgress" class="badge bg-primary fs-6">1/4</span>
+              </div>
+              <div class="progress" style="height: 20px;">
+                <div id="checklistProgressBar" class="progress-bar" role="progressbar" style="width: 25%">25%</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card mb-4">
+            <div class="card-body">
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" id="newTaskInput" placeholder="Nova tarefa...">
+                <button class="btn btn-primary" onclick="addTask()">
+                  <i class="bi bi-plus-lg"></i> Adicionar
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <ul id="tasksList" class="list-group list-group-flush">
+                <!-- Tarefas serão inseridas via JavaScript -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- PÁGINA: COMPARTILHAR PROGRESSO -->
+  <!-- ============================================ -->
+  <section id="page-compartilhar-progresso" class="page-section d-none">
+    <div class="container py-5">
+      <button class="btn btn-outline-secondary mb-4" onclick="navigateToPage('home')">
+        <i class="bi bi-arrow-left me-2"></i>Voltar ao Início
+      </button>
+      
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-8">
+          <h2 class="display-4 fw-bold mb-4 text-center">
+            <span class="text-gradient">Compartilhar Progresso</span>
+          </h2>
+          
+          <div class="card border-primary bg-gradient-primary-light mb-4">
+            <div class="card-body p-4">
+              <div class="row g-3 text-center">
+                <div class="col-6 col-md-3">
+                  <div class="h2 mb-1">12</div>
+                  <small class="text-muted">Dias Ativos</small>
+                </div>
+                <div class="col-6 col-md-3">
+                  <div class="h2 mb-1">780</div>
+                  <small class="text-muted">Min Economizados</small>
+                </div>
+                <div class="col-6 col-md-3">
+                  <div class="h2 mb-1">3</div>
+                  <small class="text-muted">Conquistas</small>
+                </div>
+                <div class="col-6 col-md-3">
+                  <div class="h2 mb-1">5 🔥</div>
+                  <small class="text-muted">Dias Sequência</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="fw-bold mb-3">Compartilhar em:</h5>
+              <div class="d-grid gap-2 d-md-flex">
+                <button class="btn btn-outline-primary flex-fill" onclick="shareTo('twitter')">
+                  <i class="bi bi-twitter me-2"></i>Twitter
+                </button>
+                <button class="btn btn-outline-primary flex-fill" onclick="shareTo('facebook')">
+                  <i class="bi bi-facebook me-2"></i>Facebook
+                </button>
+                <button class="btn btn-outline-success flex-fill" onclick="shareTo('whatsapp')">
+                  <i class="bi bi-whatsapp me-2"></i>WhatsApp
+                </button>
+                <button class="btn btn-outline-info flex-fill" onclick="shareTo('telegram')">
+                  <i class="bi bi-telegram me-2"></i>Telegram
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="fw-bold mb-3">Ou copiar texto:</h5>
+              <div class="input-group mb-3">
+                <textarea id="shareText" class="form-control" rows="4" readonly>🎯 Meu progresso no Desliga AI:
+✨ 12 dias ativos
+⏰ 780 minutos economizados
+🏆 3 conquistas desbloqueadas
+🔥 5 dias de sequência
+Reconquiste seu tempo! Acesse: desligaai.com</textarea>
+                <button class="btn btn-primary" onclick="copyShareText()">
+                  <i class="bi bi-clipboard me-2"></i>Copiar
+                </button>
+              </div>
+              <div id="copySuccess" class="alert alert-success d-none">
+                <i class="bi bi-check-circle me-2"></i>Texto copiado!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================ -->
+  <!-- PÁGINA: MAPA DE EMOÇÕES EXPANDIDO -->
+  <!-- ============================================ -->
+  <section id="page-mapa-emocoes-expandido" class="page-section d-none">
+    <div class="container py-5">
+      <button class="btn btn-outline-secondary mb-4" onclick="navigateToPage('home')">
+        <i class="bi bi-arrow-left me-2"></i>Voltar ao Início
+      </button>
+      
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-10 text-center">
+          <h2 class="display-4 fw-bold mb-4">
+            <span class="text-gradient">Mapa de Emoções</span> Completo
+          </h2>
+          <p class="lead text-muted">
+            Explore em detalhes como cada emoção afeta sua vida digital e descubra atividades personalizadas
+          </p>
+        </div>
+      </div>
+
+      <div class="row g-4 mb-5" id="expandedEmotionsGrid">
+        <!-- Emoções expandidas serão inseridas via JavaScript -->
+      </div>
+
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <div class="card bg-gradient-primary-light border-primary">
+            <div class="card-body p-5 text-center">
+              <h3 class="mb-4">Como usar este mapa?</h3>
+              <div class="row g-4 text-start">
+                <div class="col-md-6">
+                  <h5><i class="bi bi-1-circle-fill text-primary me-2"></i>Identifique sua emoção</h5>
+                  <p class="text-muted">Seja honesto sobre como você está se sentindo no momento</p>
+                </div>
+                <div class="col-md-6">
+                  <h5><i class="bi bi-2-circle-fill text-primary me-2"></i>Escolha uma atividade</h5>
+                  <p class="text-muted">Selecione uma sugestão que faça sentido para você agora</p>
+                </div>
+                <div class="col-md-6">
+                  <h5><i class="bi bi-3-circle-fill text-primary me-2"></i>Deixe o celular de lado</h5>
+                  <p class="text-muted">Dedique tempo real à atividade escolhida sem distrações</p>
+                </div>
+                <div class="col-md-6">
+                  <h5><i class="bi bi-4-circle-fill text-primary me-2"></i>Reflita sobre o resultado</h5>
+                  <p class="text-muted">Note como se sente após fazer algo offline e significativo</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================ -->
+  <!-- PÁGINA: 404 NOT FOUND -->
+  <!-- ============================================ -->
+  <section id="page-not-found" class="page-section d-none">
+    <div class="container py-5">
+      <div class="row justify-content-center text-center">
+        <div class="col-lg-6">
+          <h1 class="display-1 fw-bold text-primary">404</h1>
+          <h2 class="display-5 mb-4">Página não encontrada</h2>
+          <p class="lead text-muted mb-4">A página que você está procurando não existe.</p>
+          <button class="btn btn-primary btn-lg" onclick="navigateToPage('home')">
+            <i class="bi bi-house me-2"></i>Voltar ao Início
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-5 border-top bg-muted">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+          <h3 class="h2 fw-bold text-gradient mb-3">Desliga AI</h3>
+          <p class="text-muted mb-4">
+            <p class="text-muted mb-4">
+              Feito para ajudar você a recuperar seu tempo e viver uma vida mais equilibrada, longe da dependência digital. Reconquiste sua atenção, produtividade e bem-estar.
+          </p>
+          </p>
+          <p class="text-muted mb-4">
+            © 2025 | Desliga AI - Todos os direitos reservados
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="javascript.js"></script>
+  </body>
+</html>
