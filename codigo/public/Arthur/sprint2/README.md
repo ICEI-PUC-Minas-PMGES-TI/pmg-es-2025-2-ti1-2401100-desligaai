@@ -1,0 +1,3 @@
+COMANDOS PARA ATIVAR O NODE:
+
+    
