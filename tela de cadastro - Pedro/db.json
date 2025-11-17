@@ -1,0 +1,94 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "gmail": "admin@exemplo.com",
+      "password": "admin123",
+      "dataCadastro": "2025-01-15T00:00:00.000Z",
+      "ultimoLogin": "2025-01-20T00:00:00.000Z",
+      "theme": "dark",
+      "ativo": true
+    }
+  ],
+  "sessions": [
+    {
+      "id": 1,
+      "userId": 1,
+      "loginTime": "2025-01-20T10:30:00.000Z",
+      "logoutTime": null,
+      "ipAddress": "192.168.1.1",
+      "userAgent": "Mozilla/5.0",
+      "ativo": true
+    }
+  ],
+  "statistics": [
+    {
+      "id": 1,
+      "userId": 1,
+      "totalLogins": 15,
+      "totalCadastros": 1,
+      "diasAtivos": 5,
+      "ultimaAtividade": "2025-01-20T00:00:00.000Z"
+    }
+  ],
+  "history": [
+    {
+      "id": 1,
+      "userId": 1,
+      "action": "register",
+      "description": "Usuário cadastrado com sucesso",
+      "timestamp": "2025-01-15T00:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "userId": 1,
+      "action": "login",
+      "description": "Login realizado com sucesso",
+      "timestamp": "2025-01-20T10:30:00.000Z"
+    }
+  ],
+  "settings": {
+    "appName": "Sistema de Cadastro",
+    "version": "1.0.0",
+    "maxLoginAttempts": 5,
+    "sessionTimeout": 3600000,
+    "passwordMinLength": 6,
+    "allowRegistration": true,
+    "requireEmailVerification": false
+  },
+  "themes": [
+    {
+      "id": "light",
+      "name": "Tema Claro",
+      "icon": "bi-sun-fill",
+      "ativo": true
+    },
+    {
+      "id": "dark",
+      "name": "Tema Escuro",
+      "icon": "bi-moon-fill",
+      "ativo": true
+    }
+  ],
+  "messages": {
+    "success": {
+      "register": "Cadastro realizado com sucesso!",
+      "login": "Login realizado com sucesso!",
+      "logout": "Logout realizado com sucesso!"
+    },
+    "error": {
+      "invalidCredentials": "Credenciais inválidas. Verifique usuário/gmail e senha.",
+      "userExists": "Nome de usuário já existe.",
+      "emailExists": "Gmail já cadastrado.",
+      "emptyFields": "Preencha todos os campos.",
+      "sessionExpired": "Sessão expirada. Faça login novamente."
+    }
+  },
+  "nextId": {
+    "users": 2,
+    "sessions": 2,
+    "statistics": 2,
+    "history": 3
+  }
+}
