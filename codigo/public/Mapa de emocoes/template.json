@@ -22,33 +22,7 @@
   },
   "preferencias_offline": {
     "interesses": [],
-    "objetivos_pessoais": [],
-    "atividades_sugeridas": [
-      {
-        "categoria": "Criatividade",
-        "atividades": [
-          "Fazer um curso de aquarela",
-          "Criar um projeto de sketchbook diário",
-          "Visitar galerias de arte aos finais de semana"
-        ]
-      },
-      {
-        "categoria": "Desenvolvimento Pessoal",
-        "atividades": [
-          "Estabelecer uma rotina de leitura de 30 minutos ao dia",
-          "Praticar journaling matinal",
-          "Fazer caminhadas em parques sem celular"
-        ]
-      },
-      {
-        "categoria": "Empreendedorismo",
-        "atividades": [
-          "Planejar um negócio de ilustração digital",
-          "Participar de feiras de arte locais",
-          "Criar um calendário de metas mensais"
-        ]
-      }
-    ]
+    "objetivos_pessoais": []
   },
   "configuracoes": {
     "limite_diario_redes": 0,

@@ -1,4 +1,4 @@
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("DOMContentLoaded", async () => {
   const plataformaSelect = document.getElementById("plataforma");
   const plataformaInfo = document.getElementById("plataformaSelecionada");
   const tempoInput = document.getElementById("tempo");
@@ -13,8 +13,44 @@ window.addEventListener("DOMContentLoaded", () => {
     kwai: { nome: "Kwai", img: "https://cdn-icons-png.flaticon.com/512/5968/5968885.png" }
   };
 
-  // Carrega registros do LocalStorage (modo offline)
-  let registros = JSON.parse(localStorage.getItem('registrosUso')) || [];
+  // Registros em memória — vamos tentar carregar do JSON Server (/registros)
+  // e caso falhe usar /gabriel/db.json (arquivo estático) ou localStorage.
+  let registros = [];
+
+  async function loadRegistros() {
+    // 1) tenta JSON Server
+    try {
+      const res = await fetch('/registros');
+      if (res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data) && data.length) {
+          registros = data;
+          return;
+        }
+      }
+    } catch (e) {
+      console.warn('Não foi possível obter /registros do JSON Server', e);
+    }
+
+    // 2) fallback para o arquivo estático criado em /gabriel/db.json
+    try {
+      const res2 = await fetch('/gabriel/db.json');
+      if (res2.ok) {
+        const blob = await res2.json();
+        if (blob && Array.isArray(blob.registros)) {
+          registros = blob.registros;
+          return;
+        }
+      }
+    } catch (e) {
+      console.warn('Não foi possível obter /gabriel/db.json', e);
+    }
+
+    // 3) fallback final para localStorage
+    try {
+      registros = JSON.parse(localStorage.getItem('registrosUso')) || [];
+    } catch (e) { registros = []; }
+  }
 
   // Tipo atual do gráfico ('line' ou 'bar')
   let currentChartType = 'line';
@@ -227,8 +263,8 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Registrar tempo
-  registrarBtn.addEventListener("click", () => {
+  // Registrar tempo — tenta persistir no JSON Server via POST, senão salva localmente
+  registrarBtn.addEventListener("click", async () => {
     const plataforma = plataformaSelect.value;
     const tempo = parseInt(tempoInput.value);
     const data = dataInput.value;
@@ -244,8 +280,25 @@ window.addEventListener("DOMContentLoaded", () => {
       data: data
     };
 
-    // Salva em localStorage
-    registros.push(novoRegistro);
+    // Tenta POSTar no JSON Server
+    try {
+      const res = await fetch('/registros', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(novoRegistro)
+      });
+      if (res.ok) {
+        const created = await res.json();
+        registros.push(created);
+      } else {
+        registros.push(novoRegistro);
+      }
+    } catch (e) {
+      console.warn('POST /registros falhou, salvando localmente', e);
+      registros.push(novoRegistro);
+    }
+
+    // sempre atualiza localStorage para modo offline
     localStorage.setItem('registrosUso', JSON.stringify(registros));
     atualizarGrafico();
 
@@ -344,6 +397,7 @@ window.addEventListener("DOMContentLoaded", () => {
     alert('Edição concluída para o dia ' + dia);
   });
 
-  // Ao carregar a página, carrega registros do localStorage
+  // Ao carregar a página, carrega registros do JSON Server / fallback e atualiza o gráfico
+  await loadRegistros();
   atualizarGrafico();
 });

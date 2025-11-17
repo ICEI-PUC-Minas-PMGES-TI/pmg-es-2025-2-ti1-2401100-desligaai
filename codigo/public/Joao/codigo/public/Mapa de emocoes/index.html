@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desliga AI - Meu Mapa de Emoções</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">🧠</div>
+                <div class="logo-text">Desliga AI</div>
+            </div>
+            <div class="user-info">
+                <div class="user-avatar">MS</div>
+                <div>
+                    <div class="user-name">Mariana Silva</div>
+                    <div class="user-email">mari.silva@exemplo.com</div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="main-container">
+        <h1 class="page-title">Meu Mapa de Emoções</h1>
+        <p class="page-subtitle">Preencha seu perfil emocional para receber recomendações personalizadas de atividades offline</p>
+        
+        <div class="form-container">
+            <form id="emotion-map-form">
+                <!-- Seção 1: Dados Pessoais -->
+                <div class="form-section">
+                    <div class="section-header">
+                        <div class="section-icon">👤</div>
+                        <div>
+                            <h2 class="section-title">Dados Pessoais</h2>
+                            <p class="section-description">Informações básicas para personalizar sua experiência</p>
+                        </div>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="user-name">Nome Completo</label>
+                            <input type="text" id="user-name" name="user-name" value="Mariana Silva" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="user-age">Idade</label>
+                            <input type="number" id="user-age" name="user-age" value="28" min="1" max="120" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="user-profession">Profissão</label>
+                            <input type="text" id="user-profession" name="user-profession" value="Designer Gráfica" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="user-city">Cidade</label>
+                            <input type="text" id="user-city" name="user-city" value="São Paulo" required>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Seção 2: Uso de Redes Sociais -->
+                <div class="form-section">
+                    <div class="section-header">
+                        <div class="section-icon">📱</div>
+                        <div>
+                            <h2 class="section-title">Uso de Redes Sociais</h2>
+                            <p class="section-description">Entenda seus hábitos digitais para criar um plano personalizado</p>
+                        </div>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="social-time">Tempo diário em redes sociais</label>
+                            <select id="social-time" name="social-time" required>
+                                <option value="1-2 horas">1-2 horas</option>
+                                <option value="3-5 horas" selected>3-5 horas</option>
+                                <option value="5-7 horas">5-7 horas</option>
+                                <option value="Mais de 7 horas">Mais de 7 horas</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="problem-time">Há quanto tempo tem problemas com redes sociais?</label>
+                            <select id="problem-time" name="problem-time" required>
+                                <option value="Menos de 6 meses">Menos de 6 meses</option>
+                                <option value="6 meses a 1 ano">6 meses a 1 ano</option>
+                                <option value="1 a 2 anos" selected>1 a 2 anos</option>
+                                <option value="Mais de 2 anos">Mais de 2 anos</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Redes sociais mais utilizadas</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="social-instagram" name="social-instagram" checked>
+                                    <label for="social-instagram">Instagram</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="social-tiktok" name="social-tiktok" checked>
+                                    <label for="social-tiktok">TikTok</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="social-twitter" name="social-twitter" checked>
+                                    <label for="social-twitter">Twitter</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="social-facebook" name="social-facebook">
+                                    <label for="social-facebook">Facebook</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="social-youtube" name="social-youtube">
+                                    <label for="social-youtube">YouTube</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="social-whatsapp" name="social-whatsapp">
+                                    <label for="social-whatsapp">WhatsApp</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Seção 3: Estado Emocional -->
+                <div class="form-section">
+                    <div class="section-header">
+                        <div class="section-icon">🎭</div>
+                        <div>
+                            <h2 class="section-title">Estado Emocional</h2>
+                            <p class="section-description">Identifique suas emoções para oferecermos suporte adequado</p>
+                        </div>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="primary-emotion">Emoção Primária</label>
+                            <select id="primary-emotion" name="primary-emotion" required>
+                                <option value="Ansiedade" selected>Ansiedade</option>
+                                <option value="Frustração">Frustração</option>
+                                <option value="Tédio">Tédio</option>
+                                <option value="Solidão">Solidão</option>
+                                <option value="Estresse">Estresse</option>
+                                <option value="Insegurança">Insegurança</option>
+                                <option value="Culpa">Culpa</option>
+                                <option value="Outro">Outro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="secondary-emotion">Emoção Secundária</label>
+                            <select id="secondary-emotion" name="secondary-emotion" required>
+                                <option value="Ansiedade">Ansiedade</option>
+                                <option value="Frustração" selected>Frustração</option>
+                                <option value="Tédio">Tédio</option>
+                                <option value="Solidão">Solidão</option>
+                                <option value="Estresse">Estresse</option>
+                                <option value="Insegurança">Insegurança</option>
+                                <option value="Culpa">Culpa</option>
+                                <option value="Outro">Outro</option>
+                            </select>
+                        </div>
+                        <div class="form-group full-width">
+                            <label>Gatilhos Emocionais (selecione os que se aplicam)</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="trigger-comparison" name="trigger-comparison" checked>
+                                    <label for="trigger-comparison">Comparação com outras pessoas</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="trigger-procrastination" name="trigger-procrastination" checked>
+                                    <label for="trigger-procrastination">Procrastinação</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="trigger-fomo" name="trigger-fomo" checked>
+                                    <label for="trigger-fomo">Medo de estar perdendo algo (FOMO)</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="trigger-boredom" name="trigger-boredom">
+                                    <label for="trigger-boredom">Tédio</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="trigger-loneliness" name="trigger-loneliness">
+                                    <label for="trigger-loneliness">Solidão</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="trigger-stress" name="trigger-stress">
+                                    <label for="trigger-stress">Estresse/Ansiedade</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label>Intensidade Emocional (0 = muito baixa, 10 = muito alta)</label>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <div class="slider-label">
+                                    <span>Ansiedade</span>
+                                    <span class="slider-value" id="anxiety-value">8</span>
+                                </div>
+                                <input type="range" min="0" max="10" value="8" class="slider" id="anxiety-slider">
+                            </div>
+                            <div class="form-group">
+                                <div class="slider-label">
+                                    <span>Motivação</span>
+                                    <span class="slider-value" id="motivation-value">6</span>
+                                </div>
+                                <input type="range" min="0" max="10" value="6" class="slider" id="motivation-slider">
+                            </div>
+                            <div class="form-group">
+                                <div class="slider-label">
+                                    <span>Realização</span>
+                                    <span class="slider-value" id="achievement-value">4</span>
+                                </div>
+                                <input type="range" min="0" max="10" value="4" class="slider" id="achievement-slider">
+                            </div>
+                            <div class="form-group">
+                                <div class="slider-label">
+                                    <span>Foco</span>
+                                    <span class="slider-value" id="focus-value">5</span>
+                                </div>
+                                <input type="range" min="0" max="10" value="5" class="slider" id="focus-slider">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Seção 4: Objetivos e Preferências -->
+                <div class="form-section">
+                    <div class="section-header">
+                        <div class="section-icon">🎯</div>
+                        <div>
+                            <h2 class="section-title">Objetivos e Preferências</h2>
+                            <p class="section-description">Defina seus objetivos para criarmos atividades personalizadas</p>
+                        </div>
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="main-goal">Objetivo Principal com o App</label>
+                        <textarea id="main-goal" name="main-goal" required>Reduzir o tempo nas redes sociais para empreender com ilustração digital</textarea>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label>Interesses e Hobbies (selecione os que mais gosta)</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="interest-art" name="interest-art" checked>
+                                <label for="interest-art">Arte e Pintura</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="interest-reading" name="interest-reading" checked>
+                                <label for="interest-reading">Leitura</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="interest-cooking" name="interest-cooking" checked>
+                                <label for="interest-cooking">Culinária</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="interest-yoga" name="interest-yoga" checked>
+                                <label for="interest-yoga">Yoga/Meditação</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="interest-music" name="interest-music">
+                                <label for="interest-music">Música</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="interest-sports" name="interest-sports">
+                                <label for="interest-sports">Esportes</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="interest-gaming" name="interest-gaming">
+                                <label for="interest-gaming">Jogos</label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="interest-nature" name="interest-nature">
+                                <label for="interest-nature">Natureza</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="personal-goals">Objetivos Pessoais (liste um por linha)</label>
+                        <textarea id="personal-goals" name="personal-goals">Montar um portfólio próprio
+Publicar um livro de ilustrações
+Aprender a cozinhar pratos internacionais</textarea>
+                    </div>
+                </div>
+                
+                <!-- Seção 5: Configurações -->
+                <div class="form-section">
+                    <div class="section-header">
+                        <div class="section-icon">⚙️</div>
+                        <div>
+                            <h2 class="section-title">Configurações</h2>
+                            <p class="section-description">Personalize como o app irá funcionar para você</p>
+                        </div>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="daily-limit">Limite diário de redes sociais (minutos)</label>
+                            <input type="number" id="daily-limit" name="daily-limit" value="120" min="30" max="480">
+                        </div>
+                        <div class="form-group">
+                            <label for="focus-mode">Ativar modo foco automático</label>
+                            <select id="focus-mode" name="focus-mode">
+                                <option value="true" selected>Sim</option>
+                                <option value="false">Não</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="emotional-alerts">Alertas emocionais</label>
+                            <select id="emotional-alerts" name="emotional-alerts">
+                                <option value="true" selected>Ativados</option>
+                                <option value="false">Desativados</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="calendar-sync">Sincronizar com calendário</label>
+                            <select id="calendar-sync" name="calendar-sync">
+                                <option value="true" selected>Sim</option>
+                                <option value="false">Não</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="btn-preview">
+                        <span>👁️</span> Visualizar JSON
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <span>💾</span> Salvar Mapa de Emoções
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Preview Container -->
+        <div class="preview-container" id="preview-container">
+            <div class="preview-header">
+                <h2 class="preview-title">Prévia do JSON Gerado</h2>
+                <div>
+                    <button type="button" class="btn btn-secondary" id="btn-close-preview">Fechar</button>
+                    <button type="button" class="btn btn-primary" id="btn-copy-json">Copiar JSON</button>
+                </div>
+            </div>
+            <div class="preview-content" id="json-preview"></div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>Desliga AI &copy; 2024 - Controle seu tempo, reconquiste sua atenção</p>
+            <p>Um movimento digital para combater o vício em redes sociais</p>
+            <div class="footer-links">
+                <a href="#">Política de Privacidade</a>
+                <a href="#">Termos de Uso</a>
+                <a href="#">Suporte</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

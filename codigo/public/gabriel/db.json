@@ -1,0 +1,39 @@
+{
+  "usuarios": [
+    {
+      "id": "4",
+      "login": "gabriel",
+      "nome": "Gabriel Henrique Fernandes Vieira",
+      "nascimento": "10/04/2005",
+      "idade": 20,
+      "foto": "perfil.jpg",
+      "sobre": "alguma coisa deve ser salva"
+    }
+  ],
+  "registros": [
+    {
+      "plataforma": "Instagram",
+      "tempo": 45,
+      "data": "2025-10-28",
+      "id": "0ab5"
+    },
+    {
+      "plataforma": "TikTok",
+      "tempo": 30,
+      "data": "2025-10-28",
+      "id": "ebd7"
+    },
+    {
+      "plataforma": "YouTube",
+      "tempo": 20,
+      "data": "2025-10-29",
+      "id": "ca13"
+    },
+    {
+      "plataforma": "Kwai",
+      "tempo": 10,
+      "data": "2025-10-30",
+      "id": "0b8c"
+    }
+  ]
+}

@@ -1,0 +1,157 @@
+/* gabriel.css — CSS unificado para a pasta `gabriel`
+   - Tokens e variáveis
+   - Reset/Base leve
+   - Componentes: header, main, card, profile, avatar, buttons, forms, gráfico/canvas
+   - Utilitários e responsividade
+*/
+:root {
+  --primary-dark: #10002B;
+  --primary: #240046;
+  --primary-medium: #3C096C;
+  --primary-light: #5A189A;
+  --accent: #7B2CBF;
+  --accent-light: #9D4EDD;
+  --accent-lighter: #C77DFF;
+  --accent-lightest: #E0AAFF;
+  --background: #f8f9fa;
+  --card-bg: #ffffff;
+  --text-dark: #1a1a1a;
+  --text-medium: #4a4a4a;
+  --text-light: #8a8a8a;
+  --border: #e0e0e0;
+  /* compat / fallbacks */
+  --bg: var(--background);
+  --card: var(--card-bg);
+  --text: var(--text-dark);
+  --muted: var(--text-medium);
+  --primary-strong: var(--primary-medium);
+  --accent-compat: var(--accent);
+  --radius: 12px;
+  --shadow: 0 6px 20px rgba(16,24,40,0.06);
+  --transition-fast: 180ms;
+  --transition-medium: 300ms;
+}
+
+/* Reset/base */
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body{
+  background: linear-gradient(135deg, var(--background) 0%, #f0f2f5 100%);
+  color: var(--text-dark);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Layout helpers */
+.container, .gabriel-container{max-width:960px;margin:0 auto;padding:0 12px}
+.center{margin:0 auto}
+.grid{display:grid;gap:12px}
+.grid-cols-2{grid-template-columns:repeat(1,1fr)}
+@media(min-width:640px){.grid-cols-2{grid-template-columns:repeat(2,1fr)}}
+
+/* Header / page chrome */
+.header {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+  color: white;
+  padding: 20px 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {display:flex;align-items:center;gap:12px}
+.logo-icon{font-size:28px}
+.logo-text{font-size:22px;font-weight:700}
+.user-info{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.1);padding:8px 16px;border-radius:20px}
+.user-avatar{width:36px;height:36px;border-radius:50%;background:var(--accent-light);display:flex;align-items:center;justify-content:center;font-weight:600;color:white}
+
+main{max-width:960px;margin:28px auto;padding:20px;background:var(--card);border-radius:calc(var(--radius) + 4px);box-shadow:var(--shadow)}
+
+/* Centraliza verticalmente o conteúdo dentro de main quando necessário
+  Use a classe `main-center` no <main> (por ex. perfil.html) para aplicar.
+  Ajustamos a altura para levar em conta header/footer aproximados. */
+.main-center{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;min-height:calc(100vh - 180px);padding-top:20px;padding-bottom:20px}
+.main-center .profile-card{margin-top:0}
+
+/* Card component */
+.card{background:var(--card);border-radius:var(--radius);padding:16px;border:1px solid var(--border);box-shadow:var(--shadow);transition:transform var(--transition-medium),box-shadow var(--transition-medium)}
+.card:hover{transform:translateY(-4px)}
+.card--center{max-width:720px;margin:0 auto}
+
+/* Profile specific (keeps compatibility com perfil.html) */
+.profile-card{background:var(--card);padding:24px;border-radius:12px;box-shadow:var(--shadow);text-align:center}
+.avatar{width:96px;height:96px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#6aa8ff);display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:36px;margin:0 auto 12px}
+@media (max-width:520px){.avatar{width:84px;height:84px}}
+
+h1{margin:8px 0;font-size:22px}
+h2{margin:6px 0;font-size:18px}
+p{margin:6px 0;color:var(--muted)}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.6rem 1rem;border-radius:10px;border:none;background:var(--primary);color:#fff;cursor:pointer;transition:transform var(--transition-fast),opacity var(--transition-fast)}
+.btn:hover{background:var(--primary-strong)}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--text)}
+.btn:focus{outline:3px solid color-mix(in srgb,var(--primary) 18%,white);outline-offset:2px}
+
+/* Small action button */
+.btn-small{padding:.4rem .6rem;border-radius:8px;font-size:.9rem}
+
+/* Form elements */
+label{display:block;margin-top:12px;font-weight:600}
+.input, input, select, textarea{width:100%;padding:10px;border-radius:8px;border:1px solid var(--border);margin-top:6px;background:#fff}
+.input:focus, input:focus, select:focus, textarea:focus{outline:3px solid color-mix(in srgb,var(--primary) 18%,white);outline-offset:2px}
+form{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+
+/* Notes and muted text */
+.note{font-size:13px;color:var(--muted);margin-top:12px}
+.muted{color:var(--muted)}
+
+/* Gráfico / Canvas */
+.canvas-wrap{width:100%;max-height:420px;overflow:hidden}
+/* Força altura fixa para o canvas dentro da seção .grafico para evitar crescimento indefinido */
+.grafico canvas, #graficoUso{width:100% !important; height:360px !important; max-height:420px; display:block}
+canvas{width:100%;height:auto;display:block}
+
+/* Plataforma info (pequeno componente) */
+.plataforma-info{display:flex;align-items:center;gap:10px;margin-top:10px;font-weight:700}
+.plataforma-info img{width:32px;height:32px;border-radius:6px;object-fit:cover}
+
+/* Badges, progress e utilitários */
+.badge{display:inline-block;padding:.25rem .5rem;border-radius:999px;background:rgba(108,99,255,0.08);color:var(--primary);font-weight:700;border:1px solid rgba(108,99,255,0.12)}
+.progress{width:100%;height:12px;background:linear-gradient(180deg,color-mix(in srgb,var(--border) 30%,white) 0%,var(--border) 100%);border-radius:999px;overflow:hidden;border:1px solid var(--border)}
+.progress>.progress-value{height:100%;width:0%;transition:width 600ms ease;background:linear-gradient(135deg,var(--primary),var(--primary-strong))}
+
+/* Helpers de acessibilidade */
+.visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+
+/* Responsividade final */
+@media (max-width:520px){
+  body{padding:12px}
+  main{padding:16px}
+  .profile-card{padding:16px}
+}
+
+/* Footer styles */
+.footer{padding:18px 0;border-top:1px solid var(--border);text-align:center;color:var(--muted);margin-top:18px}
+.footer--center{padding:18px 0;text-align:center;color:var(--text-medium);margin-top:18px}
+
+/* Keep small overrides safe for legacy files using the old selectors (compat) */
+/* If you later want to completely replace old CSS, remove these duplicates and update HTML link tags. */
+.container{max-width:720px;margin:0 auto}
+.actions{margin-top:12px}
+
+/* End of gabriel.css */
