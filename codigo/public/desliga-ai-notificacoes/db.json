@@ -1,0 +1,259 @@
+{
+  "sistema_notificacoes": {
+    "configuracoes": {
+      "frequencia_notificacoes": "3h",
+      "horario_ativo": "08:00-22:00",
+      "dias_ativos": ["segunda", "terça", "quarta", "quinta", "sexta", "sábado", "domingo"],
+      "integracao_mapa_emocoes": true,
+      "usar_emocao_real": true,
+      "personalizar_sugestoes": true,
+      "versao": "2.1.0"
+    },
+    "notificacoes_genericas": [
+      {
+        "id": "NOT-GEN-001",
+        "tipo": "boas_vindas",
+        "titulo": "👋 Complete seu perfil!",
+        "mensagem": "Personalize sua experiência para receber sugestões de atividades offline baseadas nos seus interesses.",
+        "acao_sugerida": {
+          "texto": "Clique aqui para",
+          "atividade": "criar seu perfil personalizado"
+        },
+        "prioridade": "alta"
+      },
+      {
+        "id": "NOT-GEN-002",
+        "tipo": "beneficios",
+        "titulo": "📱 Reduza seu tempo de tela",
+        "mensagem": "A cada hora offline, você ganha mais foco, criatividade e bem-estar.",
+        "acao_sugerida": {
+          "texto": "Experimente",
+          "atividade": "ficar 15 minutos sem celular agora"
+        },
+        "prioridade": "media"
+      },
+      {
+        "id": "NOT-GEN-003",
+        "tipo": "primeiros_passos",
+        "titulo": "🚀 Comece sua jornada",
+        "mensagem": "Registre seu primeiro tempo offline e veja seu progresso crescer.",
+        "acao_sugerida": {
+          "texto": "Registre",
+          "atividade": "seu primeiro período de desconexão"
+        },
+        "prioridade": "media"
+      }
+    ],
+    "sugestoes_genericas": [
+      {
+        "categoria": "Criatividade",
+        "icone": "🎨",
+        "descricao": "Atividades para expressar sua criatividade",
+        "atividades": [
+          "Desenhar ou rabiscar em um caderno",
+          "Escrever um pequeno poema ou texto criativo",
+          "Fotografar algo interessante ao seu redor",
+          "Pintar uma paisagem ou retrato",
+          "Criar colagens com revistas antigas",
+          "Escrever uma carta à mão para alguém"
+        ]
+      },
+      {
+        "categoria": "Movimento",
+        "icone": "🏃‍♂️",
+        "descricao": "Atividades para mover o corpo e renovar as energias",
+        "atividades": [
+          "Fazer 5 minutos de alongamento",
+          "Caminhar pelo quarteirão observando detalhes",
+          "Dançar por uma música inteira",
+          "Fazer 10 minutos de yoga",
+          "Subir e descer escadas por 5 minutos",
+          "Fazer exercícios de respiração profunda"
+        ]
+      },
+      {
+        "categoria": "Mindfulness",
+        "icone": "🧘‍♂️",
+        "descricao": "Atividades para acalmar a mente e conectar-se com o presente",
+        "atividades": [
+          "Respirar profundamente por 2 minutos",
+          "Observar as nuvens ou o céu por 5 minutos",
+          "Fechar os olhos e identificar 5 sons diferentes",
+          "Praticar meditação guiada por 10 minutos",
+          "Fazer um scan corporal para relaxar",
+          "Escrever 3 coisas pelas quais é grato"
+        ]
+      },
+      {
+        "categoria": "Aprendizado",
+        "icone": "📚",
+        "descricao": "Atividades para expandir conhecimentos e habilidades",
+        "atividades": [
+          "Ler um capítulo de um livro físico",
+          "Aprender uma palavra nova em outro idioma",
+          "Fazer um quebra-cabeça ou sudoku",
+          "Estudar um mapa da sua cidade",
+          "Aprender a tocar uma música simples",
+          "Pesquisar sobre um tema histórico interessante"
+        ]
+      },
+      {
+        "categoria": "Social",
+        "icone": "👥",
+        "descricao": "Atividades para conectar-se com outras pessoas",
+        "atividades": [
+          "Ligar para um amigo ou familiar",
+          "Escrever uma carta à mão",
+          "Visitar um vizinho para conversar",
+          "Organizar um jantar sem celulares",
+          "Fazer um piquenique no parque",
+          "Jogar um jogo de tabuleiro com amigos"
+        ]
+      },
+      {
+        "categoria": "Natureza",
+        "icone": "🌳",
+        "descricao": "Atividades para conectar-se com a natureza",
+        "atividades": [
+          "Caminhar em um parque ou praça",
+          "Observar pássaros ou insetos",
+          "Plantar uma muda ou semente",
+          "Fazer um piquenique ao ar livre",
+          "Observar as estrelas à noite",
+          "Coletar folhas ou pedras interessantes"
+        ]
+      }
+    ],
+    "metricas_iniciais": {
+      "tempo_total_offline_minutos": 0,
+      "dias_consecutivos": 0,
+      "atividades_realizadas": 0,
+      "nivel_satisfacao": "-",
+      "proxima_meta": "Criar perfil e registrar primeira atividade"
+    },
+    "integracao": {
+      "url_mapa_emocoes": "mapa-emocoes.html",
+      "chave_local_storage": "emotionMapData",
+      "campos_mapeados": {
+        "emocao_primaria": "mapa_emoções.emocao_primaria",
+        "interesses": "preferencias_offline.interesses",
+        "objetivos": "preferencias_offline.objetivos_pessoais",
+        "limite_diario": "configuracoes.limite_diario_redes"
+      }
+    },
+    "emocional_support": {
+      "happy": {
+        "icon": "😊",
+        "title": "Que bom ver você feliz!",
+        "messages": [
+          "Que tal aproveitar essa energia positiva para fazer algo criativo offline?",
+          "Sua felicidade é contagiante! Compartilhe esse momento com alguém pessoalmente.",
+          "Aproveite esse estado de espírito para planejar algo especial sem telas.",
+          "Use essa alegria para começar aquele projeto que estava adiando!",
+          "Que tal registrar esse momento feliz em um diário ou desenho?"
+        ]
+      },
+      "anxious": {
+        "icon": "😰",
+        "title": "Respire fundo...",
+        "messages": [
+          "Que tal uma pausa para alongar ou ouvir uma música calma?",
+          "Desconectar um pouco pode ajudar a acalmar a mente ansiosa.",
+          "Tente focar em uma atividade manual para acalmar os pensamentos.",
+          "Exercícios de respiração podem ajudar a reduzir a ansiedade.",
+          "Uma caminhada curta pode trazer nova perspectiva."
+        ]
+      },
+      "stressed": {
+        "icon": "😫",
+        "title": "Hora de dar uma pausa",
+        "messages": [
+          "Uma caminhada rápida ou um chá podem ajudar a acalmar.",
+          "Desconectar das telas pode reduzir significativamente o estresse.",
+          "Tente uma atividade relaxante como desenhar ou meditar.",
+          "Alongamentos simples podem aliviar a tensão muscular.",
+          "Ouça música instrumental para acalmar a mente."
+        ]
+      },
+      "bored": {
+        "icon": "😐",
+        "title": "O tédio pode ser criativo!",
+        "messages": [
+          "Que tal ler um livro ou aprender algo novo offline?",
+          "Explore um hobby que você adorava antes das redes sociais.",
+          "Desafie-se com um projeto manual ou criativo.",
+          "Organize um espaço da sua casa para renovar as energias.",
+          "Experimente uma receita nova na cozinha."
+        ]
+      },
+      "sad": {
+        "icon": "😢",
+        "title": "Sua saúde mental é importante",
+        "messages": [
+          "Que tal conversar com um amigo ou fazer uma atividade que você goste?",
+          "Às vezes, desconectar das telas e conectar com a natureza ajuda.",
+          "Tente escrever sobre seus sentimentos em um diário físico.",
+          "Ouça músicas que tragam conforto e boas lembranças.",
+          "Um banho relaxante pode ajudar a renovar as energias."
+        ]
+      },
+      "angry": {
+        "icon": "😠",
+        "title": "Vamos acalmar?",
+        "messages": [
+          "Tente respirar profundamente ou fazer uma atividade física para liberar a energia.",
+          "Desconectar pode ajudar a ganhar perspectiva sobre a situação.",
+          "Que tal canalizar essa energia em algo criativo ou produtivo?",
+          "Escreva sobre o que está sentindo para processar as emoções.",
+          "Atividades manuais podem ajudar a focar a mente."
+        ]
+      },
+      "tired": {
+        "icon": "😴",
+        "title": "Descanse um pouco",
+        "messages": [
+          "Um cochilo ou meditação podem recarregar suas energias.",
+          "Desconectar das telas antes de dormir melhora a qualidade do sono.",
+          "Que tal relaxar com um livro em vez de rolar a tela?",
+          "Uma xícara de chá calmante pode ajudar no relaxamento.",
+          "Alongamentos suaves podem revigorar o corpo cansado."
+        ]
+      },
+      "motivated": {
+        "icon": "💪",
+        "title": "Você está motivado!",
+        "messages": [
+          "Aproveite para colocar em prática aquela ideia ou projeto offline.",
+          "Use essa energia para começar um novo hobby ou aprender uma habilidade.",
+          "Que tal transformar essa motivação em ação concreta sem distrações digitais?",
+          "Estabeleça metas claras para aproveitar esse momento produtivo.",
+          "Compartilhe sua energia com alguém que precise de incentivo."
+        ]
+      }
+    },
+    "usuarios_exemplo": [
+      {
+        "id": "USR-001",
+        "nome": "Ana Silva",
+        "idade": 28,
+        "profissao": "Designer",
+        "cidade": "São Paulo",
+        "interesses": ["Arte e Pintura", "Leitura", "Yoga/Meditação"],
+        "emocao_primaria": "Ansiedade",
+        "limite_diario": 90,
+        "atividades_favoritas": ["Desenhar", "Meditar", "Ler"]
+      },
+      {
+        "id": "USR-002",
+        "nome": "Carlos Oliveira",
+        "idade": 35,
+        "profissao": "Engenheiro",
+        "cidade": "Rio de Janeiro",
+        "interesses": ["Esportes", "Natureza", "Música"],
+        "emocao_primaria": "Estresse",
+        "limite_diario": 120,
+        "atividades_favoritas": ["Caminhar", "Ouvir música", "Cozinhar"]
+      }
+    ]
+  }
+}
