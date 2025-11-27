@@ -13,5 +13,6 @@ DesligaAi, uma plataforma interativa que auxilie seus usuários a reduzir o víc
 
 ## Professores responsáveis
 
-* Lucas Soares de Paiva Lacerda
+* Daniel Machado Osório Pereira
+* Lucca Soares de Paiva Lacerda
 * Michelle Hanne Soares de Andrade
