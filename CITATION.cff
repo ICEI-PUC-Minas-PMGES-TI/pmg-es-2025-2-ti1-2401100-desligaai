@@ -1,31 +1,35 @@
 cff-version: 1.0.1
 message: Please cite this software using these metadata.
-title: 
+title: Desliga AI
 authors:
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names: 
-  - family-names: 
-    given-names:
+  - family-names: Pedro
+    given-names: João
+  - family-names: Pêgo
+    given-names: Eduardo
+  - family-names: Henrique
+    given-names: Pedro
+  - family-names: Mendes
+    given-names: Arthur
+  - family-names: Costa
+    given-names: Evelyn
+  - family-names: Henrique
+    given-names: Gabriel
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names: Lacerda
+    given-names: Lucas Soares de Paiva
   - name-suffix: Professor
     affiliation: PUC Minas
-    family-names: 
-    given-names: 
+    family-names: Andrade
+    given-names: Michelle Hanne Soares de
+  - name-suffix: Professor
+    affiliation: PUC Minas
+    family-names: Pereira
+    given-names: Daniel Machado Osório
 keywords:
-  - 
-  - 
-repository-code: 
+  - desliga ai
+  - bem-estar digital
+repository-code: https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-2-ti1-2401100-desligaai.git
 license: CC-BY-4.0
 version: 1.0.0
 date-released: 2022-07-14
