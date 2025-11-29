@@ -158,31 +158,27 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 | ID     | Descrição do Requisito                                   | Prioridade |
 | ------ | ---------------------------------------------------------- | ---------- |
-| RF-001 | Permitir que o usuário cadastre tarefas ⚠️ EXEMPLO ⚠️ | ALTA       |
-| RF-002 | Emitir um relatório de tarefas no mês ⚠️ EXEMPLO ⚠️ | MÉDIA     |
+| RF-001 | O sistema deve permitir ao usuário preencher um Mapa de Emoções, e a partir das respostas, gerar sugestões personalizadas de atividades offline. | ALTA       |
+| RF-002 | O sistema deve disponibilizar um quiz interativo de hábitos digitais e, ao final, mostrar um perfil ou dicas de melhoria. | ALTA    |
+| RF-003 | O sistema deve permitir que o usuário inicie um temporizador de desconexão (ex.: 15, 30, 60 minutos) e exibir uma mensagem motivacional ao término. | ALTA       |
+| RF-004 | O sistema deve permitir o registro diário do tempo de uso de redes sociais e apresentar um gráfico de evolução (linha ou barras). | MÉDIA     |
+| RF-005 | O sistema deve gerar, mediante clique em botão, atividades offline aleatórias (ex.: “caminhe 10 minutos”, “leia 5 páginas de um livro”) | MÉDIA      |
+| RF-006 | O sistema deve oferecer um mural de conquistas, atribuindo badges, mensagens de parabéns ou troféus  quando metas de desconexão forem alcançadas | MÉDIA     |
+| RF-007 | O sistema deve permitir ao usuário criar e marcar um checklist diário de tarefas ou metas offline | BAIXA     |
+| RF-008 | O sistema deve possibilitar ao usuário compartilhar seus resultados, como tempo offline ou conquistas, gerando uma imagem ou link | BAIXA     |
+| RF-009 | O sistema deve exibir uma tela de “modo foco” que cobre a página e só libera o acesso a certas seções depois de um tempo determinado. | BAIXA      |
+| RF-010 | O sistema deve permitir que o usuário escreva uma frase curta sobre como se sentiu ao passar menos tempo nas redes, salvando no próprio navegador (localStorage) | BAIXA     |
+
+
 
 ### Requisitos não Funcionais
 
 | ID      | Descrição do Requisito                                                              | Prioridade |
 | ------- | ------------------------------------------------------------------------------------- | ---------- |
-| RNF-001 | O sistema deve ser responsivo para rodar em um dispositivos móvel ⚠️ EXEMPLO ⚠️ | MÉDIA     |
-| RNF-002 | Deve processar requisições do usuário em no máximo 3s ⚠️ EXEMPLO ⚠️          | BAIXA      |
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Os requisitos de um projeto são classificados em dois grupos:
->
-> - [Requisitos Funcionais (RF)](https://pt.wikipedia.org/wiki/Requisito_funcional):
->   correspondem a uma funcionalidade que deve estar presente na plataforma (ex: cadastro de usuário).
-> - [Requisitos Não Funcionais (RNF)](https://pt.wikipedia.org/wiki/Requisito_n%C3%A3o_funcional):
->   correspondem a uma característica técnica, seja de usabilidade, desempenho, confiabilidade, segurança ou outro (ex: suporte a dispositivos iOS e Android).
->
-> Lembre-se que cada requisito deve corresponder à uma e somente uma característica alvo da sua solução. Além disso, certifique-se de que todos os aspectos capturados nas Histórias de Usuário foram cobertos.
->
-> **Orientações**:
->
-> - [O que são Requisitos Funcionais e Requisitos Não Funcionais?](https://codificar.com.br/requisitos-funcionais-nao-funcionais/)
-> - [O que são requisitos funcionais e requisitos não funcionais?](https://analisederequisitos.com.br/requisitos-funcionais-e-requisitos-nao-funcionais-o-que-sao/)
+| RNF-001 | O site deve ser responsivo, permitindo navegação e uso adequado em celulares, tablets e desktops.| ALTA     |
+| RNF-002 | O site deve estar disponível 24 horas por dia, todos os dias, hospedado em ambiente público.          | ALTA      |
+| RNF-001 | Desenvolvimento em HTML, CSS e JavaScript. | ALTA     |
+| RNF-002 | Páginas devem ser carregadas em 5 segundos         | MÉDIA      |
 
 ## Projeto de Interface
 
