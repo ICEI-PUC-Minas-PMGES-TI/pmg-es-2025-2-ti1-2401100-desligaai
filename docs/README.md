@@ -128,17 +128,15 @@ Com base na análise das personas foram identificadas as seguintes histórias de
 
 | EU COMO...`PERSONA` | QUERO/PRECISO ...`FUNCIONALIDADE`        | PARA ...`MOTIVO/VALOR`               |
 | --------------------- | ------------------------------------------ | -------------------------------------- |
-| Usuário do sistema   | Registrar minhas tarefas ⚠️ EXEMPLO ⚠️ | Não esquecer de fazê-las             |
-| Administrador         | Alterar permissões ⚠️ EXEMPLO ⚠️      | Permitir que possam administrar contas |
+| Usuário    | Um temporizador que me desconecte por um período de tempo. | Para me ajudar a controlar o tempo e evitar o vício, criando hábitos mais saudáveis.             |
+| Usuário        |  Um painel de controle onde posso ver estatísticas do meu uso de redes sociais e ajustar meu comportamento.      | Entender melhor meus hábitos e tomar decisões mais conscientes sobre o uso das plataformas. |
+| Usuário    | Registrar diariamente meu tempo de uso e ver minha evolução. | Controlar o tempo e evitar o vício, me permitindo focar em outras atividades, como hobbies e estudos.             |
+| Usuário    | Um temporizador que me desconecte por um período de tempo. | Para me ajudar a controlar o tempo e evitar o vício, criando hábitos mais saudáveis.             |
+| Usuário    | Ter relatórios semanais sobre o tempo gasto em vídeos curtos e dicas personalizadas de redução. | mMelhorar minha produtividade e recuperar tempo para atividades pessoais e familiares.             |
+| Usuário    | Receber alertas de tempo e bloqueios temporários após muito uso contínuo. | Evitar perder horas em vídeos curtos e ter mais foco nos estudos e na vida social real.
+            |
+| Usuário    | Ter desafios gamificados que incentivem a reduzir o tempo em vídeos curtos. | Aprender a usar melhor meu tempo livre e desenvolver hábitos mais saudáveis de lazer.             |
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Apresente aqui as histórias de usuário que são relevantes para o projeto de sua solução. As Histórias de Usuário consistem em uma ferramenta poderosa para a compreensão das necessidades de cada persona. Se possível, agrupe as histórias de usuário por contexto, para facilitar consultas recorrentes à essa parte do documento.
->
-> **Orientações**:
->
-> - [Histórias de usuários com exemplos e template](https://www.atlassian.com/br/agile/project-management/user-stories)
-> - [Como escrever boas histórias de usuário (User Stories)](https://medium.com/vertice/como-escrever-boas-users-stories-hist%C3%B3rias-de-usu%C3%A1rios-b29c75043fac)
 
 ## Proposta de Valor
 
