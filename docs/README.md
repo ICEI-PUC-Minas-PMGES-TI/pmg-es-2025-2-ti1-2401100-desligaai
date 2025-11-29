@@ -2,13 +2,16 @@
 
 Informações básicas do projeto.
 
-* **Projeto:** [NOME DO PROJETO]
-* **Repositório GitHub:** [LINK PARA O REPOSITÓRIO NO GITHUB]
+* **Projeto:** Desliga AI
+* **Repositório GitHub:** https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-2-ti1-2401100-desligaai.git
 * **Membros da equipe:**
 
-  * [Fulano](https://github.com/fulano) ⚠️ EXEMPLO ⚠️
-  * [Beltrano](https://github.com/beltrano) ⚠️ EXEMPLO ⚠️
-  * [Cicrano](https://github.com/cicrano) ⚠️ EXEMPLO ⚠️
+  * [Evelyn Costa](https://github.com/Evycostzocn) 
+  * [Arthur Mendes](https://github.com/arthurlmendes) 
+  * [Gabriel Henrique Fernandes](https://github.com/GabrielHFV)
+  * [Pedro Henrique](https://github.com/ProezaDEV)
+  * [João Pedro Alvarenga](https://github.com/joaopedro003)
+  * [Eduardo Pêgo](https://github.com/Eduardo-Pegoz) 
 
 A documentação do projeto é estruturada da seguinte forma:
 
@@ -83,16 +86,18 @@ Detalhes sobre o espaço de problema, os objetivos do projeto, sua justificativa
 
 ## Etapa de Entendimento
 
-**✳️✳️✳️ APRESENTE OS ARTEFATOS DA ETAPA  ✳️✳️✳️**
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Nessa etapa, vamos trabalhar com a metdologia de Design Thinking para compreender com maior profundidade o problema a ser tratado. Nesse processo, vamos elaborar:
->
-> * **Matriz CSD**: também conhecida por Matriz de Alinhamento, é uma ferramenta utilizada no Design Thinking para organizar informações e facilitar o processo de tomada de decisão e solução de problemas;
-> * **Mapa de stakeholders**: ferramenta que nos permite compreender o grupo de pessoas e entidades que devemos estudar e conversar para entender mais sobre o problema
-> * **Entrevistas qualitativas**: série de entrevistas qualitativas para validar suposições e solucionar as dúvidas com as principais pessoas envolvidas;
-> * **Highlights de pesquisa**: um compilado do levantamento realizado por meio das entrevistas.
+> * **Matriz CSD**: 
+![MATRIZ CSD](files/matrizcsd.jpeg)
+> * **Mapa de stakeholders**: 
+![MAPA DE STAKEHOLDERS](files/mapadestakeholders.png)
+> * **Entrevistas qualitativas**: 
+![ENTREVISTA QUALITATIVA 1](files/entrevista1.jpeg)
+![ENTREVISTA QUALITATIVA 2](files/entrevista2.jpeg)
+![ENTREVISTA QUALITATIVA 3](files/entrevista3.jpeg)
+> * **Highlights de pesquisa**: 
+![HIGHLIGHTS DE PESQUISA 1](files/highlights1.jpeg)
+![HIGHLIGHTS DE PESQUISA 2](files/highlights2.jpeg)
 
 ## Etapa de Definição
 
