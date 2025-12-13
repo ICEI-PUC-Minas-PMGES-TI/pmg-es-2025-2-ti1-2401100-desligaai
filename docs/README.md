@@ -27,60 +27,52 @@ A documentação do projeto é estruturada da seguinte forma:
 
 # Contexto
 
-Detalhes sobre o espaço de problema, os objetivos do projeto, sua justificativa e público-alvo.
+
+Vivemos em um cenário onde estar online deixou de ser escolha e virou padrão. Celular, redes sociais, notificações e conteúdos infinitos disputam nossa atenção o tempo inteiro. Aos poucos, isso vai gerando cansaço, ansiedade e a sensação constante de que o dia passou… mas nada realmente rendeu.
+O problema não é a tecnologia em si, mas o uso excessivo e automático dela. Hoje, conseguimos ver exatamente quanto tempo passamos no celular, em aplicativos ou redes sociais. Porém, quando decidimos nos desconectar, esse tempo simplesmente “some”. Ele não é medido, não é registrado e, muitas vezes, nem valorizado.
+É nesse ponto que nasce o Desliga AI. A ideia surge da necessidade de tornar visível algo que hoje é invisível: o tempo que recuperamos quando escolhemos sair do automático e nos desconectar.
+
 
 ## Problema
 
-**✳️✳️✳️ COLOQUE AQUI O SEU TEXTO ✳️✳️✳️**
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Nesse momento você deve apresentar o problema que a sua aplicação deve resolver. No entanto, não é a hora de comentar sobre a aplicação. Descreva também o contexto em que essa aplicação será usada, se houver: empresa, tecnologias, etc. Novamente, descreva apenas o que de fato existir, pois ainda não é a hora de apresentar requisitos detalhados ou projetos.
->
-> **Orientações**:
->
-> - [Objetivos, Problema de pesquisa e Justificativa](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
-> - [Matriz Certezas, Suposições e Dúvidas](https://medium.com/educa%C3%A7%C3%A3o-fora-da-caixa/matriz-certezas-suposi%C3%A7%C3%B5es-e-d%C3%BAvidas-fa2263633655)
-> - [Brainstorming](https://www.euax.com.br/2018/09/brainstorming/)
+Ao tentar gerenciar melhor o próprio tempo e atenção, o usuário enfrenta dois obstáculos principais:
+1.	O tempo recuperado não é mensurável
+Diferente do tempo de tela, não existe uma forma clara de visualizar quanto tempo foi ganho ao ficar longe do celular. Sem números, sem progresso visível, a motivação tende a cair rapidamente.
+2.	Falta de significado para o tempo livre
+Mesmo quando a pessoa consegue se desconectar, não há um espaço organizado para refletir sobre o que foi feito nesse período. Sem registro, o tempo livre perde valor emocional e acaba sendo esquecido.
+Com isso, surgem sentimentos como frustração, ansiedade digital e a sensação de estar sempre atrasado ou improdutivo. Falta uma ferramenta que ajude o usuário a visualizar, valorizar e refletir sobre o próprio tempo.
 
 ## Objetivos
 
-**✳️✳️✳️ COLOQUE AQUI O SEU TEXTO ✳️✳️✳️**
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Aqui você deve descrever os objetivos do trabalho indicando que o objetivo geral é desenvolver um software para solucionar o problema apresentado acima. Apresente também alguns (pelo menos 2) objetivos específicos dependendo de onde você vai querer concentrar a sua prática investigativa, ou como você vai aprofundar no seu trabalho.
->
-> **Orientações**:
->
-> - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
+O Desliga AI tem como objetivo principal ajudar o usuário a retomar o controle da própria atenção. Para isso, o projeto apresenta o Espelho do Tempo, um recurso central da aplicação que permite:
+1.	Visualizar o tempo de desconexão
+O sistema registra e exibe o tempo longe das telas de forma simples e humana, usando dias, horas e minutos, facilitando a compreensão do progresso real.
+2.	Refletir sobre o tempo recuperado
+A aplicação conta com um Diário Persistente, onde o usuário pode registrar o que fez durante o período de desconexão, como estudar, descansar, caminhar ou simplesmente ficar offline.
+3.	Recomeçar quando necessário
+A funcionalidade de Reset Total permite que o usuário inicie novos ciclos de foco e desconexão, sem carregar frustrações passadas.
+4.	Garantir histórico e consistência
+O uso de um backend em Node.js com persistência em arquivo (usuarios.json) assegura que os dados do usuário não sejam perdidos, mantendo o acompanhamento contínuo.
+O objetivo final é simples, mas poderoso: fazer com que o usuário perceba valor real em desligar.
 
 ## Justificativa
 
-**✳️✳️✳️ COLOQUE AQUI O SEU TEXTO ✳️✳️✳️**
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Descreva a importância ou a motivação para trabalhar com esta aplicação que você escolheu. Indique as razões pelas quais você escolheu seus objetivos específicos ou as razões para aprofundar em certos aspectos do software.
->
-> O grupo de trabalho pode fazer uso de questionários, entrevistas e dados estatísticos, que podem ser apresentados, com o objetivo de esclarecer detalhes do problema que será abordado pelo grupo.
->
-> **Orientações**:
->
-> - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
+O tema do bem-estar digital é extremamente atual e necessário. Todos os integrantes do projeto já vivenciaram, em algum nível, a dificuldade de se desconectar e manter o foco em atividades fora das telas.
+Muitas soluções existentes focam apenas em bloquear aplicativos ou limitar tempo de uso, mas poucas se preocupam em valorizar o que acontece depois da desconexão. O Desliga AI surge exatamente para preencher essa lacuna.
+O projeto se justifica porque:
+•	Transforma a desconexão em algo mensurável, trazendo motivação através do progresso visível.
+•	Dá significado ao tempo livre, conectando números a experiências reais vividas pelo usuário.
+•	É simples e acessível, funcionando diretamente no navegador, sem exigir configurações complexas.
+Assim, o Desliga AI ajuda a construir uma relação mais saudável com a tecnologia, onde desligar deixa de ser perda e passa a ser ganho.
 
 ## Público-Alvo
 
-**✳️✳️✳️ COLOQUE AQUI O SEU TEXTO ✳️✳️✳️**
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Descreva o mercado para o qual a solução está sendo desenvolvida, detalhando um pouco mais sobre o perfil dos usuários: conhecimentos prévios, relação com a tecnologia, relações hierárquicas, etc. Adicione informações sobre o público-alvo por meio de uma descrição textual ou por meio do mapa de stakeholders, ou como o grupo achar mais conveniente.
->
-> **Orientações**:
->
-> - [Público-alvo: o que é, tipos, como definir seu público e exemplos](https://klickpages.com.br/blog/publico-alvo-o-que-e/)
-> - [Qual a diferença entre público-alvo e persona?](https://rockcontent.com/blog/diferenca-publico-alvo-e-persona/)
+O Desliga AI é voltado principalmente para:
+•	Pessoas sobrecarregadas digitalmente
+Usuários que sentem os impactos negativos do uso excessivo do celular e buscam melhorar foco, qualidade de vida e bem-estar mental.
+•	Pessoas interessadas em produtividade e hábitos
+Estudantes, profissionais e criadores que utilizam técnicas de foco e querem uma forma clara de validar e acompanhar o tempo realmente bem utilizado.
+Ambos os públicos se beneficiam ao enxergar o tempo de outra forma: não como algo que escorre pelos dedos, mas como um recurso que pode ser recuperado, registrado e valorizado.
 
 # Product Discovery
 
@@ -253,17 +245,13 @@ Permite ao usuário compartilhar suas conquistas
 
 ### Protótipo Interativo
 
-**✳️✳️✳️ COLOQUE AQUI UM IFRAME COM SEU PROTÓTIPO INTERATIVO ✳️✳️✳️**
+**Protótipo**
 
-✅ [Protótipo Interativo (MarvelApp)](https://marvelapp.com/prototype/4hd6091?emb=1&iosapp=false&frameless=false)  ⚠️ EXEMPLO ⚠️
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Um protótipo interativo apresenta o projeto de interfaces e permite ao usuário navegar pelas funcionalidades como se estivesse lidando com o software pronto. Utilize as mesmas ferramentas de construção de wireframes para montagem do seu protótipo interativo. Inclua o link para o protótipo interativo do projeto.
+✅ [Protótipo Interativo (FIGMA)](https://www.figma.com/proto/BesodWhSexmTbVNpXQZYTE/A-equipe-de-PROEZA-BR-team-library?node-id=3342-493&p=f&t=gnrTA6HItXwBwr0M-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=3321%3A2)
 
 # Metodologia
 
-Detalhes sobre a organização do grupo e o ferramental empregado.
+SCRUM
 
 ## Ferramentas
 
@@ -271,35 +259,15 @@ Relação de ferramentas empregadas pelo grupo durante o projeto.
 
 | Ambiente                    | Plataforma | Link de acesso                                     |
 | --------------------------- | ---------- | -------------------------------------------------- |
-| Processo de Design Thinking | Miro       | https://miro.com/XXXXXXX ⚠️ EXEMPLO ⚠️        |
-| Repositório de código     | GitHub     | https://github.com/XXXXXXX ⚠️ EXEMPLO ⚠️      |
+| Processo de Design Thinking | Miro       | https://miro.com/app/board/uXjVJSvRFrU=/        |
+| Repositório de código     | GitHub     | https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-2-ti1-2401100-desligaai.git  |
+| Fluxo de telas         |Figma     | https://www.figma.com/design/ouGlfzGAOWuYidIOh3YWfh/Fluxo-de-telas?node-id=0-1&p=f&t=wzfVVVVg6ufe6a3N-0 |
 | Hospedagem do site          | Render     | https://site.render.com/XXXXXXX ⚠️ EXEMPLO ⚠️ |
-| Protótipo Interativo       | MarvelApp  | https://marvelapp.com/XXXXXXX ⚠️ EXEMPLO ⚠️   |
+| Editor de código         | VsCode     | https://code.visualstudio.com/ |
+| Apresentação       | Canva     | https://www.canva.com/ |
+| Reuniões       | Discord     | https://discord.com/ | 
+| Protótipo Interativo       | Figma  | https://www.figma.com/proto/BesodWhSexmTbVNpXQZYTE/A-equipe-de-PROEZA-BR-team-library?node-id=3342-493&p=f&t=gnrTA6HItXwBwr0M-0&scaling=min-zoom&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=3321%3A2   |
 |                             |            |                                                    |
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Liste as ferramentas empregadas no desenvolvimento do projeto, justificando a escolha delas, sempre que possível. Inclua itens como: (1) Editor de código, (2) )ferramentas de comunicação, (3) )ferramentas de diagramação, (4) )plataformas de hospedagem, entre outras.
-
-## Gerenciamento do Projeto
-
-Divisão de papéis no grupo e apresentação da estrutura da ferramenta de controle de tarefas (Kanban).
-
-![Exemplo de Kanban](images/exemplo-kanban.png)
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Nesta parte do documento, você deve apresentar  o processo de trabalho baseado nas metodologias ágeis, a divisão de papéis e tarefas, as ferramentas empregadas e como foi realizada a gestão de configuração do projeto via GitHub.
->
-> Coloque detalhes sobre o processo de Design Thinking e a implementação do Framework Scrum seguido pelo grupo. O grupo poderá fazer uso de ferramentas on-line para acompanhar o andamento do projeto, a execução das tarefas e o status de desenvolvimento da solução.
->
-> **Orientações**:
->
-> - [Sobre Projects - GitHub Docs](https://docs.github.com/pt/issues/planning-and-tracking-with-projects/learning-about-projects/about-projects)
-> - [Gestão de projetos com GitHub | balta.io](https://balta.io/blog/gestao-de-projetos-com-github)
-> - [(460) GitHub Projects - YouTube](https://www.youtube.com/playlist?list=PLiO7XHcmTsldZR93nkTFmmWbCEVF_8F5H)
-> - [11 Passos Essenciais para Implantar Scrum no seu Projeto](https://mindmaster.com.br/scrum-11-passos/)
-> - [Scrum em 9 minutos](https://www.youtube.com/watch?v=XfvQWnRgxG0)
 
 # Solução Implementada
 
@@ -307,38 +275,119 @@ Esta seção apresenta todos os detalhes da solução criada no projeto.
 
 ## Vídeo do Projeto
 
-O vídeo a seguir traz uma apresentação do problema que a equipe está tratando e a proposta de solução. ⚠️ EXEMPLO ⚠️
+O vídeo a seguir traz uma apresentação do problema que a equipe está tratando e a proposta de solução.
 
 [![Vídeo do projeto](images/video.png)](https://www.youtube.com/embed/70gGoFyGeqQ)
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> O video de apresentação é voltado para que o público externo possa conhecer a solução. O formato é livre, sendo importante que seja apresentado o problema e a solução numa linguagem descomplicada e direta.
->
-> Inclua um link para o vídeo do projeto.
 
 ## Funcionalidades
 
 Esta seção apresenta as funcionalidades da solução.Info
 
-##### Funcionalidade 1 - Cadastro de Contatos ⚠️ EXEMPLO ⚠️
+##### Funcionalidade 1 - Cadastro de Usuário
 
-Permite a inclusão, leitura, alteração e exclusão de contatos para o sistema
+Permite a criação de um perfil para o usuário
 
 * **Estrutura de dados:** [Contatos](#ti_ed_contatos)
 * **Instruções de acesso:**
-  * Abra o site e efetue o login
-  * Acesse o menu principal e escolha a opção Cadastros
-  * Em seguida, escolha a opção Contatos
+  * Abra o site e clique em cadastrar
 * **Tela da funcionalidade**:
 
-![Tela de Funcionalidade](images/exemplo-funcionalidade.png)
+![Tela de Funcionalidade](files/cadastrodeusuario.png)
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Apresente cada uma das funcionalidades que a aplicação fornece tanto para os usuários quanto aos administradores da solução.
->
-> Inclua, para cada funcionalidade, itens como: (1) titulos e descrição da funcionalidade; (2) Estrutura de dados associada; (3) o detalhe sobre as instruções de acesso e uso.
+##### Funcionalidade 2 - Login de usuário
+
+Permite que o usuário logue em sua conta
+
+* **Instruções de acesso:**
+  * Ao abrir o site clique para Fazer Login
+* **Tela da funcionalidade**:
+![Tela de Funcionalidade](files/logindeusuario.png)
+
+##### Funcionalidade 3 - Timer de Desafio
+Permite que o usuário registre o tempo que ele deseja se desconectar e focar em alguma atividade
+* **Instruções de acesso:**
+  * Com login realizado
+  * Clique em Timer de desafio
+  * Selecione o tempo que deseja se concentrar
+  * Selecione o tempo que deseja de descanso
+  * Selecione a quantidade de ciclos desejada
+  * Clique em iniciar
+* **Tela da funcionalidade**:
+![Tela de Funcionalidade](files/timer-fluxodetelas.png)
+
+##### Funcionalidade 4 - Atividades Offline
+Gera atividades de forma aleatória para o usuário realizar longe de telas.
+
+* **Instruções de acesso:**
+  * Com login realizado
+  * Clique em Atividades Offline
+  * Clique em mostrar atividade
+  * Automaticamente uma atividade é apresentada
+  * O usuário tem permissão de editar a atividade, excluir ou adicionar alguma outra
+* **Tela da funcionalidade**:
+![Tela de Funcionalidade](files/atividadesoffline-fluxodetelas.png)
+
+##### Funcionalidade 5 - Checklist Diário
+Usuário registra quais atividades ele realizou no dia, seu tempo de desconexão e conexão
+
+* **Instruções de acesso:**
+  * Com login realizado
+  * Clique em Checklist Diário
+  * Registre a data
+  * Registre o tempo que ficou sem vídeos
+  * Registre qual o seu desejo ao ver os vídeos
+  * Tome alguma nota pessoal
+  * Clique em Salvar dia
+* **Tela da funcionalidade**:
+![Tela de Funcionalidade](files/registrodeprogressodiario.png)
+
+##### Funcionalidade 6 - Checklist Diário > Atividades do dia
+
+Registre quais atividades foram realizadas naquele dia
+
+* **Instruções de acesso:**
+  * Após seguir os passos da Funcionalidade 5:
+  * Role a tela
+  * Adicione as atividades que realizou naquele dia e marque a caixinha
+  * O usuário pode criar suas atividades durante o dia, e a noite registrar quais foram cumpridas
+* **Tela da funcionalidade**:
+![Tela de Funcionalidade](files/registrodeprogressodiario-atividadesdodia.png)
+
+##### Funcionalidade 7 - Compartilhar Progresso
+
+Usuário pode compartilhar seu progresso
+
+* **Instruções de acesso:**
+  * Com login realizado
+  * Clique em Compartilhar Progresso
+  * Escolha a rede em que deseja compartilhar
+
+* **Tela da funcionalidade**:
+![Tela de Funcionalidade](files/compartilharprogesso.png)
+
+##### Funcionalidade 8 - Mapa de Emoções
+
+Usuário coloca uma emoção e atividades são sugeridas
+
+* **Instruções de acesso:**
+  * Com login realizado
+  * Na home-page
+  * Selecione uma emoção
+
+* **Tela da funcionalidade**:
+![Tela de Funcionalidade](files/mapadeemocoes-home.png)
+
+##### Funcionalidade 9 - Quiz de hábitos
+
+Usuário responde a um quiz sobre seus hábitos digitais
+
+* **Instruções de acesso:**
+  * Com login realizado
+  * Na home-page
+  * Responda ás perguntas do quiz honestamente
+
+* **Tela da funcionalidade**:
+![Tela de Funcionalidade](files/quizdehabitosdigitais.png)
 
 ## Estruturas de Dados
 
