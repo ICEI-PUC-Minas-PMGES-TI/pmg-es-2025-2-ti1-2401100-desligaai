@@ -100,7 +100,12 @@ Detalhes sobre o espaço de problema, os objetivos do projeto, sua justificativa
 
 **✳️✳️✳️ APRESENTE OS DIAGRAMAS DE PERSONAS ✳️✳️✳️**
 
-![Exemplo de proposta de valor](images/exemplo-persona.png)
+
+![Persona 1](imagens/persona%20-%201.jpeg)
+![Persona 2](imagens/persona%20-%202.jpeg)
+![Persona 3](imagens/persona%20-%203.jpeg)
+![Persona 4](imagens/persona%20-%204.jpeg)
+![Persona 5](imagens/persona%20-%205.jpeg)
 
 > ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
 >
@@ -143,6 +148,11 @@ Com base na análise das personas foram identificadas as seguintes histórias de
 
 ![Exemplo de proposta de valor](images/exemplo-proposta-valor.png)
 
+![1: Pedro](imagens/propostavalor%20-%20Pedro.jpeg)
+![2: Larissa](imagens/propostavalor%20-%20Larissa.jpeg)
+![3: Carlos](imagens/propostavalor%20-%20Carlos.jpeg)
+![4: Roberta](imagens/propostavalor%20-%20Roberta.jpeg)
+![5: Mariana](imagens/propostavalor%20-%20Mariana.jpeg)
 > ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
 >
 > O mapa da proposta de valor é uma ferramenta que nos ajuda a definir qual tipo de produto ou serviço melhor atende às personas definidas anteriormente.
@@ -195,7 +205,14 @@ Estes são os protótipos de telas do sistema.
 
 Descrição para a tela XPTO
 
-![Exemplo de wireframe](images/exemplo-wireframe.png)
+![Cadastro: ](imagens/cadastro.png)
+![Login: ](imagens/login.png)
+![Perfil: ](imagens/perfil.png)
+![Homapage: ](imagens/homepage.png)
+![Mapa de Emoções: ](imagens/mapa%20de%20emoções.png)
+![Timer: ](imagens/timerTimer.png)
+![Quiz: ](imagens/quiz%20pc.png)
+
 
 > ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
 >
