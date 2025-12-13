@@ -3,11 +3,11 @@
     {
       "id": "4",
       "login": "gabriel",
-      "nome": "Gabriel Henrique Fernandes Vieira",
+      "nome": "Exemplo",
       "nascimento": "10/04/2005",
       "idade": 20,
       "foto": "perfil.jpg",
-      "sobre": "alguma coisa deve ser salva"
+      "sobre": "algo"
     }
   ],
   "registros": [
@@ -34,6 +34,12 @@
       "tempo": 10,
       "data": "2025-10-30",
       "id": "0b8c"
+    },
+    {
+      "id": "64e5",
+      "plataforma": "Instagram",
+      "tempo": 60,
+      "data": "2025-11-09"
     }
   ]
 }

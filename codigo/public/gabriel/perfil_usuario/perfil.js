@@ -5,6 +5,25 @@
   // Seletores rápidos
   function qs(id){ return document.getElementById(id) }
 
+  // Tema (claro/escuro) - compatível com botão da home
+  function initTheme(){
+    const saved = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const startDark = saved ? saved === 'dark' : prefersDark;
+    document.documentElement.classList.toggle('dark', startDark);
+    const toggle = qs('themeToggle');
+    if(toggle){
+      toggle.addEventListener('click', toggleTheme);
+    }
+  }
+
+  function toggleTheme(){
+    const isDark = document.documentElement.classList.contains('dark');
+    const next = !isDark;
+    document.documentElement.classList.toggle('dark', next);
+    localStorage.setItem('theme', next ? 'dark' : 'light');
+  }
+
   const avatar = qs('avatar');
   const photo = qs('photo');
   const nomeEl = qs('nome');
@@ -43,6 +62,14 @@
   }
 
   let currentUser = null;
+  const CURRENT_USER_KEY = 'desligaAI_currentUser';
+
+  function getLoggedUser(){
+    try{
+      const raw = localStorage.getItem(CURRENT_USER_KEY);
+      return raw ? JSON.parse(raw) : null;
+    }catch(_){ return null }
+  }
 
   // Busca o usuário pelo ID numérico ou pelo login (suporta json-server /usuarios?login=)
   async function fetchUser(id){
@@ -65,17 +92,24 @@
       console.warn('Falha ao buscar via API (id/login)', e);
     }
 
-    // fallback para arquivo estático (db.json)
-    try{
-      const res2 = await fetch('/gabriel/db.json');
-      if(res2.ok){
+    // fallback para arquivo estático (db.json) tentando múltiplos caminhos
+    const candidates = [
+      '/gabriel/db.json',           // quando servido a partir da raiz /gabriel
+      '../db.json',                 // relativo a perfil_usuario/
+      '../../gabriel/db.json',      // caso a raiz pública esteja acima
+      './db.json'                   // mesmo diretório (se copiado)
+    ];
+    for(const url of candidates){
+      try{
+        const res2 = await fetch(url, { cache: 'no-store' });
+        if(!res2.ok) continue;
         const blob = await res2.json();
         if(blob && Array.isArray(blob.usuarios)){
           const found = blob.usuarios.find(u => String(u.id) === String(id) || String(u.login) === String(id));
           if(found) return found;
         }
-      }
-    }catch(_){ /* ignora */ }
+      }catch(_){ /* ignora e tenta próximo */ }
+    }
     return null;
   }
 
@@ -181,15 +215,29 @@
   }
 
   async function init(){
-    // 👇 Usa ID da URL OU o padrão (4)
-    let id = getQueryId() || 4;
-
-    // Busca o usuário
-    let user = await fetchUser(id);
-
-    // não usar localStorage; confiar apenas no servidor/db.json
-
-    showData(user);
+    initTheme();
+    // Primeiro tenta usuário logado via AuthManager/localStorage
+    const logged = getLoggedUser();
+    if(logged){
+      const mapped = {
+        id: logged.id,
+        nome: logged.nome || logged.fullName || logged.name || logged.email,
+        login: logged.email,
+        nascimento: logged.birthdate || logged.nascimento || null,
+        idade: logged.idade || null,
+        foto: logged.photo || logged.foto || null,
+        sobre: logged.sobre || (logged.preferences && logged.preferences.goal ? `Objetivo: ${logged.preferences.goal}` : '')
+      };
+      showData(mapped);
+    } else {
+      // Fallback: Usa ID da URL OU o padrão (login "gabriel")
+      let id = getQueryId() || 'gabriel';
+      let user = await fetchUser(id);
+      if(!user){
+        console.warn('Usuário não encontrado via API nem db.json. Verifique o caminho do db.json ou inicie o json-server.');
+      }
+      showData(user);
+    }
 
     // Eventos de edição
     editSobreBtn.addEventListener('click', enterEditSobre);
