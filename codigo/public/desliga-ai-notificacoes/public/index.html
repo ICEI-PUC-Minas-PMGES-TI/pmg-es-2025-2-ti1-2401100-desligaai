@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desliga AI - Notificações Motivacionais</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-logo">🧠</div>
+            <h3 class="loading-title">Desliga AI</h3>
+            <p class="loading-subtitle">Carregando sua experiência personalizada...</p>
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+
+    <div class="container py-4 main-content" style="display: none;">
+        <header class="d-flex justify-content-between align-items-center mb-4">
+            <div class="d-flex align-items-center gap-3">
+                <div class="logo h2 fw-bold text-gradient mb-0">
+                    <i class="bi bi-brain me-2"></i>Desliga AI
+                </div>
+                <div class="user-badge d-none" id="userBadge">
+                    <span class="badge bg-primary">
+                        <i class="bi bi-person-fill me-1"></i>
+                        <span id="userName">Usuário</span>
+                    </span>
+                </div>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+                <div class="points-display d-none" id="pointsDisplay">
+                    <span class="badge bg-warning text-dark pulse">
+                        <i class="bi bi-star-fill me-1"></i>
+                        <span id="pointsValue">0</span> pontos
+                    </span>
+                </div>
+                <button class="theme-toggle btn btn-outline-secondary" id="themeToggle">
+                    <span id="themeIcon">🌙</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Setup Prompt -->
+        <div class="setup-prompt animate__animated animate__fadeIn" id="setupPrompt">
+            <div class="setup-content text-center">
+                <div class="setup-icon mb-3">
+                    <i class="bi bi-person-circle"></i>
+                </div>
+                <h2 class="fw-bold">Complete seu Perfil</h2>
+                <p class="mb-4 text-muted">Personalize sua experiência com notificações baseadas no seu estado emocional e interesses pessoais</p>
+                <button class="btn btn-primary btn-lg" id="createProfileBtn">
+                    <i class="bi bi-person-plus me-2"></i>
+                    Criar Perfil Agora
+                </button>
+            </div>
+        </div>
+
+        <!-- Welcome Banner -->
+        <div class="welcome-banner d-none animate__animated animate__slideInDown mb-4" id="welcomeBanner">
+            <div class="card bg-gradient-primary text-white border-0 shadow-lg">
+                <div class="card-body py-4">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h3 class="fw-bold mb-2" id="welcomeTitle">Bem-vindo de volta!</h3>
+                            <p class="mb-0 opacity-90" id="welcomeMessage">Suas notificações estão personalizadas com base no seu estado emocional atual.</p>
+                        </div>
+                        <div class="col-md-4 text-end">
+                            <div class="emotion-display animate__animated animate__pulse animate__infinite">
+                                <span class="emotion-icon display-4" id="welcomeEmotionIcon">😊</span>
+                                <div class="emotion-text fw-bold" id="welcomeEmotionText">Feliz</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="quick-actions-main d-flex flex-wrap gap-2 mb-4" id="quickActionsMain">
+            <!-- Ações rápidas principais serão inseridas aqui -->
+        </div>
+
+        <!-- Metrics Section -->
+        <div class="row mb-4">
+            <div class="col-md-3 mb-3">
+                <div class="card metric-card animate__animated animate__fadeInUp">
+                    <div class="card-body text-center">
+                        <div class="metric-icon mb-2">
+                            <i class="bi bi-clock-history"></i>
+                        </div>
+                        <div class="metric-value" id="metricTime">0h 0m</div>
+                        <div class="metric-label">Tempo Offline</div>
+                        <div class="metric-progress mt-3">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" id="timeProgress" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card metric-card animate__animated animate__fadeInUp animate__delay-1s">
+                    <div class="card-body text-center">
+                        <div class="metric-icon mb-2">
+                            <i class="bi bi-calendar-check"></i>
+                        </div>
+                        <div class="metric-value" id="metricDays">0</div>
+                        <div class="metric-label">Dias Consecutivos</div>
+                        <div class="metric-trend mt-3" id="daysTrend">
+                            <i class="bi bi-dash-circle text-muted"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card metric-card animate__animated animate__fadeInUp animate__delay-2s">
+                    <div class="card-body text-center">
+                        <div class="metric-icon mb-2">
+                            <i class="bi bi-check-circle"></i>
+                        </div>
+                        <div class="metric-value" id="metricActivities">0</div>
+                        <div class="metric-label">Atividades Realizadas</div>
+                        <div class="metric-trend mt-3" id="activitiesTrend">
+                            <i class="bi bi-dash-circle text-muted"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card metric-card animate__animated animate__fadeInUp animate__delay-3s">
+                    <div class="card-body text-center">
+                        <div class="metric-icon mb-2">
+                            <i class="bi bi-emoji-smile"></i>
+                        </div>
+                        <div class="metric-value" id="metricSatisfaction">-</div>
+                        <div class="metric-label">Satisfação</div>
+                        <div class="metric-trend mt-3" id="satisfactionTrend">
+                            <i class="bi bi-dash-circle text-muted"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notifications Section -->
+        <div class="card p-4 mb-4 shadow-sm animate__animated animate__fadeIn">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2 class="section-title mb-0">
+                    <i class="bi bi-bell me-2"></i>Notificações Motivacionais
+                </h2>
+                <span class="badge bg-primary rounded-pill pulse" id="notificationCount">3</span>
+            </div>
+            <p class="mb-3 text-muted" id="notificationSubtitle">Complete seu perfil para receber notificações personalizadas baseadas no seu estado emocional</p>
+
+            <div id="notificationsContainer">
+                <!-- Notificações serão inseridas aqui via JavaScript -->
+            </div>
+        </div>
+
+        <!-- Suggestions Section -->
+        <div class="card p-4 mb-4 shadow-sm animate__animated animate__fadeIn">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2 class="section-title mb-0">
+                    <i class="bi bi-lightbulb me-2"></i>Sugestões de Atividades
+                </h2>
+                <div class="personalization-badge d-none" id="personalizationBadge">
+                    <span class="badge bg-success rounded-pill">
+                        <i class="bi bi-stars me-1"></i>
+                        Personalizado
+                    </span>
+                </div>
+            </div>
+            <p class="mb-3 text-muted" id="suggestionsSubtitle">Experimente estas atividades para começar sua jornada de desconexão</p>
+
+            <div class="row g-3 mb-3" id="suggestionsContainer">
+                <!-- Sugestões serão inseridas aqui via JavaScript -->
+            </div>
+
+            <div class="quick-actions d-flex flex-wrap gap-2" id="quickActionsContainer">
+                <!-- Ações rápidas serão inseridas aqui via JavaScript -->
+            </div>
+        </div>
+
+        <!-- Progress Section -->
+        <div class="card p-4 shadow-sm animate__animated animate__fadeIn">
+            <h2 class="section-title mb-3">
+                <i class="bi bi-graph-up me-2"></i>Seu Progresso
+            </h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="progress-stats">
+                        <h5 class="fw-bold mb-3">Meta Diária</h5>
+                        <div class="progress mb-2" style="height: 12px;">
+                            <div class="progress-bar bg-success progress-bar-striped progress-bar-animated" id="dailyGoalProgress" style="width: 0%"></div>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <small class="text-muted" id="goalText">Defina sua meta diária</small>
+                            <small class="fw-bold" id="goalTime">0/0 min</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="achievements">
+                        <h5 class="fw-bold mb-3">Conquistas</h5>
+                        <div class="d-flex gap-3">
+                            <div class="achievement-icon" id="firstActivity" data-bs-toggle="tooltip" title="Primeira Atividade">
+                                <i class="bi bi-flag"></i>
+                            </div>
+                            <div class="achievement-icon" id="threeDays" data-bs-toggle="tooltip" title="3 Dias Consecutivos">
+                                <i class="bi bi-calendar-week"></i>
+                            </div>
+                            <div class="achievement-icon" id="oneHour" data-bs-toggle="tooltip" title="1 Hora Offline">
+                                <i class="bi bi-clock"></i>
+                            </div>
+                            <div class="achievement-icon" id="fiveActivities" data-bs-toggle="tooltip" title="5 Atividades">
+                                <i class="bi bi-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Motivational Popup -->
+    <div class="popup-overlay" id="motivationalPopup">
+        <div class="popup-content animate__animated animate__zoomIn">
+            <div class="popup-header">
+                <div class="popup-icon" id="popupIcon">😊</div>
+                <button type="button" class="popup-close" id="popupClose">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+            <h3 class="popup-title" id="popupTitle">Hora de uma pausa!</h3>
+            <p class="popup-message" id="popupMessage">Você está há muito tempo na tela. Que tal fazer uma atividade offline para recarregar as energias?</p>
+            
+            <div class="emotion-indicator">
+                <div class="emotion-icon" id="emotionIcon">😊</div>
+                <div class="emotion-text" id="emotionText">Estado emocional: Feliz</div>
+            </div>
+            
+            <div class="popup-actions">
+                <button class="btn btn-outline-primary btn-lg" id="suggestActivityBtn">
+                    <i class="bi bi-lightbulb me-2"></i>
+                    Sugerir Atividade
+                </button>
+                <button class="btn btn-primary btn-lg" id="dismissPopupBtn">
+                    <i class="bi bi-check-lg me-2"></i>
+                    Entendido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Activity Success Popup -->
+    <div class="popup-overlay" id="successPopup">
+        <div class="popup-content success-popup animate__animated animate__bounceIn">
+            <div class="popup-header">
+                <div class="popup-icon">🎉</div>
+                <button type="button" class="popup-close" id="successClose">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+            <h3 class="popup-title" id="successTitle">Atividade Registrada!</h3>
+            <p class="popup-message" id="successMessage">Parabéns! Você acaba de completar uma atividade offline.</p>
+            
+            <div class="points-earned">
+                <div class="points-icon">
+                    <i class="bi bi-star-fill"></i>
+                </div>
+                <div class="points-text">
+                    <span class="points-value" id="pointsEarned">+10</span>
+                    <span class="points-label">pontos ganhos</span>
+                </div>
+            </div>
+            
+            <div class="popup-actions">
+                <button class="btn btn-success btn-lg" id="successDismissBtn">
+                    <i class="bi bi-emoji-smile me-2"></i>
+                    Continuar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Random Activity Popup -->
+    <div class="popup-overlay" id="randomActivityPopup">
+        <div class="popup-content random-activity-popup animate__animated animate__slideInUp">
+            <div class="popup-header">
+                <div class="popup-icon" id="randomActivityIcon">🎯</div>
+                <button type="button" class="popup-close" id="randomActivityClose">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+            <h3 class="popup-title" id="randomActivityTitle">Atividade Sugerida!</h3>
+            <p class="popup-message" id="randomActivityMessage">Com base no seu estado emocional atual, temos uma sugestão perfeita para você:</p>
+            
+            <div class="activity-suggestion-card">
+                <div class="activity-category-badge" id="randomActivityCategory">
+                    <i class="bi bi-tag me-1"></i>
+                    <span id="randomActivityCategoryText">Criatividade</span>
+                </div>
+                <div class="activity-content">
+                    <div class="activity-icon" id="randomActivitySuggestionIcon">🎨</div>
+                    <h4 class="activity-name" id="randomActivityName">Desenhar ou rabiscar em um caderno</h4>
+                    <p class="activity-description" id="randomActivityDescription">Expressar sua criatividade pode ajudar a melhorar seu humor e reduzir o estresse.</p>
+                </div>
+            </div>
+            
+            <div class="benefit-tags">
+                <span class="benefit-tag" id="benefit1">🧘‍♂️ Reduz ansiedade</span>
+                <span class="benefit-tag" id="benefit2">🎯 Melhora foco</span>
+                <span class="benefit-tag" id="benefit3">😊 Aumenta bem-estar</span>
+            </div>
+            
+            <div class="popup-actions">
+                <button class="btn btn-outline-secondary" id="randomActivitySkipBtn">
+                    <i class="bi bi-skip-forward me-2"></i>
+                    Outra sugestão
+                </button>
+                <button class="btn btn-primary" id="randomActivityAcceptBtn">
+                    <i class="bi bi-check-lg me-2"></i>
+                    Vamos lá!
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div class="modal fade" id="profileModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-gradient-primary text-white">
+                    <h5 class="modal-title">
+                        <i class="bi bi-person-circle me-2"></i>Seu Perfil
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="profileContent">
+                        <!-- Conteúdo do perfil será carregado aqui -->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-primary" id="editProfileBtn">
+                        <i class="bi bi-pencil me-2"></i>Editar Perfil
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Emotion Selector Modal -->
+    <div class="modal fade" id="emotionSelectorModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-gradient-primary text-white">
+                    <h5 class="modal-title">
+                        <i class="bi bi-emoji-smile me-2"></i>Como você está se sentindo?
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="emotion-grid">
+                        <div class="emotion-option" data-emotion="happy">
+                            <div class="emotion-icon">😊</div>
+                            <div class="emotion-text">Feliz</div>
+                        </div>
+                        <div class="emotion-option" data-emotion="anxious">
+                            <div class="emotion-icon">😰</div>
+                            <div class="emotion-text">Ansioso</div>
+                        </div>
+                        <div class="emotion-option" data-emotion="stressed">
+                            <div class="emotion-icon">😫</div>
+                            <div class="emotion-text">Estressado</div>
+                        </div>
+                        <div class="emotion-option" data-emotion="bored">
+                            <div class="emotion-icon">😐</div>
+                            <div class="emotion-text">Entediado</div>
+                        </div>
+                        <div class="emotion-option" data-emotion="sad">
+                            <div class="emotion-icon">😢</div>
+                            <div class="emotion-text">Triste</div>
+                        </div>
+                        <div class="emotion-option" data-emotion="angry">
+                            <div class="emotion-icon">😠</div>
+                            <div class="emotion-text">Irritado</div>
+                        </div>
+                        <div class="emotion-option" data-emotion="tired">
+                            <div class="emotion-icon">😴</div>
+                            <div class="emotion-text">Cansado</div>
+                        </div>
+                        <div class="emotion-option" data-emotion="motivated">
+                            <div class="emotion-icon">💪</div>
+                            <div class="emotion-text">Motivado</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="confirmEmotionBtn">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="localStorage-manager.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
