@@ -1,0 +1,608 @@
+{
+  "emotions": [
+    {
+      "id": "happy",
+      "icon": "bi-emoji-smile-fill",
+      "label": "Feliz",
+      "color": "text-info",
+      "suggestions": [
+        "Continue assim! Aproveite para ler um livro que estava na lista",
+        "Que tal compartilhar essa energia positiva com um amigo?",
+        "Momento perfeito para praticar um hobby que você ama"
+      ]
+    },
+    {
+      "id": "motivated",
+      "icon": "bi-heart-fill",
+      "label": "Motivado",
+      "color": "text-primary",
+      "suggestions": [
+        "Use essa energia para começar aquele projeto que você adia",
+        "Faça exercícios físicos e potencialize sua motivação",
+        "Defina metas claras para os próximos dias"
+      ]
+    },
+    {
+      "id": "bored",
+      "icon": "bi-emoji-neutral-fill",
+      "label": "Entediado",
+      "color": "text-muted",
+      "suggestions": [
+        "Experimente uma nova receita na cozinha",
+        "Comece a aprender algo novo: instrumento, idioma, desenho...",
+        "Organize um espaço da sua casa que está bagunçado"
+      ]
+    },
+    {
+      "id": "anxious",
+      "icon": "bi-emoji-frown-fill",
+      "label": "Ansioso",
+      "color": "text-warning",
+      "suggestions": [
+        "Pratique 5 minutos de respiração profunda",
+        "Faça uma caminhada ao ar livre sem celular",
+        "Escreva seus pensamentos em um diário"
+      ]
+    },
+    {
+      "id": "stressed",
+      "icon": "bi-lightning-charge-fill",
+      "label": "Estressado",
+      "color": "text-danger",
+      "suggestions": [
+        "Tome um banho relaxante e ouça música calma",
+        "Pratique meditação guiada por 10 minutos",
+        "Converse com alguém de confiança sobre o que está sentindo"
+      ]
+    },
+    {
+      "id": "tired",
+      "icon": "bi-cup-hot-fill",
+      "label": "Cansado",
+      "color": "text-muted",
+      "suggestions": [
+        "Que tal um cochilo de 20 minutos?",
+        "Beba água e faça alongamentos leves",
+        "Priorize descanso: deixe as redes sociais para depois"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": 1,
+      "question": "Quanto tempo você passa diariamente em redes sociais/vídeos curtos?",
+      "options": [
+        {
+          "text": "Menos de 30 minutos",
+          "points": 1
+        },
+        {
+          "text": "Entre 30 minutos e 2 horas",
+          "points": 2
+        },
+        {
+          "text": "Entre 2 e 4 horas",
+          "points": 3
+        },
+        {
+          "text": "Mais de 4 horas",
+          "points": 4
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "question": "Com que frequência você checa seu celular logo ao acordar?",
+      "options": [
+        {
+          "text": "Raramente",
+          "points": 1
+        },
+        {
+          "text": "Algumas vezes por semana",
+          "points": 2
+        },
+        {
+          "text": "Quase todos os dias",
+          "points": 3
+        },
+        {
+          "text": "Sempre",
+          "points": 4
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "question": "Você consegue ficar sem o celular por 1 hora?",
+      "options": [
+        {
+          "text": "Sim, facilmente",
+          "points": 1
+        },
+        {
+          "text": "Sim, mas penso nele",
+          "points": 2
+        },
+        {
+          "text": "Com dificuldade",
+          "points": 3
+        },
+        {
+          "text": "Não consigo",
+          "points": 4
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "question": "Com que frequência você abre apps de redes sociais automaticamente?",
+      "options": [
+        {
+          "text": "Raramente",
+          "points": 1
+        },
+        {
+          "text": "Às vezes",
+          "points": 2
+        },
+        {
+          "text": "Frequentemente",
+          "points": 3
+        },
+        {
+          "text": "Constantemente",
+          "points": 4
+        }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "id": 1,
+      "range": [4, 6],
+      "title": "Uso Saudável 🎉",
+      "description": "Parabéns! Você tem um relacionamento equilibrado com a tecnologia.",
+      "tips": [
+        "Continue mantendo limites claros",
+        "Inspire outras pessoas com seus hábitos",
+        "Use o tempo livre para desenvolver hobbies"
+      ]
+    },
+    {
+      "id": 2,
+      "range": [7, 10],
+      "title": "Uso Moderado ⚠️",
+      "description": "Atenção! Você está no limite entre uso saudável e excessivo.",
+      "tips": [
+        "Defina horários específicos para redes sociais",
+        "Use ferramentas de controle de tempo",
+        "Substitua alguns momentos digitais por atividades offline"
+      ]
+    },
+    {
+      "id": 3,
+      "range": [11, 14],
+      "title": "Uso Excessivo 🚨",
+      "description": "Alerta! Seu uso está impactando negativamente sua vida.",
+      "tips": [
+        "Comece reduzindo 30 minutos por dia",
+        "Ative modo foco durante trabalho/estudos",
+        "Busque ajuda de amigos e familiares"
+      ]
+    },
+    {
+      "id": 4,
+      "range": [15, 16],
+      "title": "Possível Dependência ⛔",
+      "description": "Atenção máxima! Você pode estar desenvolvendo dependência digital.",
+      "tips": [
+        "Considere ajuda profissional",
+        "Faça um detox digital de fim de semana",
+        "Use todas as ferramentas disponíveis no Desliga AI"
+      ]
+    }
+  ],
+  "tools": [
+    {
+      "id": "timer",
+      "title": "Timer de Desafio",
+      "description": "Desafie-se a ficar longe das redes por períodos definidos",
+      "icon": "bi-stopwatch-fill",
+      "color": "text-primary",
+      "route": "/timer-desafio"
+    },
+    {
+      "id": "progress",
+      "title": "Progresso Diário",
+      "description": "Acompanhe seu tempo de uso e evolução semanal",
+      "icon": "bi-graph-up-arrow",
+      "color": "text-info",
+      "route": "/progresso-diario"
+    },
+    {
+      "id": "activities",
+      "title": "Atividades Offline",
+      "description": "Descubra alternativas interessantes para fazer sem telas",
+      "icon": "bi-lightbulb-fill",
+      "color": "text-warning",
+      "route": "/atividades-offline"
+    },
+    {
+      "id": "achievements",
+      "title": "Mural de Conquistas",
+      "description": "Desbloqueie badges e celebre suas vitórias",
+      "icon": "bi-trophy-fill",
+      "color": "text-primary",
+      "route": "/mural-conquistas"
+    },
+    {
+      "id": "checklist",
+      "title": "Checklist Diário",
+      "description": "Mantenha o foco em atividades produtivas do dia",
+      "icon": "bi-check-square-fill",
+      "color": "text-info",
+      "route": "/checklist-diario"
+    },
+    {
+      "id": "share",
+      "title": "Compartilhar Progresso",
+      "description": "Inspire outros compartilhando suas conquistas",
+      "icon": "bi-share-fill",
+      "color": "text-warning",
+      "route": "/compartilhar-progresso"
+    }
+  ],
+  "harms": [
+    {
+      "id": 1,
+      "icon": "bi-cpu-fill",
+      "title": "Danos Cognitivos",
+      "description": "Redução da capacidade de concentração, memória e pensamento crítico. O cérebro se acostuma com estímulos rápidos e perde a habilidade de foco profundo.",
+      "color": "text-danger"
+    },
+    {
+      "id": 2,
+      "icon": "bi-clock-fill",
+      "title": "Perda de Tempo",
+      "description": "Horas valiosas desperdiçadas em conteúdo efêmero. Tempo que poderia ser usado para crescimento pessoal, relacionamentos e projetos importantes.",
+      "color": "text-warning"
+    },
+    {
+      "id": 3,
+      "icon": "bi-eye-fill",
+      "title": "Fadiga Visual",
+      "description": "Cansaço ocular, visão embaçada e dores de cabeça frequentes causados pelo uso excessivo de telas e movimentos rápidos dos vídeos.",
+      "color": "text-info"
+    },
+    {
+      "id": 4,
+      "icon": "bi-heart-fill",
+      "title": "Saúde Mental",
+      "description": "Aumento de ansiedade, depressão e baixa autoestima. Comparações constantes e FOMO (Fear of Missing Out) afetam o bem-estar emocional.",
+      "color": "text-danger"
+    },
+    {
+      "id": 5,
+      "icon": "bi-people-fill",
+      "title": "Isolamento Social",
+      "description": "Menos interações reais e profundas. O tempo digital substitui conexões humanas genuínas, afetando relacionamentos e habilidades sociais.",
+      "color": "text-primary"
+    },
+    {
+      "id": 6,
+      "icon": "bi-lightning-charge-fill",
+      "title": "Produtividade Zero",
+      "description": "Procrastinação constante e dificuldade em completar tarefas. O cérebro busca recompensas rápidas ao invés de trabalho profundo e significativo.",
+      "color": "text-warning"
+    }
+  ],
+  "solutions": [
+    {
+      "id": 1,
+      "icon": "bi-bullseye",
+      "title": "Defina Limites Claros",
+      "steps": [
+        "Estabeleça horários específicos para uso de redes sociais",
+        "Use temporizadores e apps de controle de tempo",
+        "Crie zonas livres de celular (quarto, refeições)",
+        "Defina metas diárias de tempo máximo"
+      ]
+    },
+    {
+      "id": 2,
+      "icon": "bi-shield-check",
+      "title": "Crie Barreiras Físicas",
+      "steps": [
+        "Deixe o celular em outro cômodo durante trabalho",
+        "Desative notificações de apps não essenciais",
+        "Use modo avião ou não perturbe com frequência",
+        "Mantenha o celular longe da cama ao dormir"
+      ]
+    },
+    {
+      "id": 3,
+      "icon": "bi-trophy-fill",
+      "title": "Substitua o Hábito",
+      "steps": [
+        "Liste atividades que você realmente gosta",
+        "Tenha sempre um livro ou hobby à mão",
+        "Pratique exercícios físicos regularmente",
+        "Invista em encontros presenciais com amigos"
+      ]
+    },
+    {
+      "id": 4,
+      "icon": "bi-check-circle-fill",
+      "title": "Mantenha-se Firme",
+      "steps": [
+        "Monitore seu progresso diariamente",
+        "Celebre pequenas vitórias",
+        "Não desista após recaídas, são parte do processo",
+        "Busque apoio de amigos e família"
+      ]
+    }
+  ],
+  "activities": [
+    {
+      "id": 1,
+      "emoji": "🚶",
+      "title": "Caminhar ao ar livre",
+      "desc": "Uma caminhada pode renovar sua energia e clarear sua mente"
+    },
+    {
+      "id": 2,
+      "emoji": "📚",
+      "title": "Ler um livro",
+      "desc": "Explore novos mundos através da leitura"
+    },
+    {
+      "id": 3,
+      "emoji": "🧘",
+      "title": "Meditar",
+      "desc": "Conecte-se com seu interior e encontre paz"
+    },
+    {
+      "id": 4,
+      "emoji": "🏃",
+      "title": "Fazer exercícios",
+      "desc": "Movimente o corpo e libere endorfinas"
+    },
+    {
+      "id": 5,
+      "emoji": "🍳",
+      "title": "Cozinhar algo novo",
+      "desc": "Experimente receitas e descubra sabores"
+    },
+    {
+      "id": 6,
+      "emoji": "🎨",
+      "title": "Desenhar ou pintar",
+      "desc": "Expresse sua criatividade através da arte"
+    },
+    {
+      "id": 7,
+      "emoji": "🧹",
+      "title": "Organizar um espaço",
+      "desc": "Um ambiente organizado traz clareza mental"
+    },
+    {
+      "id": 8,
+      "emoji": "📞",
+      "title": "Ligar para alguém",
+      "desc": "Conecte-se com pessoas queridas"
+    },
+    {
+      "id": 9,
+      "emoji": "✍️",
+      "title": "Escrever no diário",
+      "desc": "Registre seus pensamentos e sentimentos"
+    },
+    {
+      "id": 10,
+      "emoji": "🎸",
+      "title": "Tocar um instrumento",
+      "desc": "A música é uma forma de expressão única"
+    },
+    {
+      "id": 11,
+      "emoji": "🌱",
+      "title": "Fazer jardinagem",
+      "desc": "Conecte-se com a natureza"
+    },
+    {
+      "id": 12,
+      "emoji": "🌅",
+      "title": "Assistir o pôr do sol",
+      "desc": "Aprecie a beleza da natureza"
+    }
+  ],
+  "achievements": [
+    {
+      "id": 1,
+      "emoji": "🎯",
+      "title": "Primeiro Passo",
+      "desc": "Complete seu primeiro desafio",
+      "unlocked": true,
+      "date": "2025-01-15"
+    },
+    {
+      "id": 2,
+      "emoji": "⚔️",
+      "title": "Guerreiro Digital",
+      "desc": "Fique 3 dias sem redes sociais",
+      "unlocked": true,
+      "date": "2025-01-18"
+    },
+    {
+      "id": 3,
+      "emoji": "🎖️",
+      "title": "Foco Total",
+      "desc": "Complete 10 sessões de modo foco",
+      "unlocked": true,
+      "date": "2025-01-20"
+    },
+    {
+      "id": 4,
+      "emoji": "📅",
+      "title": "Semana Consciente",
+      "desc": "Use menos de 2h/dia por 7 dias",
+      "unlocked": false
+    },
+    {
+      "id": 5,
+      "emoji": "⏰",
+      "title": "Mestre do Tempo",
+      "desc": "Economize 1000 minutos",
+      "unlocked": false
+    },
+    {
+      "id": 6,
+      "emoji": "🧭",
+      "title": "Explorador Offline",
+      "desc": "Complete 20 atividades offline",
+      "unlocked": false
+    },
+    {
+      "id": 7,
+      "emoji": "🏆",
+      "title": "Vencedor de 30 Dias",
+      "desc": "Mantenha o hábito por 30 dias",
+      "unlocked": false
+    },
+    {
+      "id": 8,
+      "emoji": "✨",
+      "title": "Inspirador",
+      "desc": "Compartilhe seu progresso 5 vezes",
+      "unlocked": false
+    },
+    {
+      "id": 9,
+      "emoji": "🧘",
+      "title": "Zen Digital",
+      "desc": "Complete 50 sessões de meditação",
+      "unlocked": false
+    }
+  ],
+  "weeklyData": [
+    {
+      "id": 1,
+      "day": "Seg",
+      "minutes": 150,
+      "goal": 120
+    },
+    {
+      "id": 2,
+      "day": "Ter",
+      "minutes": 90,
+      "goal": 120
+    },
+    {
+      "id": 3,
+      "day": "Qua",
+      "minutes": 110,
+      "goal": 120
+    },
+    {
+      "id": 4,
+      "day": "Qui",
+      "minutes": 85,
+      "goal": 120
+    },
+    {
+      "id": 5,
+      "day": "Sex",
+      "minutes": 140,
+      "goal": 120
+    },
+    {
+      "id": 6,
+      "day": "Sáb",
+      "minutes": 95,
+      "goal": 120
+    },
+    {
+      "id": 7,
+      "day": "Dom",
+      "minutes": 100,
+      "goal": 120
+    }
+  ],
+  "tasks": [
+    {
+      "id": 1,
+      "text": "Meditar por 10 minutos",
+      "completed": false,
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "text": "Ler 30 páginas de um livro",
+      "completed": true,
+      "userId": 1
+    },
+    {
+      "id": 3,
+      "text": "Fazer exercícios físicos",
+      "completed": false,
+      "userId": 1
+    },
+    {
+      "id": 4,
+      "text": "Conversar com alguém pessoalmente",
+      "completed": false,
+      "userId": 1
+    }
+  ],
+  "diaryEntries": [
+    {
+      "id": 1,
+      "mood": "😊",
+      "text": "Hoje foi um dia produtivo! Consegui ficar longe das redes sociais por 3 horas seguidas.",
+      "date": "2025-01-20T00:00:00.000Z",
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "mood": "💪",
+      "text": "Estou me sentindo mais motivado a cada dia. O desafio está funcionando!",
+      "date": "2025-01-19T00:00:00.000Z",
+      "userId": 1
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "nome": "Usuário Exemplo",
+      "email": "usuario@exemplo.com",
+      "dataCadastro": "2025-01-15T00:00:00.000Z",
+      "theme": "dark"
+    }
+  ],
+  "timerMessages": [
+    "Você está indo muito bem! Continue assim! 💪",
+    "Foco total! Você consegue! 🎯",
+    "Cada minuto conta! Mantenha o ritmo! ⏰",
+    "Você está no caminho certo! Não desista! 🌟"
+  ],
+  "shareStats": [
+    {
+      "id": 1,
+      "userId": 1,
+      "diasAtivos": 12,
+      "minutosEconomizados": 780,
+      "conquistasDesbloqueadas": 3,
+      "diasSequencia": 5,
+      "lastUpdate": "2025-01-20T00:00:00.000Z"
+    }
+  ],
+  "score": [
+    {
+      "id": 1,
+      "score": 0
+    }
+  ],
+  "history": []
+}
+
