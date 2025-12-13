@@ -208,20 +208,48 @@ Descrição para a tela XPTO
 > - [MarvelApp](https://marvelapp.com/developers/documentation/tutorials/)
 
 ### User Flow
+## TELA DE CADASTRO
+Página para o usuário se cadastrar
+![CADASTRO](files/cadastrodeusuario.png)
 
-**✳️✳️✳️ COLOQUE AQUI O DIAGRAMA DE FLUXO DE TELAS ✳️✳️✳️**
+## TELA DE LOGIN
+Página para o usuário ja cadastrado realizar seu login
+![LOGIN](files/logindeusuario.png)
 
-![Exemplo de fluxo de telas](images/exemplo-userflow.png)
+## HOMEPAGE
+Tela inicial do sistema
+![HOMEPAGE](files/homepage-fluxodetelas.png)
+![MAPA DE EMOÇÕES - HOME](files/mapadeemocoes-home.png)
+![MAPA DE EMOÇÕES - COMPLETO](files/mapadeemocoes-completo.png)
+![QUIZ DE HÁBITOS DIGITAIS](files/quizdehabitosdigitais.png)
+![FERRAMENTAS](files/ferramentas-fluxodetelas.png)
+![MALEFICIOS DO VICIO](files/maleficios.png)
+![COMO SE LIBERTAR](files/comoselibertar.png)
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Fluxo de usuário (User Flow) é uma técnica que permite ao desenvolvedor mapear todo fluxo de telas do site ou app. Essa técnica funciona para alinhar os caminhos e as possíveis ações que o usuário pode fazer junto com os membros de sua equipe.
->
-> **Orientações**:
->
-> - [User Flow: O Quê É e Como Fazer?](https://medium.com/7bits/fluxo-de-usu%C3%A1rio-user-flow-o-que-%C3%A9-como-fazer-79d965872534)
-> - [User Flow vs Site Maps](http://designr.com.br/sitemap-e-user-flow-quais-as-diferencas-e-quando-usar-cada-um/)
-> - [Top 25 User Flow Tools &amp; Templates for Smooth](https://www.mockplus.com/blog/post/user-flow-tools)
+## FERRAMENTAS PARA TRANSFORMAÇÃO
+Ferramentas que o usuário tem a disposição
+![FERRAMENTAS](files/ferramentas-fluxodetelas.png)
+
+# TIMER DE FOCO
+Usuário estipula um tempo para se concentrar em alguma atividade
+![TIMER](files/timer-fluxodetelas.png)
+
+# ATIVIDADES OFFLINE
+Gera aleatoriamente atividades para o usuário realizar fora de aparelhos eletrônicos
+![ATIVIDADES OFFLINE](files/atividadesoffline-fluxodetelas.png)
+
+# MURAL DE CONQUISTAS
+Usuário desbloqueia conquistas conforme progride em seus hábitos mais saudáveis
+![MURAL DE CONQUISTAS](files/muraldeconquistas.png)
+
+# CHECKLIST DIARIO
+Usuário registra seu progesso (atividades realizadas, tempo offline)
+![REGISTRO DE PROGRESSO DIARIO](files/registrodeprogressodiario.png)
+![REGISTRO DE PROGESSO DIARIO - ATIVIDADES DO DIA](files/registrodeprogressodiario-atividadesdodia.png)
+
+# COMPARTILHAR PROGESSO
+Permite ao usuário compartilhar suas conquistas
+![COMPARTILHAR PROGRESSO](files/compartilharprogesso.png)
 
 ### Protótipo Interativo
 
