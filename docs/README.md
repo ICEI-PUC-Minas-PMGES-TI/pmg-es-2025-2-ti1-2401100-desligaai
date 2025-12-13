@@ -287,7 +287,6 @@ Esta seção apresenta as funcionalidades da solução.Info
 
 Permite a criação de um perfil para o usuário
 
-* **Estrutura de dados:** [Contatos](#ti_ed_contatos)
 * **Instruções de acesso:**
   * Abra o site e clique em cadastrar
 * **Tela da funcionalidade**:
@@ -393,81 +392,243 @@ Usuário responde a um quiz sobre seus hábitos digitais
 
 Descrição das estruturas de dados utilizadas na solução com exemplos no formato JSON.Info
 
-##### Estrutura de Dados - Contatos   ⚠️ EXEMPLO ⚠️
+##### Estrutura de Dados - Checklist
 
-Contatos da aplicação
-
-```json
-  {
-    "id": 1,
-    "nome": "Leanne Graham",
-    "cidade": "Belo Horizonte",
-    "categoria": "amigos",
-    "email": "Sincere@april.biz",
-    "telefone": "1-770-736-8031",
-    "website": "hildegard.org"
-  }
-  
-```
-
-##### Estrutura de Dados - Usuários  ⚠️ EXEMPLO ⚠️
-
-Registro dos usuários do sistema utilizados para login e para o perfil do sistema
+Json do Checklist Diário
 
 ```json
-  {
-    id: "eed55b91-45be-4f2c-81bc-7686135503f9",
-    email: "admin@abc.com",
-    id: "eed55b91-45be-4f2c-81bc-7686135503f9",
-    login: "admin",
-    nome: "Administrador do Sistema",
-    senha: "123"
-  }
+{
+  "app": "Desliga Digital",
+  "usuario": {
+    "nome": "Usuário Exemplo",
+    "email": "usuario@exemplo.com",
+    "estatisticas": {
+      "dias_consecutivos_produtivos": 5,
+      "total_tarefas_concluidas": 45,
+      "porcentagem_media_diaria": "85%"
+    }
+  },
+  "acoes_rapidas": [
+    {
+      "nome": "Adicionar Tarefa Rápida",
+      "funcao": "Abre um modal para o usuário inserir uma nova tarefa instantaneamente"
+    },
+    {
+      "nome": "Visualizar Progresso Semanal",
+      "funcao": "Navega para a seção do gráfico e histórico"
+    }
+  ],
+  "metas": [
+    {
+      "id": "meta_1",
+      "descricao": "Não assistir vídeos curtos antes de dormir",
+      "progresso_diario": {
+        "dias_concluidos": 3,
+        "dias_totais": 7
+      },
+      "status": "em andamento"
+    },
+    {
+      "id": "meta_2",
+      "descricao": "Fazer 30 minutos de exercício por dia",
+      "progresso_diario": {
+        "dias_concluidos": 5,
+        "dias_totais": 7
+      },
+      "status": "em andamento"
+    }
+  ],
+  "checklist_diario": [
+    {
+      "id": "tarefa_1",
+      "texto": "Fazer 30 minutos de exercício físico.",
+      "concluida": true
+    },
+    {
+      "id": "tarefa_2",
+      "texto": "Ler um capítulo de um livro.",
+      "concluida": false
+    }
+  ],
+  "historico_semanal": [
+    {
+      "data": "10/10/2025",
+      "porcentagem_concluida": "90%"
+    },
+    {
+      "data": "11/10/2025",
+      "porcentagem_concluida": "75%"
+    },
+    {
+      "data": "12/10/2025",
+      "porcentagem_concluida": "80%"
+    }
+  ]
+}
 ```
 
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Apresente as estruturas de dados utilizadas na solução tanto para dados utilizados na essência da aplicação quanto outras estruturas que foram criadas para algum tipo de configuração
->
-> Nomeie a estrutura, coloque uma descrição sucinta e apresente um exemplo em formato JSON.
->
-> **Orientações:**
->
-> * [JSON Introduction](https://www.w3schools.com/js/js_json_intro.asp)
-> * [Trabalhando com JSON - Aprendendo desenvolvimento web | MDN](https://developer.mozilla.org/pt-BR/docs/Learn/JavaScript/Objects/JSON)
+##### Estrutura de Dados - Timer
+
+Json do timer de foco
+
+```json
+    {
+      "score": [
+        {
+          "score": 20,
+          "id": "1"
+        }
+      ],
+      "history": [
+        {
+          "id": "1762018418233",
+          "date": "01/11/2025, 14:33:38",
+          "type": "FOCO",
+          "duration": 5,
+          "details": "Ciclo concluído"
+        },
+        {
+          "id": 1763417286579,
+          "date": "17/11/2025, 19:08:06",
+          "type": "FOCO",
+          "duration": 1,
+          "details": "Ciclo concluído"
+        }
+      ]
+    }
+```
+
+##### Estrutura de Dados - Atividades Offline
+
+Json das atividades aleatórias
+
+```json
+{
+  "atividades": [
+    {
+      "texto": "Caminhe por 30min 🍄",
+      "id": "1"
+    },
+    {
+      "id": "2",
+      "texto": "Leia 5 páginas de um livro 📖"
+    },
+    {
+      "id": "3",
+      "texto": "Medite por 10min 🧘🏼‍♀️"
+    },
+    {
+      "id": "4",
+      "texto": "Tome um copo d'água e respire fundo 💧"
+    },
+    {
+      "id": "5",
+      "texto": "Escreva seus pensamentos e seus sentimentos ✍🏼"
+    },
+    {
+      "id": "6",
+      "texto": "Escreva 3 coisas pelas quais você é grato(a) ✨"
+    },
+    {
+      "id": "7",
+      "texto": "Desenhe algo de sua preferência 🖌️"
+    },
+    {
+      "id": "8",
+      "texto": "Inicie um novo hobbie 🎨"
+    },
+    {
+      "id": "9",
+      "texto": "Deixe seu app de música no aleatório para experimentar coisas novas 🎶"
+    },
+    {
+      "id": "10",
+      "texto": "Faça alongamentos por 15min 🫀"
+    }
+  ]
+}
+```
+
+##### Estrutura de Dados - Mapa de Emoções
+
+Json do mapa de emoções 
+
+```json
+
+{
+  "usuario": {
+    "id": "USR-2024-001",
+    "nome": "",
+    "idade": 0,
+    "profissao": "",
+    "cidade": "",
+    "objetivo_principal": "",
+    "tempo_diario_redes_sociais": "",
+    "redes_sociais_mais_utilizadas": []
+  },
+  "mapa_emoções": {
+    "emocao_primaria": "",
+    "emocao_secundaria": "",
+    "gatilhos_emocionais": [],
+    "intensidade_emocional": {
+      "ansiedade": 0,
+      "motivacao": 0,
+      "realizacao": 0,
+      "foco": 0
+    }
+  },
+  "preferencias_offline": {
+    "interesses": [],
+    "objetivos_pessoais": [],
+    "atividades_sugeridas": [
+      {
+        "categoria": "Criatividade",
+        "atividades": [
+          "Fazer um curso de aquarela",
+          "Criar um projeto de sketchbook diário",
+          "Visitar galerias de arte aos finais de semana"
+        ]
+      },
+      {
+        "categoria": "Desenvolvimento Pessoal",
+        "atividades": [
+          "Estabelecer uma rotina de leitura de 30 minutos ao dia",
+          "Praticar journaling matinal",
+          "Fazer caminhadas em parques sem celular"
+        ]
+      },
+      {
+        "categoria": "Empreendedorismo",
+        "atividades": [
+          "Planejar um negócio de ilustração digital",
+          "Participar de feiras de arte locais",
+          "Criar um calendário de metas mensais"
+        ]
+      }
+    ]
+  },
+  "configuracoes": {
+    "limite_diario_redes": 0,
+    "alertas_emocionais": false,
+    "sincronizar_calendario": false,
+    "modo_foco_ativado": false
+  }
+}
+```
+
 
 ## Módulos e APIs
 
 Esta seção apresenta os módulos e APIs utilizados na solução
 
-**Images**:
-
-* Unsplash - [https://unsplash.com/](https://unsplash.com/) ⚠️ EXEMPLO ⚠️
-
-**Fonts:**
-
-* Icons Font Face - [https://fontawesome.com/](https://fontawesome.com/) ⚠️ EXEMPLO ⚠️
+**Estrutura de Dados**
+* https://www.npmjs.com/package/json-server
 
 **Scripts:**
 
-* jQuery - [http://www.jquery.com/](http://www.jquery.com/) ⚠️ EXEMPLO ⚠️
-* Bootstrap 4 - [http://getbootstrap.com/](http://getbootstrap.com/) ⚠️ EXEMPLO ⚠️
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Apresente os módulos e APIs utilizados no desenvolvimento da solução. Inclua itens como: (1) Frameworks, bibliotecas, módulos, etc. utilizados no desenvolvimento da solução; (2) APIs utilizadas para acesso a dados, serviços, etc.
+* jQuery - [http://www.jquery.com/](http://www.jquery.com/)
+* Bootstrap 4 - [http://getbootstrap.com/](http://getbootstrap.com/) 
 
 # Referências
 
-As referências utilizadas no trabalho foram:
-
-* SOBRENOME, Nome do autor. Título da obra. 8. ed. Cidade: Editora, 2000. 287 p ⚠️ EXEMPLO ⚠️
-
-> ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
->
-> Inclua todas as referências (livros, artigos, sites, etc) utilizados no desenvolvimento do trabalho.
->
-> **Orientações**:
->
-> - [Formato ABNT](https://www.normastecnicas.com/abnt/trabalhos-academicos/referencias/)
-> - [Referências Bibliográficas da ABNT](https://comunidade.rockcontent.com/referencia-bibliografica-abnt/)
+Não foi utilizado nenhum livro.
