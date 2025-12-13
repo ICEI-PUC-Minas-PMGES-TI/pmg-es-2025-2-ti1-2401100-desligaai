@@ -212,6 +212,11 @@ Descrição para a tela XPTO
 ![Mapa de Emoções: ](imagens/mapa%20de%20emoções.png)
 ![Timer: ](imagens/timerTimer.png)
 ![Quiz: ](imagens/quiz%20pc.png)
+![Notificações motivacionais: ](imagens/notificações%20motivacionais.png)
+![Gerador de Atividades Onffline: ](imagens/gerador%20de%20atividades%20onffline.png)
+![Espelho de tempo: ](imagens/espelho%20de%20tempo.png)
+![Diário de Reflexão: ](imagens/diário%20de%20reflexão.png)
+
 
 
 > ⚠️ **APAGUE ESSA PARTE ANTES DE ENTREGAR SEU TRABALHO**
