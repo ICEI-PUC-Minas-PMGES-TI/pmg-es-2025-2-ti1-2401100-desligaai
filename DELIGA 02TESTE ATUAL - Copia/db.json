@@ -1,0 +1,124 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "nome": "Usuário Exemplo",
+      "email": "usuario@exemplo.com",
+      "dataCadastro": "2025-01-15T00:00:00.000Z",
+      "theme": "dark"
+    },
+    {
+      "nome": "Proeza",
+      "email": "pedronunes021006@gmail.com",
+      "phone": "(31) 98235-0302",
+      "password": "NDE1MjYzUGVkcm8=",
+      "dataCadastro": "2025-12-13T06:49:57.904Z",
+      "updatedAt": "2025-12-13T06:51:08.055Z",
+      "points": 0,
+      "level": 1,
+      "theme": "light",
+      "preferences": {
+        "goal": "improve_sleep",
+        "screenTime": "4_6h",
+        "newsletter": true,
+        "notifications": true
+      },
+      "id": 2,
+      "lastLogin": "2025-12-13T06:51:08.055Z"
+    }
+  ],
+  "score": [
+    {
+      "id": 1,
+      "score": 0
+    }
+  ],
+  "history": [],
+  "tasks": [
+    {
+      "id": 1,
+      "text": "Meditar por 10 minutos",
+      "completed": false,
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "text": "Ler 30 páginas de um livro",
+      "completed": true,
+      "userId": 1
+    },
+    {
+      "id": 3,
+      "text": "Fazer exercícios físicos",
+      "completed": false,
+      "userId": 1
+    },
+    {
+      "id": 4,
+      "text": "Conversar com alguém pessoalmente",
+      "completed": false,
+      "userId": 1
+    }
+  ],
+  "weeklyData": [
+    {
+      "id": 1,
+      "day": "Seg",
+      "minutes": 150,
+      "goal": 120
+    },
+    {
+      "id": 2,
+      "day": "Ter",
+      "minutes": 90,
+      "goal": 120
+    },
+    {
+      "id": 3,
+      "day": "Qua",
+      "minutes": 110,
+      "goal": 120
+    },
+    {
+      "id": 4,
+      "day": "Qui",
+      "minutes": 85,
+      "goal": 120
+    },
+    {
+      "id": 5,
+      "day": "Sex",
+      "minutes": 140,
+      "goal": 120
+    },
+    {
+      "id": 6,
+      "day": "Sáb",
+      "minutes": 95,
+      "goal": 120
+    },
+    {
+      "id": 7,
+      "day": "Dom",
+      "minutes": 100,
+      "goal": 120
+    }
+  ],
+  "shareStats": [
+    {
+      "id": 1,
+      "userId": 1,
+      "diasAtivos": 12,
+      "minutosEconomizados": 780,
+      "conquistasDesbloqueadas": 3,
+      "diasSequencia": 5,
+      "lastUpdate": "2025-01-20T00:00:00.000Z"
+    }
+  ],
+  "timerMessages": [
+    "Você está indo muito bem! Continue assim! 💪",
+    "Foco total! Você consegue! 🎯",
+    "Cada minuto conta! Mantenha o ritmo! ⏰",
+    "Você está no caminho certo! Não desista! 🌟"
+  ]
+}
