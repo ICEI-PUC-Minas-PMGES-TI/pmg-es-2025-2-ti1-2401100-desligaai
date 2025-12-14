@@ -73,6 +73,9 @@ function goToProfile() {
 let totalTime = 0;
 let remainingTime = 0;
 let timerInterval = null;
+let prepInterval = null; // Rastreia interval de preparação
+let isRestoringState = false; // Previne restauração múltipla
+
 let isPaused = false;
 let currentCycle = 0;
 let totalCycles = 0;
@@ -83,6 +86,8 @@ const pointsPerCycle = 10; // Pontos por ciclo de foco concluído
 
 // ===== PERSISTÊNCIA DO TIMER =====
 const TIMER_STATE_KEY = 'desligaAI_timerState';
+const TIMER_SESSIONS_KEY = 'desligaAI_timerSessions'; // Rastreia sessões de foco concluídas
+const ACHIEVEMENTS_STATS_KEY = 'desligaAI_achievements_stats';
 
 function saveTimerState() {
   const state = {
@@ -139,36 +144,50 @@ function loadTimerState() {
 }
 
 function restoreTimerState(state) {
-  totalTime = state.totalTime;
-  remainingTime = state.remainingTime;
-  isPaused = state.isPaused;
-  currentCycle = state.currentCycle;
-  totalCycles = state.totalCycles;
-  onBreak = state.onBreak;
-  prepPhase = state.prepPhase;
+  // Previne restauração múltipla
+  if (isRestoringState) {
+    console.log('⚠️ Estado de restauração já em progresso');
+    return;
+  }
   
-  // Restaura valores dos inputs
-  if (focusInput) focusInput.value = state.focusTime;
-  if (breakInput) breakInput.value = state.breakTime;
-  if (cyclesInput) cyclesInput.value = state.totalCycles;
+  isRestoringState = true;
   
-  // Atualiza display
-  if (timeDisplay) timeDisplay.textContent = formatTime(remainingTime);
-  updateCircle();
-  
-  console.log('Timer restaurado. isRunning:', state.isRunning, 'isPaused:', isPaused);
-  
-  // Restaura estado dos botões
-  if (state.isRunning) {
-    if (startBtn) startBtn.disabled = true;
-    if (pauseBtn) pauseBtn.disabled = false;
-    if (resetBtn) resetBtn.disabled = false;
+  try {
+    totalTime = state.totalTime;
+    remainingTime = state.remainingTime;
+    isPaused = state.isPaused;
+    currentCycle = state.currentCycle;
+    totalCycles = state.totalCycles;
+    onBreak = state.onBreak;
+    prepPhase = state.prepPhase;
     
-    // Se não estava pausado, retoma o timer imediatamente
-    if (!isPaused) {
-      console.log('Retomando timer...');
-      startCountdown();
+    // Restaura valores dos inputs
+    if (focusInput) focusInput.value = state.focusTime;
+    if (breakInput) breakInput.value = state.breakTime;
+    if (cyclesInput) cyclesInput.value = state.totalCycles;
+    
+    // Atualiza display
+    if (timeDisplay) timeDisplay.textContent = formatTime(remainingTime);
+    updateCircle();
+    
+    console.log('Timer restaurado. isRunning:', state.isRunning, 'isPaused:', isPaused);
+    
+    // Restaura estado dos botões
+    if (state.isRunning) {
+      if (startBtn) startBtn.disabled = true;
+      if (pauseBtn) pauseBtn.disabled = false;
+      if (resetBtn) resetBtn.disabled = false;
+      
+      // Se não estava pausado, retoma o timer imediatamente
+      if (!isPaused) {
+        console.log('Retomando timer...');
+        startCountdown();
+      }
     }
+  } catch (e) {
+    console.error('Erro ao restaurar estado do timer:', e);
+  } finally {
+    isRestoringState = false;
   }
 }
 let timeDisplay, startBtn, pauseBtn, resetBtn;
@@ -186,14 +205,28 @@ function formatTime(seconds) {
 
 // ===== SOM =====
 function playAlarmSound() {
-  // Tenta tocar som, mas não falha se não existir
+  // Toca som de término
   try {
     const audio = new Audio('alarm2.wav');
+    audio.volume = 0.7;
     audio.play().catch(() => {
-      // Ignora erros de áudio
+      console.log('Não foi possível tocar o som de alarme');
     });
   } catch (e) {
-    // Ignora erros
+    console.log('Erro ao tocar alarme:', e);
+  }
+}
+
+function playPrepSound() {
+  // Toca som de preparação para próximo ciclo
+  try {
+    const audio = new Audio('prep2.wav');
+    audio.volume = 0.5;
+    audio.play().catch(() => {
+      console.log('Não foi possível tocar o som de preparação');
+    });
+  } catch (e) {
+    console.log('Erro ao tocar som de prep:', e);
   }
 }
 
@@ -235,7 +268,9 @@ function startTimer() {
 }
 
 function startCountdown() {
-  clearInterval(timerInterval);
+  // Limpa qualquer interval anterior para evitar múltiplos timers
+  if (timerInterval) clearInterval(timerInterval);
+  
   timerInterval = setInterval(() => {
     if (!isPaused) {
       remainingTime--;
@@ -247,19 +282,15 @@ function startCountdown() {
 
       if (remainingTime <= 0) {
         clearInterval(timerInterval);
+        timerInterval = null;
 
         if (!onBreak) {
           addPoints(pointsPerCycle); // pontuação
           addSessionToHistory('FOCO', parseInt(focusInput.value)); // histórico persistente
           
-          // Atualiza estatística de sessões de timer para conquistas
-          try {
-            if (typeof updateAchievementStat === 'function') {
-              updateAchievementStat('timerSessions', 1);
-            }
-          } catch (e) {
-            console.log('Achievement tracking not available');
-          }
+          // ===== RASTREAR CICLO COMPLETO PARA CONQUISTAS =====
+          rastrearCicloCompleto();
+          
         } else {
           addSessionToHistory('PAUSA', parseInt(breakInput.value));
         }
@@ -289,19 +320,24 @@ function nextPhase() {
 }
 
 function prepCountdown() {
+  // Limpa prep interval anterior
+  if (prepInterval) clearInterval(prepInterval);
+  
   prepPhase = true;
   let prepTime = 5;
   if (timeDisplay) timeDisplay.textContent = prepTime;
-  playAlarmSound();
+  playPrepSound(); // Som de preparação
 
-  const prepInterval = setInterval(() => {
+  prepInterval = setInterval(() => {
     prepTime--;
     if (timeDisplay) timeDisplay.textContent = prepTime;
 
     if (prepTime <= 0) {
       clearInterval(prepInterval);
+      prepInterval = null;
       prepPhase = false;
       if (timeDisplay) timeDisplay.textContent = formatTime(remainingTime);
+      playAlarmSound(); // Som antes de começar o ciclo
       startCountdown();
     }
   }, 1000);
@@ -316,7 +352,9 @@ function pauseTimer() {
 
 function resetTimer() {
   clearInterval(timerInterval);
+  clearInterval(prepInterval);
   timerInterval = null;
+  prepInterval = null;
   isPaused = false;
   currentCycle = 0;
   onBreak = false;
@@ -580,12 +618,160 @@ function initTimer() {
 window.deleteSession = deleteSession;
 
 // ============================================
+// ============================================
+// SISTEMA DE RASTREAMENTO DE CICLOS (MESTRE DO FOCO)
+// ============================================
+
+function rastrearCicloCompleto() {
+  try {
+    console.log('🎯 Ciclo de foco concluído! Registrando para Mestre do Foco...');
+    
+    // Incrementa contador de sessões de timer
+    updateAchievementStatTimer('timerSessions', 1);
+    
+    // Carrega sessões já concluídas
+    let sessions = JSON.parse(localStorage.getItem(TIMER_SESSIONS_KEY) || '0');
+    sessions = parseInt(sessions) + 1;
+    localStorage.setItem(TIMER_SESSIONS_KEY, sessions.toString());
+    
+    console.log(`✅ Total de ciclos concluídos: ${sessions}`);
+    
+    // Atualiza a barra de progresso visualmente
+    atualizarBarraProgressoCiclos();
+    
+    // Verifica se desbloqueou "Mestre do Foco" (10 sessões)
+    if (sessions === 10) {
+      console.log(`🏆 CONQUISTA DESBLOQUEADA: Mestre do Foco! (${sessions} ciclos)`);
+      mostrarNotificacaoCiclo(sessions);
+    } else if (sessions === 25 || sessions === 50 || sessions === 100) {
+      console.log(`🌟 MARCO ALCANÇADO: ${sessions} ciclos concluídos!`);
+      mostrarNotificacaoCiclo(sessions);
+    }
+    
+  } catch (e) {
+    console.error('❌ Erro ao rastrear ciclo:', e);
+  }
+}
+
+function atualizarBarraProgressoCiclos() {
+  try {
+    const totalCiclos = obterTotalCiclosCompletos();
+    const meta = 10; // Meta para desbloquear a conquista
+    const percentual = Math.min(100, Math.round((totalCiclos / meta) * 100));
+    
+    const progressBar = document.getElementById('progressBarCiclos');
+    const ciclosCompletos = document.getElementById('ciclosCompletos');
+    const percentualDisplay = document.getElementById('percentualCiclos');
+    
+    if (progressBar) {
+      progressBar.style.width = percentual + '%';
+      progressBar.setAttribute('aria-valuenow', percentual);
+    }
+    
+    if (ciclosCompletos) {
+      ciclosCompletos.textContent = totalCiclos;
+    }
+    
+    if (percentualDisplay) {
+      percentualDisplay.textContent = percentual + '%';
+    }
+    
+    console.log(`📊 Barra de progresso atualizada: ${totalCiclos}/${meta} (${percentual}%)`);
+  } catch (e) {
+    console.error('Erro ao atualizar barra de progresso:', e);
+  }
+}
+
+function updateAchievementStatTimer(statName, incrementBy = 1) {
+  try {
+    const saved = localStorage.getItem(ACHIEVEMENTS_STATS_KEY);
+    let stats = saved ? JSON.parse(saved) : {
+      quizCompleted: 0,
+      challengesCompleted: 0,
+      timerSessions: 0,
+      emotionMapUsage: 0,
+      offlineActivities: 0,
+      diaryEntries: 0,
+      daysCompleted: 0,
+      currentStreak: 0,
+      earlyCompletions: 0
+    };
+    
+    if (statName in stats) {
+      stats[statName] = Math.max(0, (stats[statName] || 0) + incrementBy);
+    }
+    
+    stats.lastUpdated = Date.now();
+    localStorage.setItem(ACHIEVEMENTS_STATS_KEY, JSON.stringify(stats));
+    
+    console.log(`📊 Stat Timer atualizado: ${statName} = ${stats[statName]}`);
+    
+    // Tenta chamar função de verificação de conquistas se disponível
+    try {
+      if (typeof checkAndUnlockAchievements === 'function') {
+        setTimeout(() => checkAndUnlockAchievements(), 100);
+      }
+    } catch (e) {
+      // Sistema de conquistas não disponível nesta página
+    }
+    
+  } catch (e) {
+    console.error('Erro ao atualizar stat timer:', e);
+  }
+}
+
+function mostrarNotificacaoCiclo(totalCiclos) {
+  // Tenta criar notificação visual
+  try {
+    const notif = document.createElement('div');
+    notif.className = 'alert alert-success alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x mt-3';
+    notif.style.zIndex = '9999';
+    notif.innerHTML = `
+      <strong>🎉 Parabéns!</strong><br>
+      Você completou ${totalCiclos} ciclos de foco! Continua assim!
+      <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    `;
+    document.body.appendChild(notif);
+    
+    // Remove após 5 segundos
+    setTimeout(() => notif.remove(), 5000);
+  } catch (e) {
+    console.log('Notificação visual não disponível:', e);
+  }
+}
+
+function obterTotalCiclosCompletos() {
+  try {
+    return parseInt(localStorage.getItem(TIMER_SESSIONS_KEY) || '0');
+  } catch (e) {
+    return 0;
+  }
+}
+
 // INICIALIZAÇÃO GERAL
 // ============================================
 document.addEventListener('DOMContentLoaded', function() {
   initTheme();
   initProfileButton();
   initTimer();
+  
+  // Usa setTimeout para garantir que o DOM está pronto
+  setTimeout(() => {
+    // Verifica se há um timer rodando em background
+    const savedState = loadTimerState();
+    if (savedState && savedState.isRunning) {
+      console.log('⏱️ Timer detectado rodando em background. Restaurando...');
+      restoreTimerState(savedState);
+    }
+  }, 100);
+  
+  // Atualiza barra de progresso da conquista
+  atualizarBarraProgressoCiclos();
+  
+  // Log do total de ciclos ao carregar
+  const totalCiclos = obterTotalCiclosCompletos();
+  console.log(`📈 Total de ciclos completados até agora: ${totalCiclos}`);
+  console.log(`🎯 Faltam ${Math.max(0, 10 - totalCiclos)} ciclos para desbloquear Mestre do Foco`);
 });
 
 

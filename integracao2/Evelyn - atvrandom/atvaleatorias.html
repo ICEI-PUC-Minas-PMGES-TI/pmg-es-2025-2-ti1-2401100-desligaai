@@ -77,12 +77,21 @@
                                 </div>
                             </div>
 
-                            <button id="btnPlay" class="btn btn-primary btn-lg mt-4">
-                                <i class="bi bi-dice-6 me-2"></i>Mostrar Atividade
-                            </button>
+                            <div class="d-flex gap-3 justify-content-center mt-4">
+                                <button id="btnPlay" class="btn btn-primary btn-lg">
+                                    <i class="bi bi-dice-6 me-2"></i>Mostrar Atividade
+                                </button>
+                                <button id="btnConcluir" class="btn btn-success btn-lg d-none mt-3">
+                                    <i class="bi bi-check-circle me-2"></i>Marcar como Concluída
+                                </button>
+                            </div>
                             <div class="atividade-gerada mt-4" id="atividadeGerada">
                                 Aperte o botão para gerar uma atividade offline!
                             </div>
+                            <small id="progressoText" class="text-muted mt-3 d-none text-center">
+                                <i class="bi bi-trophy me-1"></i>
+                                <span id="progressoCount">0/20</span> atividades diferentes experimentadas
+                            </small>
                         </div>
                     </div>
                 </div>

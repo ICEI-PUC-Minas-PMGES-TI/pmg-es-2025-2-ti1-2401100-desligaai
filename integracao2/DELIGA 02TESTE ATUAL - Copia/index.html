@@ -488,9 +488,18 @@
             <div id="selectedActivityEmoji" class="display-1 mb-3">🚶</div>
             <h3 id="selectedActivityTitle" class="display-6 mb-3">Caminhar ao ar livre</h3>
             <p id="selectedActivityDesc" class="text-muted">Uma caminhada pode renovar sua energia e clarear sua mente</p>
-            <button class="btn btn-primary btn-lg mt-4" onclick="shuffleActivity()">
-              <i class="bi bi-shuffle me-2"></i>Sortear Nova Atividade
-            </button>
+            <div class="d-flex gap-3 justify-content-center mt-4">
+              <button id="shuffleActivityBtn" class="btn btn-primary btn-lg" onclick="shuffleActivity()">
+                <i class="bi bi-shuffle me-2"></i>Sortear Nova Atividade
+              </button>
+              <button id="completeActivityBtn" class="btn btn-success btn-lg d-none" onclick="completeActivity()">
+                <i class="bi bi-check-circle me-2"></i>Marcar como Concluída
+              </button>
+            </div>
+            <small id="activityProgressText" class="text-muted mt-3 d-none">
+              <i class="bi bi-trophy me-1"></i>
+              <span id="activityProgressCount">0/20</span> atividades diferentes experimentadas
+            </small>
           </div>
         </div>
       </div>

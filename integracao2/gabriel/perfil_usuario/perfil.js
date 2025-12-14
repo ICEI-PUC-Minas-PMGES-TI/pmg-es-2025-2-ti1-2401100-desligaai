@@ -274,6 +274,8 @@
 
     // Inicializa desafios de hoje
     initDailyChallenges();
+    // Inicia countdown até 00:00 e auto reset
+    startMidnightCountdownWatcher();
 
     if(!userData){
       alert('Nenhum usuário encontrado. Faça login pelo cadastro/login para carregar seu perfil.');
@@ -369,6 +371,9 @@
   const ACHIEVEMENT_STATS_KEY = 'desligaAI_achievements_stats';
   const ACHIEVEMENTS_STORAGE_KEY = 'desligaAI_achievements';
 
+  const STREAK_TRACKING_KEY = 'desligaAI_streakTracking'; // Rastreia datas de conclusão
+
+  // VERSÃO APRIMORADA COM STREAK E EARLY BIRD
   function updateAchievementStatForProfile(statName, incrementBy = 1) {
     try {
       // Carrega stats atuais
@@ -390,6 +395,11 @@
         stats[statName] = Math.max(0, (stats[statName] || 0) + incrementBy);
       }
 
+      // Se foi incrementado daysCompleted, atualiza streak e early bird
+      if (statName === 'daysCompleted') {
+        atualizarStreakEEarlyBird(stats);
+      }
+
       // Salva de volta
       stats.lastUpdated = Date.now();
       localStorage.setItem(ACHIEVEMENT_STATS_KEY, JSON.stringify(stats));
@@ -406,6 +416,65 @@
     }
   }
 
+  function atualizarStreakEEarlyBird(stats) {
+    try {
+      const hoje = new Date().toISOString().split('T')[0]; // Formato YYYY-MM-DD
+      let tracking = {};
+      
+      try {
+        const saved = localStorage.getItem(STREAK_TRACKING_KEY);
+        if (saved) tracking = JSON.parse(saved);
+      } catch (e) {
+        console.log('Resetando tracking de streak');
+      }
+
+      // Verifica se já registrou um dia completo hoje
+      if (tracking.lastCompletionDate === hoje) {
+        console.log('✅ Já registrou conclusão de desafios hoje');
+        return;
+      }
+
+      // Calcula o streak
+      const dataUltima = tracking.lastCompletionDate ? new Date(tracking.lastCompletionDate) : null;
+      const dataHoje = new Date(hoje);
+      
+      let novoStreak = 1;
+      if (dataUltima) {
+        const diferenca = Math.floor((dataHoje - dataUltima) / (1000 * 60 * 60 * 24));
+        if (diferenca === 1) {
+          // Completou ontem e hoje = streak continua
+          novoStreak = (tracking.currentStreak || 1) + 1;
+          console.log(`🔥 Streak continuando! ${novoStreak} dias`);
+        } else if (diferenca === 0) {
+          // Mesmo dia, não incrementa
+          novoStreak = tracking.currentStreak || 1;
+        } else {
+          // Pulou dias = resetar streak
+          novoStreak = 1;
+          console.log('⚠️ Streak resetada (pulou dias)');
+        }
+      }
+
+      // Verifica se é early bird (antes das 10h)
+      const hora = new Date().getHours();
+      if (hora < 10) {
+        stats.earlyCompletions = (stats.earlyCompletions || 0) + 1;
+        console.log(`🌅 Early completion! Total: ${stats.earlyCompletions}/5`);
+      }
+
+      // Atualiza stats de streak
+      stats.currentStreak = novoStreak;
+      console.log(`🔥 Streak atual: ${novoStreak}/7`);
+
+      // Salva tracking
+      tracking.lastCompletionDate = hoje;
+      tracking.currentStreak = novoStreak;
+      localStorage.setItem(STREAK_TRACKING_KEY, JSON.stringify(tracking));
+
+    } catch (e) {
+      console.error('Erro ao atualizar streak/early:', e);
+    }
+  }
   // Verifica e desbloqueia conquistas - versão simplificada para o perfil
   function checkAndUnlockAchievementsFromProfile() {
     try {
@@ -492,6 +561,7 @@
       const item = document.createElement('div');
       item.className = 'challenge-item' + (isCompleted ? ' completed' : '');
       item.dataset.challengeId = challenge.id;
+      const timeLeft = getTimeLeftToMidnight();
       
       item.innerHTML = `
         <div class="challenge-checkbox">
@@ -502,7 +572,7 @@
           <div class="challenge-info">
             <span class="challenge-info-item">
               <i class="bi bi-clock"></i>
-              ${challenge.info}
+              Tempo restante: ${timeLeft}
             </span>
           </div>
         </div>
@@ -544,6 +614,63 @@
         allCompletedMsg.classList.add('d-none');
       }
     }
+  }
+
+  // ==============================
+  // Countdown até a meia-noite
+  // ==============================
+  function msUntilMidnight() {
+    const now = new Date();
+    const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0, 0);
+    return Math.max(0, midnight - now);
+  }
+
+  function formatHMS(ms) {
+    const totalSeconds = Math.floor(ms / 1000);
+    const h = String(Math.floor(totalSeconds / 3600)).padStart(2, '0');
+    const m = String(Math.floor((totalSeconds % 3600) / 60)).padStart(2, '0');
+    const s = String(totalSeconds % 60).padStart(2, '0');
+    return `${h}:${m}:${s}`;
+  }
+
+  function getTimeLeftToMidnight() {
+    return formatHMS(msUntilMidnight());
+  }
+
+  function updateCountdownDisplays() {
+    const headerEl = qs('challengeTimeRemaining');
+    const footerEl = qs('challengeTimeRemainingFooter');
+    const timeStr = getTimeLeftToMidnight();
+    if (headerEl) headerEl.textContent = `Tempo restante: ${timeStr}`;
+    if (footerEl) footerEl.textContent = `Tempo restante: ${timeStr}`;
+
+    // Atualiza tempo mostrado em cada desafio
+    const infoSpans = document.querySelectorAll('#challengesList .challenge-info-item');
+    infoSpans.forEach(span => {
+      const icon = span.querySelector('i');
+      span.innerHTML = `${icon ? icon.outerHTML + ' ' : ''}Tempo restante: ${timeStr}`;
+    });
+  }
+
+  function performDailyReset() {
+    const freshState = {};
+    dailyChallenges.forEach(ch => { freshState[ch.id] = { completed: false }; });
+    localStorage.setItem(CHALLENGES_STATE_KEY, JSON.stringify(freshState));
+    localStorage.setItem(CHALLENGES_STATE_KEY + '_reset', new Date().toDateString());
+    initDailyChallenges();
+  }
+
+  function startMidnightCountdownWatcher() {
+    updateCountdownDisplays();
+    const intervalId = setInterval(() => {
+      const msLeft = msUntilMidnight();
+      updateCountdownDisplays();
+      if (msLeft <= 0) {
+        clearInterval(intervalId);
+        performDailyReset();
+        setTimeout(startMidnightCountdownWatcher, 1100);
+      }
+    }, 1000);
   }
 
   document.addEventListener('DOMContentLoaded', bootstrapProfile);

@@ -3,6 +3,7 @@
 // ============================================
 const REFLEXOES_KEY = 'desligaAi_reflexoes';
 const THEME_KEY = 'theme';
+const ACHIEVEMENTS_STATS_KEY = 'desligaAI_achievements_stats';
 
 // Obtendo elementos do DOM (É crucial que os IDs no HTML sejam exatos)
 const themeToggle = document.getElementById('themeToggle');
@@ -180,17 +181,72 @@ function handleFormSubmit(event) {
         reflexaoTexto.value = '';
         renderReflexoes(reflexoes);
         
-        // Atualiza estatística de entradas no diário para conquistas
-        try {
-            // Tenta acessar a função do sistema principal
-            if (window.opener && typeof window.opener.updateAchievementStat === 'function') {
-                window.opener.updateAchievementStat('diaryEntries', 1);
-            } else if (typeof parent.updateAchievementStat === 'function') {
-                parent.updateAchievementStat('diaryEntries', 1);
-            }
-        } catch (e) {
-            console.log('Achievement tracking not available');
+        // ===== RASTREAR ENTRADA NO DIÁRIO PARA CONQUISTA =====
+        rastrearReflexaoDiario();
+    }
+}
+
+// ============================================
+// SISTEMA DE RASTREAMENTO - DIÁRIO REFLEXIVO
+// ============================================
+
+function rastrearReflexaoDiario() {
+    try {
+        console.log('📝 Reflexão salva! Registrando para Diário Reflexivo...');
+        updateAchievementStatDiario('diaryEntries', 1);
+    } catch (e) {
+        console.error('Erro ao rastrear reflexão:', e);
+    }
+}
+
+function updateAchievementStatDiario(statName, incrementBy = 1) {
+    try {
+        const saved = localStorage.getItem(ACHIEVEMENTS_STATS_KEY);
+        let stats = saved ? JSON.parse(saved) : {
+            quizCompleted: 0,
+            challengesCompleted: 0,
+            timerSessions: 0,
+            emotionMapUsage: 0,
+            offlineActivities: 0,
+            diaryEntries: 0,
+            daysCompleted: 0,
+            currentStreak: 0,
+            earlyCompletions: 0
+        };
+        
+        if (statName in stats) {
+            stats[statName] = Math.max(0, (stats[statName] || 0) + incrementBy);
         }
+        
+        stats.lastUpdated = Date.now();
+        localStorage.setItem(ACHIEVEMENTS_STATS_KEY, JSON.stringify(stats));
+        
+        console.log(`📊 Stat Diário atualizado: ${statName} = ${stats[statName]}`);
+        console.log(`🎯 Faltam ${Math.max(0, 10 - stats[statName])} reflexões para desbloquear Diário Reflexivo`);
+        
+    } catch (e) {
+        console.error('Erro ao atualizar stat diário:', e);
+    }
+}
+
+function mostrarNotificacaoReflexao() {
+    try {
+        const stats = JSON.parse(localStorage.getItem(ACHIEVEMENTS_STATS_KEY) || '{}');
+        const diaryEntries = stats.diaryEntries || 0;
+        
+        const notif = document.createElement('div');
+        notif.className = 'alert alert-success alert-dismissible fade show position-fixed top-0 start-50 translate-middle-x mt-3';
+        notif.style.zIndex = '9999';
+        notif.innerHTML = `
+            <strong>✨ Reflexão Salva!</strong><br>
+            ${diaryEntries >= 10 ? '🎉 Parabéns! Você desbloqueou Diário Reflexivo!' : `${diaryEntries}/10 reflexões para desbloquear a conquista`}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        `;
+        document.body.appendChild(notif);
+        
+        setTimeout(() => notif.remove(), 4000);
+    } catch (e) {
+        console.log('Notificação não disponível:', e);
     }
 }
 
@@ -228,4 +284,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 5. Integração: inicializa botão de perfil
     initProfileButton();
+    
+    // 6. Log do progresso da conquista
+    try {
+        const stats = JSON.parse(localStorage.getItem(ACHIEVEMENTS_STATS_KEY) || '{}');
+        const diaryEntries = stats.diaryEntries || 0;
+        console.log(`📚 Diário Reflexivo: ${diaryEntries}/10 reflexões`);
+        if (diaryEntries >= 10) {
+            console.log('🎉 Conquista Desbloqueada: Diário Reflexivo!');
+        }
+    } catch (e) {
+        console.log('Não foi possível carregar estatísticas do diário');
+    }
 });

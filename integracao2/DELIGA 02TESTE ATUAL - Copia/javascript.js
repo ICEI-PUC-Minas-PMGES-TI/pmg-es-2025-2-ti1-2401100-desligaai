@@ -1447,18 +1447,26 @@ function initProgresso() {
 // PÁGINA: ATIVIDADES OFFLINE
 // ============================================
 const activities = [
-  { emoji: '🚶', title: 'Caminhar ao ar livre', desc: 'Uma caminhada pode renovar sua energia e clarear sua mente' },
-  { emoji: '📚', title: 'Ler um livro', desc: 'Explore novos mundos através da leitura' },
-  { emoji: '🧘', title: 'Meditar', desc: 'Conecte-se com seu interior e encontre paz' },
-  { emoji: '🏃', title: 'Fazer exercícios', desc: 'Movimente o corpo e libere endorfinas' },
-  { emoji: '🍳', title: 'Cozinhar algo novo', desc: 'Experimente receitas e descubra sabores' },
-  { emoji: '🎨', title: 'Desenhar ou pintar', desc: 'Expresse sua criatividade através da arte' },
-  { emoji: '🧹', title: 'Organizar um espaço', desc: 'Um ambiente organizado traz clareza mental' },
-  { emoji: '📞', title: 'Ligar para alguém', desc: 'Conecte-se com pessoas queridas' },
-  { emoji: '✍️', title: 'Escrever no diário', desc: 'Registre seus pensamentos e sentimentos' },
-  { emoji: '🎸', title: 'Tocar um instrumento', desc: 'A música é uma forma de expressão única' },
-  { emoji: '🌱', title: 'Fazer jardinagem', desc: 'Conecte-se com a natureza' },
-  { emoji: '🌅', title: 'Assistir o pôr do sol', desc: 'Aprecie a beleza da natureza' }
+  { id: 1, emoji: '🚶', title: 'Caminhar ao ar livre', desc: 'Uma caminhada pode renovar sua energia e clarear sua mente' },
+  { id: 2, emoji: '📚', title: 'Ler um livro', desc: 'Explore novos mundos através da leitura' },
+  { id: 3, emoji: '🧘', title: 'Meditar', desc: 'Conecte-se com seu interior e encontre paz' },
+  { id: 4, emoji: '🏃', title: 'Fazer exercícios', desc: 'Movimente o corpo e libere endorfinas' },
+  { id: 5, emoji: '🍳', title: 'Cozinhar algo novo', desc: 'Experimente receitas e descubra sabores' },
+  { id: 6, emoji: '🎨', title: 'Desenhar ou pintar', desc: 'Expresse sua criatividade através da arte' },
+  { id: 7, emoji: '🧹', title: 'Organizar um espaço', desc: 'Um ambiente organizado traz clareza mental' },
+  { id: 8, emoji: '📞', title: 'Ligar para alguém', desc: 'Conecte-se com pessoas queridas' },
+  { id: 9, emoji: '✍️', title: 'Escrever no diário', desc: 'Registre seus pensamentos e sentimentos' },
+  { id: 10, emoji: '🎸', title: 'Tocar um instrumento', desc: 'A música é uma forma de expressão única' },
+  { id: 11, emoji: '🌱', title: 'Fazer jardinagem', desc: 'Conecte-se com a natureza' },
+  { id: 12, emoji: '🌅', title: 'Assistir o pôr do sol', desc: 'Aprecie a beleza da natureza' },
+  { id: 13, emoji: '🎯', title: 'Jogar jogos de tabuleiro', desc: 'Diversão analógica com amigos ou família' },
+  { id: 14, emoji: '🧩', title: 'Montar quebra-cabeças', desc: 'Exercite seu cérebro de forma relaxante' },
+  { id: 15, emoji: '🎭', title: 'Assistir teatro', desc: 'Aprecie apresentações ao vivo' },
+  { id: 16, emoji: '🚴', title: 'Andar de bicicleta', desc: 'Explore sua cidade de forma saudável' },
+  { id: 17, emoji: '📸', title: 'Fotografar', desc: 'Capture momentos especiais' },
+  { id: 18, emoji: '🧶', title: 'Fazer artesanato', desc: 'Crie algo com suas próprias mãos' },
+  { id: 19, emoji: '☕', title: 'Tomar café com calma', desc: 'Aprecie cada gole sem pressa' },
+  { id: 20, emoji: '🎲', title: 'Praticar mindfulness', desc: 'Esteja presente no momento atual' }
 ];
 
 let selectedActivity = activities[0];
@@ -1487,6 +1495,7 @@ function initAtividades() {
   }
   
   updateSelectedActivity();
+  updateActivityProgress();
 }
 
 function selectActivity(activity) {
@@ -1495,13 +1504,50 @@ function selectActivity(activity) {
 }
 
 function shuffleActivity() {
-  const previousActivityId = selectedActivity?.id;
   const random = activities[Math.floor(Math.random() * activities.length)];
   selectActivity(random);
   
-  // Rastreia atividades ÚNICAS experimentadas
-  if (previousActivityId !== random.id) {
-    trackUniqueOfflineActivity(random.id);
+  // Desabilita o botão de sortear e mostra o botão de concluir
+  const shuffleBtn = $$('shuffleActivityBtn');
+  const completeBtn = $$('completeActivityBtn');
+  
+  if (shuffleBtn) shuffleBtn.disabled = true;
+  if (completeBtn) completeBtn.classList.remove('d-none');
+  
+  console.log(`🎲 Atividade sorteada: ${random.title}`);
+}
+
+function completeActivity() {
+  if (!selectedActivity) return;
+  
+  // Rastreia a atividade como completada
+  trackUniqueOfflineActivity(selectedActivity.id);
+  
+  // Reabilita o botão de sortear e esconde o botão de concluir
+  const shuffleBtn = $$('shuffleActivityBtn');
+  const completeBtn = $$('completeActivityBtn');
+  
+  if (shuffleBtn) shuffleBtn.disabled = false;
+  if (completeBtn) completeBtn.classList.add('d-none');
+  
+  // Atualiza o texto de progresso
+  updateActivityProgress();
+  
+  console.log(`✅ Atividade marcada como concluída: ${selectedActivity.title}`);
+}
+
+function updateActivityProgress() {
+  try {
+    const experiencedActivities = JSON.parse(localStorage.getItem('desligaAI_offlineActivitiesExperienced') || '[]');
+    const progressText = $$('activityProgressText');
+    const progressCount = $$('activityProgressCount');
+    
+    if (progressText && progressCount) {
+      progressCount.textContent = `${experiencedActivities.length}/20`;
+      progressText.classList.remove('d-none');
+    }
+  } catch (e) {
+    console.error('Erro ao atualizar progresso:', e);
   }
 }
 
@@ -1519,6 +1565,22 @@ function trackUniqueOfflineActivity(activityId) {
       updateAchievementStat('offlineActivities', 1);
       
       console.log(`🧭 Atividade nova experimentada! Total: ${experiencedActivities.length}/20`);
+      console.log('📊 Stats atualizados:', JSON.parse(localStorage.getItem('desligaAI_achievements_stats')));
+      
+      // Feedback visual opcional
+      const selectedCard = document.querySelector('.card.border-primary');
+      if (selectedCard && experiencedActivities.length > 0) {
+        const badge = document.createElement('span');
+        badge.className = 'badge bg-success position-absolute top-0 end-0 m-2';
+        badge.textContent = `${experiencedActivities.length}/20`;
+        badge.style.zIndex = '10';
+        selectedCard.style.position = 'relative';
+        const existingBadge = selectedCard.querySelector('.badge');
+        if (existingBadge) existingBadge.remove();
+        selectedCard.appendChild(badge);
+      }
+    } else {
+      console.log(`ℹ️ Atividade já experimentada antes. Total continua: ${experiencedActivities.length}/20`);
     }
   } catch (e) {
     console.error('Erro ao rastrear atividade offline:', e);
@@ -1536,6 +1598,7 @@ function updateSelectedActivity() {
 }
 
 window.shuffleActivity = shuffleActivity;
+window.completeActivity = completeActivity;
 
 // ============================================
 // PÁGINA: MURAL DE CONQUISTAS

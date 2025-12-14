@@ -254,9 +254,19 @@ async function gerarAtividadeAleatoria() {
         atividadeGerada.textContent = "Nenhuma atividade disponível. Adicione atividades primeiro!";
       } else {
         const idx = Math.floor(Math.random() * atividades.length);
-        atividadeGerada.textContent = atividades[idx].texto;
+        const atividadeSelecionada = atividades[idx];
+        atividadeGerada.textContent = atividadeSelecionada.texto;
+        
+        // Armazena a atividade atual
+        window.currentActivityId = atividadeSelecionada.id || atividadeSelecionada.texto;
       }
       atividadeGerada.classList.remove("fade");
+      
+      // Desabilita botão sortear e mostra botão concluir
+      if (btnPlay) btnPlay.disabled = true;
+      const btnConcluir = document.getElementById('btnConcluir');
+      if (btnConcluir) btnConcluir.classList.remove('d-none');
+      
     }, 600);
   } catch (err) {
     console.error("Erro ao gerar atividade:", err);
@@ -387,7 +397,116 @@ function initAtividades() {
 
   // Mostra mensagem inicial
   mostrarMensagemInicial();
+  
+  // Configura botão de concluir
+  configurarBotaoConcluir();
+  
+  // Atualiza progresso inicial
+  atualizarProgresso();
 }
+
+// ============================================
+// SISTEMA DE CONQUISTAS - EXPLORADOR OFFLINE
+// ============================================
+const ACHIEVEMENTS_STATS_KEY = 'desligaAI_achievements_stats';
+const ACTIVITIES_EXPERIENCED_KEY = 'desligaAI_offlineActivitiesExperienced';
+
+function configurarBotaoConcluir() {
+  const btnConcluir = document.getElementById('btnConcluir');
+  if (!btnConcluir) return;
+  
+  btnConcluir.addEventListener('click', concluirAtividade);
+}
+
+function concluirAtividade() {
+  if (!window.currentActivityId) return;
+  
+  // Rastreia atividade única
+  rastrearAtividadeUnica(window.currentActivityId);
+  
+  // Reabilita botão sortear
+  if (btnPlay) btnPlay.disabled = false;
+  
+  // Esconde botão concluir
+  const btnConcluir = document.getElementById('btnConcluir');
+  if (btnConcluir) btnConcluir.classList.add('d-none');
+  
+  // Atualiza progresso
+  atualizarProgresso();
+  
+  console.log('✅ Atividade concluída!');
+}
+
+function rastrearAtividadeUnica(activityId) {
+  try {
+    // Carrega atividades já experimentadas
+    let experiencedActivities = JSON.parse(localStorage.getItem(ACTIVITIES_EXPERIENCED_KEY) || '[]');
+    
+    // Se é nova, adiciona e incrementa estatística
+    if (!experiencedActivities.includes(activityId)) {
+      experiencedActivities.push(activityId);
+      localStorage.setItem(ACTIVITIES_EXPERIENCED_KEY, JSON.stringify(experiencedActivities));
+      
+      // Atualiza stats de conquistas
+      updateAchievementStat('offlineActivities', 1);
+      
+      console.log(`🧭 Atividade nova experimentada! Total: ${experiencedActivities.length}/20`);
+    } else {
+      console.log(`ℹ️ Atividade já experimentada antes. Total: ${experiencedActivities.length}/20`);
+    }
+  } catch (e) {
+    console.error('Erro ao rastrear atividade:', e);
+  }
+}
+
+function updateAchievementStat(statName, incrementBy = 1) {
+  try {
+    const saved = localStorage.getItem(ACHIEVEMENTS_STATS_KEY);
+    let stats = saved ? JSON.parse(saved) : {
+      quizCompleted: 0,
+      challengesCompleted: 0,
+      timerSessions: 0,
+      emotionMapUsage: 0,
+      offlineActivities: 0,
+      diaryEntries: 0,
+      daysCompleted: 0,
+      currentStreak: 0,
+      earlyCompletions: 0
+    };
+    
+    if (statName in stats) {
+      stats[statName] = Math.max(0, (stats[statName] || 0) + incrementBy);
+    }
+    
+    stats.lastUpdated = Date.now();
+    localStorage.setItem(ACHIEVEMENTS_STATS_KEY, JSON.stringify(stats));
+    
+    console.log(`📊 Stat atualizado: ${statName} = ${stats[statName]}`);
+  } catch (e) {
+    console.error('Erro ao atualizar stat:', e);
+  }
+}
+
+function atualizarProgresso() {
+  try {
+    const experiencedActivities = JSON.parse(localStorage.getItem(ACTIVITIES_EXPERIENCED_KEY) || '[]');
+    const progressoText = document.getElementById('progressoText');
+    const progressoCount = document.getElementById('progressoCount');
+    
+    console.log(`📈 Atualizando progresso: ${experiencedActivities.length}/20 atividades`);
+    
+    if (progressoText && progressoCount) {
+      progressoCount.textContent = `${experiencedActivities.length}/20`;
+      progressoText.classList.remove('d-none');
+      console.log('✅ Contador de progresso atualizado e exibido');
+    } else {
+      console.warn('⚠️ Elementos progressoText ou progressoCount não encontrados');
+    }
+  } catch (e) {
+    console.error('❌ Erro ao atualizar progresso:', e);
+  }
+}
+
 
 // ============================================
 // INICIALIZAÇÃO GERAL

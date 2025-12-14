@@ -106,7 +106,7 @@
   ],
   "score": [
     {
-      "score": 30,
+      "score": 50,
       "id": 1
     }
   ],
@@ -131,6 +131,34 @@
       "type": "FOCO",
       "duration": 1,
       "details": "Ciclo concluído"
+    },
+    {
+      "id": 1765752468300,
+      "date": "14/12/2025, 19:47:48",
+      "type": "FOCO",
+      "duration": 1,
+      "details": "Ciclo concluído"
+    },
+    {
+      "id": 1765752533329,
+      "date": "14/12/2025, 19:48:53",
+      "type": "PAUSA",
+      "duration": 1,
+      "details": "Pausa"
+    },
+    {
+      "id": 1765753101787,
+      "date": "14/12/2025, 19:58:21",
+      "type": "FOCO",
+      "duration": 1,
+      "details": "Ciclo concluído"
+    },
+    {
+      "id": 1765753166815,
+      "date": "14/12/2025, 19:59:26",
+      "type": "PAUSA",
+      "duration": 1,
+      "details": "Pausa"
     }
   ],
   "tasks": [
