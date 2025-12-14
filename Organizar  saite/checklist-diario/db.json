@@ -1,0 +1,29 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "text": "Meditar por 10 minutos",
+      "completed": false,
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "text": "Ler 30 páginas de um livro",
+      "completed": true,
+      "userId": 1
+    },
+    {
+      "id": 3,
+      "text": "Fazer exercícios físicos",
+      "completed": false,
+      "userId": 1
+    },
+    {
+      "id": 4,
+      "text": "Conversar com alguém pessoalmente",
+      "completed": false,
+      "userId": 1
+    }
+  ]
+}
+

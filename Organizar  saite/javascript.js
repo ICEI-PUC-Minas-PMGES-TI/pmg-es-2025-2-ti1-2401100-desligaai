@@ -5,10 +5,6 @@
 // ============================================
 // INICIALIZAÇÃO
 // ============================================
-// Helpers globais simples
-const $ = (selector, all = false) => all ? document.querySelectorAll(selector) : document.querySelector(selector);
-const $$ = (id) => document.getElementById(id);
-
 // ============================================
 // SISTEMA DE NAVEGAÇÃO ENTRE PÁGINAS (definido antes do DOMContentLoaded)
 // ============================================
@@ -89,51 +85,8 @@ function initPage(pageName) {
 // Disponibiliza globalmente
 window.navigateToPage = navigateToPage;
 
-// ============================================
-// INICIALIZAÇÃO DO BOTÃO DE PERFIL
-// ============================================
-function initProfileButton() {
-  const profileBtn = $$('profileBtn');
-  const profileImg = $$('profileImg');
-  const profileIcon = $$('profileIcon');
-  
-  if (!profileBtn) return;
-  
-  // Verifica se o usuário está logado
-  const currentUserKey = 'desligaAI_currentUser';
-  const currentUserData = localStorage.getItem(currentUserKey);
-  
-  if (currentUserData) {
-    try {
-      const user = JSON.parse(currentUserData);
-      
-      // Mostra o botão
-      profileBtn.classList.remove('d-none');
-      
-      // Se o usuário tem foto, mostra a foto
-      if (user.photo && profileImg) {
-        profileImg.src = user.photo;
-        profileImg.classList.remove('d-none');
-        if (profileIcon) profileIcon.classList.add('d-none');
-      } else {
-        // Se não tem foto, mostra o ícone
-        if (profileImg) profileImg.classList.add('d-none');
-        if (profileIcon) profileIcon.classList.remove('d-none');
-      }
-    } catch (error) {
-      console.error('Erro ao carregar dados do usuário:', error);
-      // Se houver erro, esconde o botão
-      profileBtn.classList.add('d-none');
-    }
-  } else {
-    // Se não está logado, esconde o botão
-    profileBtn.classList.add('d-none');
-  }
-}
-
 document.addEventListener('DOMContentLoaded', function() {
   initTheme();
-  initProfileButton();
   initEmotionMap();
   initQuiz();
   initTools();
@@ -302,9 +255,6 @@ function initEmotionMap() {
       
       // Adiciona classe active ao botão clicado
       button.classList.add('active');
-      
-      // Atualiza estatística de uso do mapa de emoções
-      updateAchievementStat('emotionMapUsage', 1);
       
       // Mostra as sugestões
       const selected = emotions.find(e => e.id === emotion.id);
@@ -537,8 +487,28 @@ function handleAnswer(points) {
     showResult = true;
     renderQuiz();
     
-    // Atualiza estatística de quiz completo
-    updateAchievementStat('quizCompleted', 1);
+    // Salvar resultado do quiz para personalização dos desafios
+    const totalPoints = answers.reduce((sum, points) => sum + points, 0);
+    const quizResult = {
+      score: totalPoints,
+      date: new Date().toISOString(),
+      answers: [...answers]
+    };
+    
+    // Salvar no localStorage para uso no dashboard
+    localStorage.setItem('desligaAI_quizResult', JSON.stringify(quizResult));
+    
+    // Se usuário estiver logado, salvar também no perfil
+    const currentUserStr = localStorage.getItem('desligaAI_currentUser');
+    if (currentUserStr) {
+      try {
+        const user = JSON.parse(currentUserStr);
+        user.quizResult = quizResult;
+        localStorage.setItem('desligaAI_currentUser', JSON.stringify(user));
+      } catch (e) {
+        console.error('Erro ao salvar quizResult no usuário:', e);
+      }
+    }
   }
 }
 
@@ -556,8 +526,8 @@ window.resetQuiz = resetQuiz;
 // VERIFICAÇÃO DE AUTENTICAÇÃO
 // ============================================
 function isUserLoggedIn() {
-  const userData = localStorage.getItem('desligaAI_currentUser');
-  return userData !== null && userData !== undefined && userData !== 'null';
+  const userData = localStorage.getItem('user');
+  return userData !== null && userData !== undefined;
 }
 
 // ============================================
@@ -754,8 +724,8 @@ const tools = [
   },
   {
     id: 'checklist',
-    title: 'Diário de Reflexões',
-    description: 'Registre reflexões diárias e pratique autoconsciência',
+    title: 'Checklist Diário',
+    description: 'Mantenha o foco em atividades produtivas do dia',
     icon: 'bi-check-square-fill',
     color: 'text-info',
     route: '/checklist-diario'
@@ -820,18 +790,8 @@ function initTools() {
         return false;
       }
       
-      // Se estiver logado ou não precisar de login, navega
-      // Timer e Atividades redirecionam para arquivos externos
-      if (tool.id === 'timer') {
-        window.location.href = '../Evelyn - Timer/timer.html';
-      } else if (tool.id === 'activities') {
-        window.location.href = '../Evelyn - atvrandom/atvaleatorias.html';
-      } else if (tool.id === 'checklist') {
-        // Diário de Reflexões abre a página externa diario.html
-        window.location.href = '../diario/diario.html';
-      } else {
-        navigateToPage(routeMap[tool.id] || 'not-found');
-      }
+      // Se estiver logado ou não precisar de login, navega normalmente
+      navigateToPage(routeMap[tool.id] || 'not-found');
     });
     
     col.appendChild(card);
@@ -962,46 +922,28 @@ function initSolutions() {
   solutionsGrid.appendChild(col);
   
   // Adiciona botão "Vamos lá" abaixo do card
-  // Só mostra o botão se o usuário NÃO estiver logado
-  if (!isUserLoggedIn()) {
-    const buttonCol = document.createElement('div');
-    buttonCol.className = 'col-lg-10 mx-auto mt-4';
-    buttonCol.style.animationDelay = '0.2s';
-    buttonCol.innerHTML = `
-      <div class="text-center">
-        <button class="btn btn-primary btn-lg px-5 py-3" onclick="goToAuth()" style="font-size: 1.1rem;">
-          <i class="bi bi-rocket-takeoff me-2"></i>Vamos lá
-        </button>
-      </div>
-    `;
-    solutionsGrid.appendChild(buttonCol);
-  }
+  const buttonCol = document.createElement('div');
+  buttonCol.className = 'col-lg-10 mx-auto mt-4';
+  buttonCol.style.animationDelay = '0.2s';
+  buttonCol.innerHTML = `
+    <div class="text-center">
+      <button class="btn btn-primary btn-lg px-5 py-3" onclick="goToAuth()" style="font-size: 1.1rem;">
+        <i class="bi bi-rocket-takeoff me-2"></i>Vamos lá
+      </button>
+    </div>
+  `;
+  solutionsGrid.appendChild(buttonCol);
 }
 
 // Função para navegar para telas de autenticação
 function goToAuth() {
   // Redireciona diretamente para a página de login
-  window.location.href = 'Cadastro/login.html';
-}
-
-// Função para navegar para o perfil do usuário
-function goToProfile() {
-  // Verifica se o usuário está logado
-  const currentUserKey = 'desligaAI_currentUser';
-  const currentUser = localStorage.getItem(currentUserKey);
-  
-  if (currentUser) {
-    // Se estiver logado, vai para o perfil
-    window.location.href = '../gabriel/perfil_usuario/perfil.html';
-  } else {
-    // Se não estiver logado, redireciona para login
-    window.location.href = 'Cadastro/login.html';
-  }
+  // Usa caminho absoluto a partir da raiz do servidor
+  window.location.href = '/Cadastro/login.html';
 }
 
 // Disponibiliza globalmente
 window.goToAuth = goToAuth;
-window.goToProfile = goToProfile;
 
 // ============================================
 // PÁGINA: TIMER DE DESAFIO (POMODORO COMPLETO)
@@ -1322,7 +1264,11 @@ function deleteSession(id) {
 }
 
 // ===== CACHE DE SELETORES =====
-// (helpers $ e $$ já declarados no topo do arquivo)
+const $ = (selector, all = false) => {
+  return all ? document.querySelectorAll(selector) : document.querySelector(selector);
+};
+
+const $$ = (id) => document.getElementById(id);
 
 // ===== INICIALIZAÇÃO =====
 function initTimer() {
@@ -1439,8 +1385,35 @@ const weeklyData = [
 ];
 
 function initProgresso() {
-  // Redireciona para o progresso diário da pasta Arthur - Sprint1
-  window.location.href = '../Arthur - Sprint1/index.html';
+  // Calcula média
+  const total = weeklyData.reduce((sum, d) => sum + d.minutes, 0);
+  const media = Math.round(total / weeklyData.length);
+  const mediaEl = $$('mediaDiaria');
+  if (mediaEl) {
+    mediaEl.textContent = `${media} min`;
+  }
+  
+  // Renderiza gráfico
+  const chartEl = $$('weeklyChart');
+  if (chartEl) {
+    chartEl.innerHTML = '';
+    const maxMinutes = Math.max(...weeklyData.map(d => d.minutes), 120);
+    
+    weeklyData.forEach(data => {
+      const height = (data.minutes / maxMinutes) * 100;
+      const color = data.minutes <= data.goal ? 'bg-success' : 'bg-danger';
+      const col = document.createElement('div');
+      col.className = 'flex-fill d-flex flex-column align-items-center';
+      col.innerHTML = `
+        <div class="flex-fill d-flex align-items-end w-100">
+          <div class="w-100 ${color} rounded-top" style="height: ${height}%; min-height: 10px;"></div>
+        </div>
+        <small class="mt-2 fw-bold">${data.day}</small>
+        <small class="text-muted">${data.minutes}min</small>
+      `;
+      chartEl.appendChild(col);
+    });
+  }
 }
 
 // ============================================
@@ -1495,34 +1468,8 @@ function selectActivity(activity) {
 }
 
 function shuffleActivity() {
-  const previousActivityId = selectedActivity?.id;
   const random = activities[Math.floor(Math.random() * activities.length)];
   selectActivity(random);
-  
-  // Rastreia atividades ÚNICAS experimentadas
-  if (previousActivityId !== random.id) {
-    trackUniqueOfflineActivity(random.id);
-  }
-}
-
-function trackUniqueOfflineActivity(activityId) {
-  try {
-    // Carrega lista de atividades já experimentadas
-    let experiencedActivities = JSON.parse(localStorage.getItem('desligaAI_offlineActivitiesExperienced') || '[]');
-    
-    // Se é nova, adiciona e incrementa estatística
-    if (!experiencedActivities.includes(activityId)) {
-      experiencedActivities.push(activityId);
-      localStorage.setItem('desligaAI_offlineActivitiesExperienced', JSON.stringify(experiencedActivities));
-      
-      // Incrementa apenas para atividades novas
-      updateAchievementStat('offlineActivities', 1);
-      
-      console.log(`🧭 Atividade nova experimentada! Total: ${experiencedActivities.length}/20`);
-    }
-  } catch (e) {
-    console.error('Erro ao rastrear atividade offline:', e);
-  }
 }
 
 function updateSelectedActivity() {
@@ -1540,464 +1487,54 @@ window.shuffleActivity = shuffleActivity;
 // ============================================
 // PÁGINA: MURAL DE CONQUISTAS
 // ============================================
-const ACHIEVEMENTS_STORAGE_KEY = 'desligaAI_achievements';
-const ACHIEVEMENTS_STATS_KEY = 'desligaAI_achievements_stats';
-
-// Definição das conquistas disponíveis
-const achievementsDefinitions = [
-  {
-    id: 'first_step',
-    emoji: '🎯',
-    title: 'Primeiro Passo',
-    desc: 'Complete seu primeiro desafio do dia',
-    category: 'beginner',
-    points: 10,
-    condition: (stats) => stats.challengesCompleted >= 1
-  },
-  {
-    id: 'warrior',
-    emoji: '⚔️',
-    title: 'Guerreiro Digital',
-    desc: 'Complete 3 dias de desafios',
-    category: 'progress',
-    points: 25,
-    condition: (stats) => stats.daysCompleted >= 3
-  },
-  {
-    id: 'focus_master',
-    emoji: '🎖️',
-    title: 'Mestre do Foco',
-    desc: 'Use o timer por 10 sessões',
-    category: 'tools',
-    points: 30,
-    condition: (stats) => stats.timerSessions >= 10
-  },
-  {
-    id: 'week_conscious',
-    emoji: '📅',
-    title: 'Semana Consciente',
-    desc: 'Complete 7 dias de desafios',
-    category: 'progress',
-    points: 50,
-    condition: (stats) => stats.daysCompleted >= 7
-  },
-  {
-    id: 'time_saver',
-    emoji: '⏰',
-    title: 'Economizador de Tempo',
-    desc: 'Complete 50 desafios no total',
-    category: 'milestone',
-    points: 75,
-    condition: (stats) => stats.challengesCompleted >= 50
-  },
-  {
-    id: 'offline_explorer',
-    emoji: '🧭',
-    title: 'Explorador Offline',
-    desc: 'Experimente 20 atividades offline diferentes',
-    category: 'activities',
-    points: 40,
-    condition: (stats) => stats.offlineActivities >= 20
-  },
-  {
-    id: 'month_winner',
-    emoji: '🏆',
-    title: 'Vencedor de 30 Dias',
-    desc: 'Complete 30 dias de desafios',
-    category: 'milestone',
-    points: 150,
-    condition: (stats) => stats.daysCompleted >= 30
-  },
-  {
-    id: 'diary_keeper',
-    emoji: '📝',
-    title: 'Diário Reflexivo',
-    desc: 'Faça 10 reflexões no diário',
-    category: 'reflection',
-    points: 35,
-    condition: (stats) => stats.diaryEntries >= 10
-  },
-  {
-    id: 'consistent',
-    emoji: '🔥',
-    title: 'Consistência é Tudo',
-    desc: 'Complete desafios por 7 dias seguidos',
-    category: 'streak',
-    points: 60,
-    condition: (stats) => stats.currentStreak >= 7
-  },
-  {
-    id: 'emotion_master',
-    emoji: '😊',
-    title: 'Mestre das Emoções',
-    desc: 'Use o mapa de emoções 15 vezes',
-    category: 'tools',
-    points: 30,
-    condition: (stats) => stats.emotionMapUsage >= 15
-  },
-  {
-    id: 'quiz_complete',
-    emoji: '📋',
-    title: 'Autoconhecimento',
-    desc: 'Complete o quiz de hábitos digitais',
-    category: 'beginner',
-    points: 15,
-    condition: (stats) => stats.quizCompleted >= 1
-  },
-  {
-    id: 'early_bird',
-    emoji: '🌅',
-    title: 'Madrugador Consciente',
-    desc: 'Complete desafios antes das 10h por 5 dias',
-    category: 'special',
-    points: 45,
-    condition: (stats) => stats.earlyCompletions >= 5
-  }
+const achievements = [
+  { id: 1, emoji: '🎯', title: 'Primeiro Passo', desc: 'Complete seu primeiro desafio', unlocked: true, date: '2025-01-15' },
+  { id: 2, emoji: '⚔️', title: 'Guerreiro Digital', desc: 'Fique 3 dias sem redes sociais', unlocked: true, date: '2025-01-18' },
+  { id: 3, emoji: '🎖️', title: 'Foco Total', desc: 'Complete 10 sessões de modo foco', unlocked: true, date: '2025-01-20' },
+  { id: 4, emoji: '📅', title: 'Semana Consciente', desc: 'Use menos de 2h/dia por 7 dias', unlocked: false },
+  { id: 5, emoji: '⏰', title: 'Mestre do Tempo', desc: 'Economize 1000 minutos', unlocked: false },
+  { id: 6, emoji: '🧭', title: 'Explorador Offline', desc: 'Complete 20 atividades offline', unlocked: false },
+  { id: 7, emoji: '🏆', title: 'Vencedor de 30 Dias', desc: 'Mantenha o hábito por 30 dias', unlocked: false },
+  { id: 8, emoji: '✨', title: 'Inspirador', desc: 'Compartilhe seu progresso 5 vezes', unlocked: false },
+  { id: 9, emoji: '🧘', title: 'Zen Digital', desc: 'Complete 50 sessões de meditação', unlocked: false }
 ];
 
-// Carrega conquistas do localStorage
-function loadAchievements() {
-  try {
-    const saved = localStorage.getItem(ACHIEVEMENTS_STORAGE_KEY);
-    if (saved) {
-      return JSON.parse(saved);
-    }
-  } catch (e) {
-    console.error('Erro ao carregar conquistas:', e);
-  }
-  
-  // Inicializa todas as conquistas como bloqueadas
-  const initial = {};
-  achievementsDefinitions.forEach(ach => {
-    initial[ach.id] = {
-      unlocked: false,
-      unlockedAt: null,
-      notified: false
-    };
-  });
-  return initial;
-}
-
-// Salva conquistas no localStorage
-function saveAchievements(achievements) {
-  try {
-    localStorage.setItem(ACHIEVEMENTS_STORAGE_KEY, JSON.stringify(achievements));
-  } catch (e) {
-    console.error('Erro ao salvar conquistas:', e);
-  }
-}
-
-// Carrega estatísticas para verificação de conquistas
-function loadAchievementStats() {
-  try {
-    const saved = localStorage.getItem(ACHIEVEMENTS_STATS_KEY);
-    if (saved) {
-      const parsed = JSON.parse(saved);
-      // Garante que todos os campos existem
-      return {
-        challengesCompleted: parsed.challengesCompleted || 0,
-        daysCompleted: parsed.daysCompleted || 0,
-        timerSessions: parsed.timerSessions || 0,
-        offlineActivities: parsed.offlineActivities || 0,
-        diaryEntries: parsed.diaryEntries || 0,
-        currentStreak: parsed.currentStreak || 0,
-        emotionMapUsage: parsed.emotionMapUsage || 0,
-        quizCompleted: parsed.quizCompleted || 0,
-        earlyCompletions: parsed.earlyCompletions || 0,
-        lastUpdated: parsed.lastUpdated || Date.now()
-      };
-    }
-  } catch (e) {
-    console.error('Erro ao carregar estatísticas:', e);
-  }
-  
-  return {
-    challengesCompleted: 0,
-    daysCompleted: 0,
-    timerSessions: 0,
-    offlineActivities: 0,
-    diaryEntries: 0,
-    currentStreak: 0,
-    emotionMapUsage: 0,
-    quizCompleted: 0,
-    earlyCompletions: 0,
-    lastUpdated: Date.now()
-  };
-}
-
-// Salva estatísticas
-function saveAchievementStats(stats) {
-  try {
-    stats.lastUpdated = Date.now();
-    localStorage.setItem(ACHIEVEMENTS_STATS_KEY, JSON.stringify(stats));
-  } catch (e) {
-    console.error('Erro ao salvar estatísticas:', e);
-  }
-}
-
-// Atualiza uma estatística específica
-function updateAchievementStat(statName, incrementBy = 1) {
-  const stats = loadAchievementStats();
-  if (typeof stats[statName] === 'number') {
-    stats[statName] += incrementBy;
-    saveAchievementStats(stats);
-    checkAndUnlockAchievements();
-  }
-}
-
-// Verifica e desbloqueia conquistas
-function checkAndUnlockAchievements() {
-  const achievements = loadAchievements();
-  const stats = loadAchievementStats();
-  let hasNewUnlock = false;
-  const newUnlocks = [];
-  
-  achievementsDefinitions.forEach(def => {
-    const achState = achievements[def.id];
-    
-    // Se já está desbloqueada, pula
-    if (achState && achState.unlocked) return;
-    
-    // Verifica se a condição foi cumprida
-    if (def.condition(stats)) {
-      // Desbloqueia a conquista
-      achievements[def.id] = {
-        unlocked: true,
-        unlockedAt: Date.now(),
-        notified: false
-      };
-      hasNewUnlock = true;
-      newUnlocks.push(def);
-    }
-  });
-  
-  if (hasNewUnlock) {
-    saveAchievements(achievements);
-    
-    // Mostra notificações para novas conquistas
-    newUnlocks.forEach(def => {
-      showAchievementNotification(def);
-    });
-    
-    // Atualiza a visualização do mural de conquistas
-    initConquistas();
-  }
-  
-  return newUnlocks;
-}
-
-// Mostra notificação de conquista desbloqueada
-function showAchievementNotification(achievement) {
-  const notification = document.createElement('div');
-  notification.className = 'achievement-notification';
-  notification.innerHTML = `
-    <div class="achievement-notification-content">
-      <div class="achievement-notification-icon">${achievement.emoji}</div>
-      <div class="achievement-notification-text">
-        <div class="achievement-notification-title">Conquista Desbloqueada!</div>
-        <div class="achievement-notification-name">${achievement.title}</div>
-        <div class="achievement-notification-desc">${achievement.desc}</div>
-        <div class="achievement-notification-points">+${achievement.points} pontos</div>
-      </div>
-    </div>
-  `;
-  
-  document.body.appendChild(notification);
-  
-  // Anima entrada
-  setTimeout(() => {
-    notification.classList.add('show');
-  }, 100);
-  
-  // Remove após 6 segundos
-  setTimeout(() => {
-    notification.classList.remove('show');
-    setTimeout(() => {
-      notification.remove();
-    }, 300);
-  }, 6000);
-  
-  // Toca som se possível
-  try {
-    const audio = new Audio('data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmwhBTGH0fPTgjMGHm7A7+OZURE7k9n0wYA2Bjh6yO/bkj8J');
-    audio.volume = 0.3;
-    audio.play().catch(() => {});
-  } catch (e) {}
-}
-
-// Renderiza mural de conquistas
 function initConquistas() {
   const grid = $$('achievementsGrid');
   if (!grid) return;
   
   grid.innerHTML = '';
-  
-  const achievements = loadAchievements();
-  const stats = loadAchievementStats();
-  
-  // Calcula progresso
-  const unlockedCount = Object.values(achievements).filter(a => a.unlocked).length;
-  const totalCount = achievementsDefinitions.length;
-  const progressPercentage = totalCount > 0 ? Math.round((unlockedCount / totalCount) * 100) : 0;
-  
+  const unlocked = achievements.filter(a => a.unlocked).length;
   const progressEl = $$('achievementsProgress');
   if (progressEl) {
-    progressEl.textContent = `${unlockedCount}/${totalCount}`;
+    progressEl.textContent = `${unlocked}/${achievements.length}`;
   }
   
-  // Atualiza a barra de progresso visual
-  const progressBar = $$('achievementsProgressBar');
-  if (progressBar) {
-    progressBar.style.width = `${progressPercentage}%`;
-    progressBar.textContent = `${progressPercentage}%`;
-    progressBar.setAttribute('aria-valuenow', progressPercentage);
-    progressBar.setAttribute('aria-valuemin', 0);
-    progressBar.setAttribute('aria-valuemax', 100);
-  }
-  
-  // Agrupa conquistas por categoria
-  const categories = {
-    'beginner': { name: 'Iniciante', achievements: [] },
-    'progress': { name: 'Progresso', achievements: [] },
-    'tools': { name: 'Ferramentas', achievements: [] },
-    'activities': { name: 'Atividades', achievements: [] },
-    'milestone': { name: 'Marcos', achievements: [] },
-    'reflection': { name: 'Reflexão', achievements: [] },
-    'streak': { name: 'Sequência', achievements: [] },
-    'special': { name: 'Especial', achievements: [] }
-  };
-  
-  achievementsDefinitions.forEach(def => {
-    const achState = achievements[def.id] || { unlocked: false };
-    categories[def.category].achievements.push({
-      ...def,
-      ...achState
-    });
-  });
-  
-  // Renderiza por categoria
-  Object.keys(categories).forEach(catKey => {
-    const cat = categories[catKey];
-    if (cat.achievements.length === 0) return;
-    
-    // Cabeçalho da categoria
-    const catHeader = document.createElement('div');
-    catHeader.className = 'col-12 mt-4';
-    catHeader.innerHTML = `<h4 class="text-gradient mb-3">${cat.name}</h4>`;
-    grid.appendChild(catHeader);
-    
-    // Conquistas da categoria
-    cat.achievements.forEach(achievement => {
-      const col = document.createElement('div');
-      col.className = 'col-md-6 col-lg-4';
-      
-      const isLocked = !achievement.unlocked;
-      const card = document.createElement('div');
-      card.className = `card h-100 ${isLocked ? 'achievement-locked' : 'achievement-unlocked border-primary'}`;
-      
-      // Calcula progresso se ainda bloqueada
-      let progressInfo = '';
-      if (isLocked) {
-        const progress = calculateAchievementProgress(achievement, stats);
-        if (progress && progress.current < progress.target) {
-          const percentage = Math.round((progress.current / progress.target) * 100);
-          progressInfo = `
-            <div class="achievement-progress mt-2">
-              <div class="progress" style="height: 8px;">
-                <div class="progress-bar bg-primary" style="width: ${percentage}%"></div>
-              </div>
-              <small class="text-muted mt-1 d-block">${progress.current}/${progress.target} ${progress.unit}</small>
-            </div>
-          `;
-        }
-      }
-      
-      card.innerHTML = `
-        <div class="card-body">
-          <div class="d-flex align-items-start mb-3">
-            <div class="achievement-emoji ${isLocked ? 'grayscale' : ''}">${achievement.emoji}</div>
-            <div class="flex-grow-1 ms-3">
-              <h5 class="card-title mb-1">${achievement.title}</h5>
-              <p class="card-text text-muted small mb-2">${achievement.desc}</p>
-              ${achievement.unlocked ? 
-                `<div class="d-flex align-items-center gap-2 flex-wrap">
-                   <span class="badge bg-success"><i class="bi bi-check-circle me-1"></i>Desbloqueada</span>
-                   <span class="badge bg-primary">+${achievement.points} pts</span>
-                 </div>
-                 <small class="d-block text-muted mt-1">${new Date(achievement.unlockedAt).toLocaleDateString('pt-BR')}</small>` :
-                `<div class="d-flex align-items-center gap-2 flex-wrap">
-                   <span class="badge bg-secondary"><i class="bi bi-lock-fill me-1"></i>Bloqueada</span>
-                   <span class="badge bg-outline-secondary">${achievement.points} pts</span>
-                 </div>
-                 ${progressInfo}`
-              }
-            </div>
-          </div>
-        </div>
-      `;
-      col.appendChild(card);
-      grid.appendChild(col);
-    });
-  });
-  
-  // Adiciona resumo estatístico no final
-  const statsCol = document.createElement('div');
-  statsCol.className = 'col-12 mt-4';
-  const totalPoints = achievementsDefinitions
-    .filter(def => achievements[def.id]?.unlocked)
-    .reduce((sum, def) => sum + def.points, 0);
-  
-  statsCol.innerHTML = `
-    <div class="card bg-gradient border-primary">
-      <div class="card-body text-center">
-        <h4 class="mb-3">Seu Progresso</h4>
-        <div class="row g-3">
-          <div class="col-md-3">
-            <div class="stat-value text-primary">${unlockedCount}</div>
-            <div class="stat-label text-muted">Conquistas</div>
-          </div>
-          <div class="col-md-3">
-            <div class="stat-value text-info">${totalPoints}</div>
-            <div class="stat-label text-muted">Pontos Totais</div>
-          </div>
-          <div class="col-md-3">
-            <div class="stat-value text-warning">${stats.currentStreak}</div>
-            <div class="stat-label text-muted">Dias Seguidos</div>
-          </div>
-          <div class="col-md-3">
-            <div class="stat-value text-success">${Math.round((unlockedCount / totalCount) * 100)}%</div>
-            <div class="stat-label text-muted">Completo</div>
+  achievements.forEach(achievement => {
+    const col = document.createElement('div');
+    col.className = 'col-md-6 col-lg-4';
+    const card = document.createElement('div');
+    card.className = `card h-100 ${achievement.unlocked ? 'border-primary' : 'opacity-75'}`;
+    card.innerHTML = `
+      <div class="card-body">
+        <div class="d-flex align-items-start mb-3">
+          <div class="display-4 me-3">${achievement.emoji}</div>
+          <div class="flex-grow-1">
+            <h5 class="card-title mb-1">${achievement.title}</h5>
+            <p class="card-text text-muted small mb-2">${achievement.desc}</p>
+            ${achievement.unlocked ? 
+              `<span class="badge bg-success"><i class="bi bi-check-circle me-1"></i>Desbloqueada</span>
+               <small class="d-block text-muted mt-1">${new Date(achievement.date).toLocaleDateString('pt-BR')}</span>` :
+              `<span class="badge bg-secondary">Bloqueada</span>`
+            }
           </div>
         </div>
       </div>
-    </div>
-  `;
-  grid.appendChild(statsCol);
+    `;
+    col.appendChild(card);
+    grid.appendChild(col);
+  });
 }
-
-// Calcula progresso para uma conquista bloqueada
-function calculateAchievementProgress(achievement, stats) {
-  const progressMap = {
-    'first_step': { current: stats.challengesCompleted, target: 1, unit: 'desafio' },
-    'warrior': { current: stats.daysCompleted, target: 3, unit: 'dias' },
-    'focus_master': { current: stats.timerSessions, target: 10, unit: 'sessões' },
-    'week_conscious': { current: stats.daysCompleted, target: 7, unit: 'dias' },
-    'time_saver': { current: stats.challengesCompleted, target: 50, unit: 'desafios' },
-    'offline_explorer': { current: stats.offlineActivities, target: 20, unit: 'atividades' },
-    'month_winner': { current: stats.daysCompleted, target: 30, unit: 'dias' },
-    'diary_keeper': { current: stats.diaryEntries, target: 10, unit: 'reflexões' },
-    'consistent': { current: stats.currentStreak, target: 7, unit: 'dias seguidos' },
-    'emotion_master': { current: stats.emotionMapUsage, target: 15, unit: 'usos' },
-    'quiz_complete': { current: stats.quizCompleted, target: 1, unit: 'quiz' },
-    'early_bird': { current: stats.earlyCompletions, target: 5, unit: 'dias' }
-  };
-  
-  return progressMap[achievement.id] || null;
-}
-
-// Exporta funções globalmente
-window.checkAndUnlockAchievements = checkAndUnlockAchievements;
-window.updateAchievementStat = updateAchievementStat;
 
 // ============================================
 // PÁGINA: CHECKLIST DIÁRIO
@@ -2523,53 +2060,7 @@ function copyShareText() {
   }
 }
 
-// ============================================
-// FUNÇÕES DE DEBUG (TESTAR CONQUISTAS)
-// ============================================
-window.testAchievements = function() {
-  console.clear();
-  console.log('🧪 TESTANDO SISTEMA DE CONQUISTAS');
-  console.log('=====================================');
-  
-  // Simula progresso
-  updateAchievementStat('challengesCompleted', 1);
-  updateAchievementStat('daysCompleted', 1);
-  updateAchievementStat('quizCompleted', 1);
-  
-  setTimeout(() => {
-    showAchievementStats();
-  }, 500);
-};
+window.shareTo = shareTo;
+window.copyShareText = copyShareText;
 
-window.showAchievementStats = function() {
-  const stats = loadAchievementStats();
-  const achievements = loadAchievements();
-  const unlockedCount = Object.values(achievements).filter(a => a.unlocked).length;
-  
-  console.group('📊 ESTATÍSTICAS ATUAIS');
-  console.table(stats);
-  console.log(`✅ Conquistas desbloqueadas: ${unlockedCount}/12`);
-  console.groupEnd();
-  
-  console.group('🏆 CONQUISTAS DESBLOQUEADAS');
-  Object.entries(achievements).forEach(([id, state]) => {
-    if (state.unlocked) {
-      console.log(`✅ ${id}`);
-    }
-  });
-  console.groupEnd();
-  
-  alert(`Stats: ${JSON.stringify(stats)}\n\nConquistas: ${unlockedCount}/12 desbloqueadas`);
-};
-
-window.resetAchievements = function() {
-  if (confirm('⚠️ Isso vai resetar TODAS as conquistas e estatísticas!\n\nDeseja continuar?')) {
-    localStorage.removeItem(ACHIEVEMENTS_STORAGE_KEY);
-    localStorage.removeItem(ACHIEVEMENTS_STATS_KEY);
-    localStorage.removeItem(CHALLENGES_STATE_KEY);
-    localStorage.removeItem(CHALLENGES_STATE_KEY + '_reset');
-    alert('✅ Tudo foi resetado!');
-    location.reload();
-  }
-};
 

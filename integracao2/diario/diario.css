@@ -1,0 +1,210 @@
+/* ============================================
+   VARIÁVEIS CSS - Sistema de Design (Tema Claro)
+   ============================================ */
+:root {
+  /* Cores principais */
+  --background: 0 0% 100%;
+  --foreground: 240 10% 3.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 3.9%;
+  --primary: 263 70% 50%; /* Roxo */
+  --primary-foreground: 0 0% 98%;
+  --secondary: 217 91% 60%; /* Ciano */
+  --muted: 240 5% 96%;
+  --muted-foreground: 240 4% 46%;
+  --border: 240 6% 90%;
+  --input: 240 6% 90%;
+  --radius: 1rem;
+  --destructive: 0 84% 60%;
+
+  /* Gradientes */
+  --gradient-primary: linear-gradient(135deg, hsl(263 70% 50%), hsl(217 91% 60%));
+  
+  /* Sombras */
+  --shadow-card: 0 10px 30px -10px hsl(240 10% 3.9% / 0.1);
+}
+
+/* Tema escuro - OBRIGATÓRIO */
+.dark {
+  --background: 240 10% 3.9%; /* Fundo (Quase preto) */
+  --foreground: 0 0% 98%;     /* Texto (Branco) */
+  --card: 240 10% 12%;        /* Cor do Card (Roxo escuro sutil) */
+  --card-foreground: 0 0% 98%;
+  --muted: 240 6% 20%;        /* Fundo suave para entradas salvas */
+  --muted-foreground: 240 5% 80%;
+  --border: 240 6% 30%;
+  --input: 240 6% 25%;
+  --shadow-card: 0 10px 30px -10px hsl(0 0% 0% / 0.5);
+}
+
+/* ============================================
+   BASE E ESTILOS GERAIS
+   ============================================ */
+* {
+  box-sizing: border-box;
+  border-color: hsl(var(--border));
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark .bg-dark {
+    background-color: hsl(var(--background)) !important;
+}
+
+@keyframes fade-in { 
+    0% { opacity: 0; transform: translateY(20px); } 
+    100% { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in { animation: fade-in 0.6s ease-out; }
+
+/* ============================================
+   AJUSTES BOOTSTRAP E TEMA
+   ============================================ */
+.text-gradient {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.btn-primary {
+  background: var(--gradient-primary) !important;
+  border: none !important;
+  color: white !important;
+  padding: 1rem 1.5rem !important;
+  font-weight: bold;
+  border-radius: var(--radius) !important;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  opacity: 0.95;
+  transform: translateY(-1px);
+}
+
+.card {
+  background-color: hsl(var(--card)) !important;
+  border-color: hsl(var(--border)) !important;
+  color: hsl(var(--card-foreground)) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow-card);
+}
+
+.form-control {
+  background-color: hsl(var(--input)) !important;
+  color: hsl(var(--foreground)) !important;
+  border-color: hsl(var(--border)) !important;
+  border-radius: var(--radius) !important;
+  border-width: 1.5px;
+  transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: hsl(var(--primary)) !important;
+  box-shadow: 0 0 0 0.25rem hsl(var(--primary) / 0.3) !important;
+}
+
+.text-muted {
+  color: hsl(var(--muted-foreground)) !important;
+  opacity: 0.9;
+}
+
+#entriesList .card {
+    background-color: hsl(var(--muted)) !important;
+    border: 1px solid hsl(var(--border)) !important;
+    padding: 0.75rem 1.25rem !important;
+}
+
+/* ============================================
+   BOTÃO DE ALTERNÂNCIA DE TEMA (Focus da correção)
+   ============================================ */
+.theme-toggle {
+  position: fixed;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: 1px solid hsl(var(--border));
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+    color: hsl(var(--foreground));
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-toggle:hover {
+    background-color: hsl(var(--muted));
+    border-color: hsl(var(--primary));
+}
+
+.theme-toggle i {
+    font-size: 1.1rem;
+    position: absolute;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+/* Esconde Sol no modo escuro */
+.dark .theme-icon-sun {
+    opacity: 0;
+    transform: rotate(45deg);
+}
+.dark .theme-icon-moon {
+    opacity: 1;
+    transform: rotate(0deg);
+}
+
+/* Esconde Lua no modo claro */
+html:not(.dark) .theme-icon-sun {
+    opacity: 1;
+    transform: rotate(0deg);
+}
+html:not(.dark) .theme-icon-moon {
+    opacity: 0;
+    transform: rotate(-45deg);
+}
+
+/* ============================================
+   BOTÃO DE PERFIL
+   ============================================ */
+.profile-btn {
+  position: fixed;
+  top: 20px;
+  right: 80px;
+  z-index: 1000;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+  padding: 0;
+  overflow: hidden;
+}
+
+.profile-btn:hover {
+  background-color: hsl(var(--muted));
+  border-color: hsl(var(--primary));
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.d-none { display: none !important; }

@@ -1,0 +1,124 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Alex",
+      "email": "alex@example.com",
+      "avatar": "https://picsum.photos/200",
+      "rank": "Bronze",
+      "currentDay": 1,
+      "points": 150,
+      "joinedDate": "2024-01-01T00:00:00.000Z",
+      "isLoggedIn": false
+    }
+  ],
+  "challenges": {
+    "1": [
+      {
+        "id": "day-1-challenge-0",
+        "text": "Deixe o celular em outro cômodo por 1 hora.",
+        "completed": false
+      },
+      {
+        "id": "day-1-challenge-1",
+        "text": "Leia 10 páginas de um livro físico.",
+        "completed": false
+      },
+      {
+        "id": "day-1-challenge-2",
+        "text": "Desative notificações de redes sociais hoje.",
+        "completed": false
+      },
+      {
+        "id": "day-1-challenge-3",
+        "text": "Faça uma caminhada de 15 minutos sem fones.",
+        "completed": false
+      },
+      {
+        "id": "day-1-challenge-4",
+        "text": "Não use o celular 1 hora antes de dormir.",
+        "completed": false
+      }
+    ]
+  },
+  "ranks": [
+    "Bronze",
+    "Prata",
+    "Ouro",
+    "Imortal",
+    "Radiante"
+  ],
+  "tools": [
+    {
+      "id": "timer",
+      "name": "Timer de Desafio",
+      "desc": "Foco total",
+      "icon": "⏱️"
+    },
+    {
+      "id": "progress",
+      "name": "Progresso Diário",
+      "desc": "Estatísticas",
+      "icon": "📊"
+    },
+    {
+      "id": "offline",
+      "name": "Atividades Offline",
+      "desc": "Ideias reais",
+      "icon": "🌿"
+    },
+    {
+      "id": "achievements",
+      "name": "Mural",
+      "desc": "Conquistas",
+      "icon": "🏆"
+    },
+    {
+      "id": "checklist",
+      "name": "Checklist",
+      "desc": "Rotina",
+      "icon": "✅"
+    },
+    {
+      "id": "share",
+      "name": "Compartilhar",
+      "desc": "Inspire",
+      "icon": "📤"
+    }
+  ],
+  "harms": [
+    {
+      "title": "Danos Cognitivos",
+      "desc": "Redução de foco e memória.",
+      "icon": "🧠"
+    },
+    {
+      "title": "Perda de Tempo",
+      "desc": "Horas desperdiçadas em nada.",
+      "icon": "⏰"
+    },
+    {
+      "title": "Fadiga Visual",
+      "desc": "Cansaço e dores de cabeça.",
+      "icon": "👁️"
+    },
+    {
+      "title": "Saúde Mental",
+      "desc": "Ansiedade e comparação.",
+      "icon": "😊"
+    },
+    {
+      "title": "Isolamento",
+      "desc": "Menos conexões reais.",
+      "icon": "👥"
+    },
+    {
+      "title": "Produtividade 0",
+      "desc": "Procrastinação constante.",
+      "icon": "❌"
+    }
+  ],
+  "settings": {
+    "darkMode": false
+  }
+}

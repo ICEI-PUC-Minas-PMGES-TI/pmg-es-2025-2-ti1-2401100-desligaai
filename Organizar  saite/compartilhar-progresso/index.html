@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compartilhar Progresso - Desliga AI</title>
+  <meta name="description" content="Compartilhe seu progresso na jornada para se libertar do vício digital.">
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Botão de alternar tema -->
+  <button id="themeToggle" class="theme-toggle btn btn-outline-secondary rounded-circle" aria-label="Alternar tema">
+    <i class="bi bi-sun theme-icon-sun"></i>
+    <i class="bi bi-moon theme-icon-moon"></i>
+  </button>
+
+  <!-- ============================================ -->
+  <!-- PÁGINA: COMPARTILHAR PROGRESSO -->
+  <!-- ============================================ -->
+  <section id="page-compartilhar-progresso" class="page-section">
+    <div class="container py-5">
+      <button class="btn btn-outline-secondary mb-4" onclick="window.location.href='../index.html'">
+        <i class="bi bi-arrow-left me-2"></i>Voltar ao Início
+      </button>
+      
+      <div class="row justify-content-center mb-5">
+        <div class="col-lg-8">
+          <h2 class="display-4 fw-bold mb-4 text-center">
+            <span class="text-gradient">Compartilhar Progresso</span>
+          </h2>
+          
+          <div class="card border-primary bg-gradient-primary-light mb-4">
+            <div class="card-body p-4">
+              <div class="row g-3 text-center">
+                <div class="col-6 col-md-3">
+                  <div class="h2 mb-1" data-stat="diasAtivos">12</div>
+                  <small class="text-muted">Dias Ativos</small>
+                </div>
+                <div class="col-6 col-md-3">
+                  <div class="h2 mb-1" data-stat="minutosEconomizados">780</div>
+                  <small class="text-muted">Min Economizados</small>
+                </div>
+                <div class="col-6 col-md-3">
+                  <div class="h2 mb-1" data-stat="conquistasDesbloqueadas">3</div>
+                  <small class="text-muted">Conquistas</small>
+                </div>
+                <div class="col-6 col-md-3">
+                  <div class="h2 mb-1" data-stat="diasSequencia">5 🔥</div>
+                  <small class="text-muted">Dias Sequência</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="fw-bold mb-3">Compartilhar em:</h5>
+              <div class="d-grid gap-2 d-md-flex">
+                <button class="btn btn-outline-primary flex-fill" onclick="shareTo('twitter')">
+                  <i class="bi bi-twitter me-2"></i>Twitter
+                </button>
+                <button class="btn btn-outline-primary flex-fill" onclick="shareTo('facebook')">
+                  <i class="bi bi-facebook me-2"></i>Facebook
+                </button>
+                <button class="btn btn-outline-success flex-fill" onclick="shareTo('whatsapp')">
+                  <i class="bi bi-whatsapp me-2"></i>WhatsApp
+                </button>
+                <button class="btn btn-outline-info flex-fill" onclick="shareTo('telegram')">
+                  <i class="bi bi-telegram me-2"></i>Telegram
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-body">
+              <h5 class="fw-bold mb-3">Ou copiar texto:</h5>
+              <div class="input-group mb-3">
+                <textarea id="shareText" class="form-control" rows="4" readonly>🎯 Meu progresso no Desliga AI:
+✨ 12 dias ativos
+⏰ 780 minutos economizados
+🏆 3 conquistas desbloqueadas
+🔥 5 dias de sequência
+Reconquiste seu tempo! Acesse: desligaai.com</textarea>
+                <button class="btn btn-primary" onclick="copyShareText()">
+                  <i class="bi bi-clipboard me-2"></i>Copiar
+                </button>
+              </div>
+              <div id="copySuccess" class="alert alert-success d-none">
+                <i class="bi bi-check-circle me-2"></i>Texto copiado!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-5 border-top bg-muted">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+          <h3 class="h2 fw-bold text-gradient mb-3">Desliga AI</h3>
+          <p class="text-muted mb-4">
+            Feito para ajudar você a recuperar seu tempo e viver uma vida mais equilibrada, longe da dependência digital. Reconquiste sua atenção, produtividade e bem-estar.
+          </p>
+          <p class="text-muted mb-4">
+            © 2025 | Desliga AI - Todos os direitos reservados
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="../javascript.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

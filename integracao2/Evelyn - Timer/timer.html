@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer Pomodoro - Desliga AI</title>
+    <meta name="description" content="Timer Pomodoro para aumentar sua produtividade e combater o vício em redes sociais">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="timer.css">
+</head>
+<body>
+    <!-- Botão de perfil -->
+    <button id="profileBtn" class="profile-btn btn btn-outline-secondary rounded-circle d-none" aria-label="Ir para perfil" onclick="goToProfile()">
+        <img id="profileImg" class="profile-img d-none" alt="Foto do usuário">
+        <i id="profileIcon" class="bi bi-person-fill"></i>
+    </button>
+
+    <!-- Botão de alternar tema -->
+    <button id="themeToggle" class="theme-toggle btn btn-outline-secondary rounded-circle" aria-label="Alternar tema">
+        <i class="bi bi-sun theme-icon-sun"></i>
+        <i class="bi bi-moon theme-icon-moon"></i>
+    </button>
+
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <!-- TIMER CIRCULAR -->
+                <div class="card shadow-lg mb-4">
+                    <div class="card-header text-center">
+                        <h2 class="display-5 fw-bold mb-2">
+                            <i class="bi bi-stopwatch-fill text-primary me-2"></i>
+                            <span class="text-gradient">Timer Pomodoro</span>
+                        </h2>
+                        <p class="text-muted mb-0">Técnica de produtividade com ciclos de foco e pausa</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="timer-section">
+                            <div class="timer-circle">
+                                <span id="intervalType">FOCO</span>
+                                <span id="cycleDisplay">Ciclo 1/4</span>
+                                <span id="time-display">00:00</span>
+                            </div>
+
+                            <form id="timerForm" class="timer-config">
+                                <div class="form-group">
+                                    <label for="focusTime">Tempo de foco (min):</label>
+                                    <input type="number" id="focusTime" name="focusTime" min="1" value="25" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="breakTime">Tempo de pausa (min):</label>
+                                    <input type="number" id="breakTime" name="breakTime" min="1" value="5" required>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="cycles">Ciclos:</label>
+                                    <input type="number" id="cycles" name="cycles" min="1" value="4" required>
+                                </div>
+
+                                <div class="timer-options">
+                                    <button type="button" data-time="15">15 min</button>
+                                    <button type="button" data-time="30">30 min</button>
+                                    <button type="button" data-time="60">60 min</button>
+                                </div>
+
+                                <button type="submit" id="start-timer">Iniciar</button>
+                                <button type="button" id="pauseBtn" class="btn-control" disabled>Pausar</button>
+                                <button type="button" id="resetBtn" class="btn-control" disabled>Reiniciar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HISTÓRICO DE SESSÕES -->
+                <div class="card shadow-sm mb-4">
+                    <div class="card-header">
+                        <h4 class="mb-0">Histórico de Sessões</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="historyTable" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Tipo</th>
+                                        <th>Duração (min)</th>
+                                        <th>Detalhes</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SCORE -->
+                <div class="card shadow-sm">
+                    <div class="card-header">
+                        <h4 class="mb-0">Pontuação</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive mb-3">
+                            <table id="scoresTable" class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Pontuação</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                        <form id="scoreForm" class="d-flex gap-2">
+                            <input type="number" id="playerScore" class="form-control" placeholder="Pontuação" required>
+                            <button type="submit" class="btn btn-primary">Salvar Score</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-5 border-top bg-muted">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h3 class="h2 fw-bold text-gradient mb-3">Desliga AI</h3>
+                    <p class="text-muted mb-4">
+                        Feito para ajudar você a recuperar seu tempo e viver uma vida mais equilibrada, longe da dependência digital. Reconquiste sua atenção, produtividade e bem-estar.
+                    </p>
+                    <p class="text-muted mb-4">
+                        © 2025 | Desliga AI - Todos os direitos reservados
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="timer.js"></script>
+</body>
+</html>
