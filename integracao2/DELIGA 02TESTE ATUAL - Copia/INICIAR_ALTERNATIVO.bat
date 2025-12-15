@@ -78,8 +78,15 @@ REM Inicia servidor customizado que DESABILITA cache completamente
 REM Este servidor garante que sempre carregue a versao mais recente dos arquivos
 start "HTTP Server" cmd /k "cd /d %~dp0 && node server.js"
 
+REM Aguarda 2 segundos para o servidor iniciar
+timeout /t 2 /nobreak >nul
+
+REM Abre o index.html local no navegador
+start "" "%~dp0index.html"
+
 echo.
 echo [OK] Servidores iniciados!
+echo [INFO] O arquivo index.html foi aberto automaticamente
 echo [INFO] Duas janelas foram abertas com os servidores
 echo [INFO] Feche as janelas para parar os servidores
 echo.

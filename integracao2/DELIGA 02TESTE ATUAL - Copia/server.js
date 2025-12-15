@@ -1,7 +1,6 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
-const { exec } = require('child_process');
 
 const PORT = 8080;
 
@@ -58,17 +57,11 @@ server.listen(PORT, () => {
   console.log(`\n========================================`);
   console.log(`   Servidor rodando em http://localhost:${PORT}`);
   console.log(`   Cache DESABILITADO completamente!`);
+  console.log(`========================================`);
+  console.log(`\n   [!] Acesse manualmente no navegador:`);
+  console.log(`       http://localhost:${PORT}`);
+  console.log(`\n   [!] Abra o index.html do seu projeto`);
   console.log(`========================================\n`);
-  
-  // Abre o navegador automaticamente
-  const url = `http://localhost:${PORT}`;
-  const command = process.platform === 'win32' 
-    ? `start ${url}` 
-    : process.platform === 'darwin' 
-    ? `open ${url}` 
-    : `xdg-open ${url}`;
-  
-  exec(command);
 });
 
 
