@@ -1,0 +1,678 @@
+/* ============================================
+   VARIÁVEIS CSS - Sistema de Design Aprimorado
+   ============================================ */
+:root {
+  /* Cores principais - tons mais suaves */
+  --background: 0 0% 100%;
+  --foreground: 240 10% 10%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 10%;
+  --primary: 260 84% 58%; /* Roxo mais vibrante */
+  --primary-foreground: 0 0% 98%;
+  --primary-glow: 260 84% 70%;
+  --secondary: 217 91% 60%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 240 5% 96%;
+  --muted-foreground: 240 4% 46%;
+  --accent: 25 95% 53%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 6% 85%; /* Borda mais suave */
+  --input: 240 6% 90%;
+  --ring: 260 84% 58%;
+  --radius: 0.75rem; /* Cantos mais suaves */
+
+  /* Gradientes aprimorados */
+  --gradient-primary: linear-gradient(135deg, hsl(260 84% 58%), hsl(217 91% 60%));
+  --gradient-hero: linear-gradient(180deg, hsl(0 0% 100%), hsl(260 84% 95%));
+  --gradient-accent: linear-gradient(135deg, hsl(25 95% 53%), hsl(0 84% 60%));
+  --gradient-card: linear-gradient(135deg, hsl(0 0% 100%), hsl(260 84% 97%));
+  
+  /* Sombras mais suaves */
+  --shadow-glow: 0 0 30px hsl(260 84% 58% / 0.25);
+  --shadow-card: 0 4px 20px -4px hsl(240 10% 10% / 0.08);
+  --shadow-hover: 0 10px 40px -10px hsl(240 10% 10% / 0.15);
+  
+  /* Transições */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+}
+
+/* Tema escuro - Mais contrastante */
+.dark {
+  --background: 240 10% 8%; /* Fundo mais escuro */
+  --foreground: 0 0% 95%; /* Texto mais claro */
+  --card: 240 10% 10%; /* Cards mais escuros */
+  --card-foreground: 0 0% 95%;
+  --muted: 240 6% 15%;
+  --muted-foreground: 240 5% 70%; /* Texto secundário mais visível */
+  --border: 240 6% 20%;
+  --input: 240 6% 20%;
+  --gradient-hero: linear-gradient(180deg, hsl(240 10% 8%), hsl(260 84% 15%));
+  --shadow-glow: 0 0 30px hsl(260 84% 58% / 0.35);
+  --shadow-card: 0 4px 20px -4px hsl(0 0% 0% / 0.4);
+  --shadow-hover: 0 10px 40px -10px hsl(0 0% 0% / 0.6);
+  --gradient-card: linear-gradient(135deg, hsl(240 10% 12%), hsl(260 84% 15%));
+}
+
+/* ============================================
+   RESET E BASE
+   ============================================ */
+* {
+  border-color: hsl(var(--border));
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+/* ============================================
+   UTILITÁRIOS DE TEXTO
+   ============================================ */
+.text-gradient {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.text-gradient-accent {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ============================================
+   BOTÃO DE TEMA
+   ============================================ */
+.theme-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 50;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background-color: hsl(var(--muted));
+}
+
+.theme-icon-sun {
+  display: block;
+  transition: all 0.3s ease;
+}
+
+.theme-icon-moon {
+  display: none;
+  transition: all 0.3s ease;
+}
+
+.dark .theme-icon-sun {
+  display: none;
+}
+
+.dark .theme-icon-moon {
+  display: block;
+}
+
+/* ============================================
+   HEADER ESPECIAL DO MAPA DE EMOÇÕES
+   ============================================ */
+.emotion-map-header {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  overflow: hidden;
+  background: linear-gradient(180deg, 
+    hsl(0 0% 100%), 
+    hsl(260 84% 95%)
+  );
+}
+
+.dark .emotion-map-header {
+  background: linear-gradient(180deg, 
+    hsl(240 10% 8%), 
+    hsl(260 84% 15%)
+  );
+}
+
+.emotion-map-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23673ab7' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.emotion-map-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  animation: glow-pulse 3s ease-in-out infinite;
+  z-index: 2;
+}
+
+.orb-emotion-1 {
+  top: 10%;
+  left: 10%;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, hsl(260 84% 58% / 0.3), transparent 70%);
+}
+
+.orb-emotion-2 {
+  bottom: 10%;
+  right: 10%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, hsl(217 91% 60% / 0.2), transparent 70%);
+  animation-delay: 1s;
+}
+
+.emotion-map-content {
+  position: relative;
+  z-index: 10;
+  animation: fade-in 0.8s ease-out;
+}
+
+.emotion-map-logo {
+  font-size: 4.5rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, hsl(260 84% 58%), hsl(217 91% 60%));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  position: relative;
+}
+
+.emotion-map-logo::after {
+  content: '🌱';
+  position: absolute;
+  right: -50px;
+  top: -10px;
+  font-size: 3rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+.emotion-map-subtitle {
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin-bottom: 2rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.emotion-map-stats {
+  background: hsl(var(--card) / 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid hsl(var(--border));
+  border-radius: 1rem;
+  padding: 1.5rem;
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+.emotion-map-stat-item {
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.emotion-map-stat-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.emotion-map-stat-label {
+  font-size: 0.875rem;
+  color: hsl(var(--muted-foreground));
+}
+
+/* ============================================
+   PROGRESS BAR PERSONALIZADA
+   ============================================ */
+.emotion-progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 4px;
+  background: hsl(var(--muted));
+}
+
+.emotion-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, 
+    hsl(260 84% 58%), 
+    hsl(217 91% 60%)
+  );
+  width: 0%;
+  transition: width 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.emotion-progress-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ============================================
+   BOTÕES DE NAVEGAÇÃO DO MAPA
+   ============================================ */
+.emotion-nav-btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 500;
+  transition: all var(--transition-normal);
+  border: 2px solid transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.emotion-nav-btn-primary {
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+}
+
+.emotion-nav-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.emotion-nav-btn-outline {
+  background: transparent;
+  border-color: hsl(var(--border));
+  color: hsl(var(--foreground));
+}
+
+.emotion-nav-btn-outline:hover {
+  border-color: hsl(var(--primary));
+  background: hsl(var(--primary) / 0.1);
+}
+
+/* ============================================
+   CARDS DO MAPA DE EMOÇÕES (STEPS)
+   ============================================ */
+.emotion-step-card {
+  border: none;
+  border-radius: 1rem;
+  background: hsl(var(--card));
+  box-shadow: var(--shadow-card);
+  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  overflow: hidden;
+}
+
+.emotion-step-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+.emotion-step-header {
+  background: var(--gradient-primary);
+  color: white;
+  border-radius: 1rem 1rem 0 0;
+  padding: 1.5rem;
+}
+
+.emotion-step-header h2 {
+  font-weight: 600;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.emotion-step-number {
+  background: white;
+  color: hsl(260 84% 58%);
+  font-weight: 700;
+  border-radius: 0.5rem;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+/* ============================================
+   FORM ELEMENTOS
+   ============================================ */
+.form-check.card-check {
+  padding: 15px;
+  border: 2px solid hsl(var(--border));
+  border-radius: 10px;
+  transition: all var(--transition-normal);
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+.form-check.card-check:hover {
+  border-color: hsl(var(--primary));
+  background-color: hsl(var(--primary) / 0.05);
+}
+
+.form-check-input:checked {
+  background-color: hsl(var(--primary));
+  border-color: hsl(var(--primary));
+}
+
+.form-range {
+  height: 8px;
+  border-radius: 4px;
+  background-color: hsl(var(--muted));
+  cursor: pointer;
+}
+
+.form-range::-webkit-slider-thumb {
+  background: hsl(var(--primary));
+  border: 2px solid white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.form-control, .form-select {
+  border: 2px solid hsl(var(--border));
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  background-color: hsl(var(--card));
+  color: hsl(var(--foreground));
+  transition: all var(--transition-fast);
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: hsl(var(--primary));
+  box-shadow: 0 0 0 3px hsl(var(--primary) / 0.1);
+}
+
+/* ============================================
+   CARDS ESPECIAIS
+   ============================================ */
+.emotion-level-card {
+  padding: 20px;
+  background: hsl(var(--card));
+  border-radius: 12px;
+  border: 2px solid hsl(var(--border));
+  transition: all var(--transition-normal);
+  height: 100%;
+}
+
+.emotion-level-card:hover {
+  border-color: hsl(var(--primary));
+  transform: translateY(-2px);
+}
+
+.emotion-icon {
+  font-size: 2rem;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.hobby-card {
+  padding: 20px;
+  border: 2px solid hsl(var(--border));
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  text-align: center;
+  height: 100%;
+}
+
+.hobby-card:hover {
+  border-color: hsl(var(--primary));
+  transform: scale(1.05);
+}
+
+.hobby-card.selected {
+  border-color: hsl(var(--primary));
+  background: hsl(var(--primary) / 0.1);
+}
+
+.hobby-icon {
+  font-size: 1.5rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px;
+  background: hsl(var(--muted));
+}
+
+.time-activity-card {
+  padding: 20px;
+  background: hsl(var(--card));
+  border-radius: 12px;
+  border-left: 4px solid hsl(var(--primary));
+}
+
+.goal-card {
+  padding: 15px;
+  background: linear-gradient(135deg, hsl(var(--muted)) 0%, hsl(var(--border) / 0.3) 100%);
+  border-radius: 10px;
+  border: 1px solid hsl(var(--border));
+}
+
+.action-plan-card {
+  padding: 20px;
+  background: hsl(var(--card));
+  border-radius: 12px;
+  border-top: 4px solid hsl(142 76% 36%);
+  box-shadow: var(--shadow-card);
+  height: 100%;
+}
+
+/* ============================================
+   ANIMAÇÕES
+   ============================================ */
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out;
+}
+
+/* ============================================
+   UTILITÁRIOS
+   ============================================ */
+.bg-light {
+  background-color: hsl(var(--muted)) !important;
+}
+
+.bg-muted {
+  background-color: hsl(var(--muted) / 0.3) !important;
+}
+
+/* ============================================
+   RESPONSIVIDADE
+   ============================================ */
+@media (max-width: 768px) {
+  .emotion-map-header {
+    min-height: auto;
+    padding: 3rem 1rem;
+  }
+  
+  .emotion-map-logo {
+    font-size: 3rem;
+  }
+  
+  .emotion-map-logo::after {
+    position: static;
+    display: block;
+    margin-top: 1rem;
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .emotion-map-subtitle {
+    font-size: 1.25rem;
+  }
+  
+  .emotion-map-stat-value {
+    font-size: 2rem;
+  }
+  
+  .emotion-step-card {
+    margin: 0 -1rem;
+    border-radius: 0;
+  }
+  
+  .emotion-step-header {
+    border-radius: 0;
+  }
+}
+
+/* ============================================
+   MODAL CUSTOMIZADO
+   ============================================ */
+.modal-content {
+  border: none;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.modal-header.emotion-step-header {
+  border-radius: 0;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer {
+  background: hsl(var(--muted) / 0.3);
+  border-top: 1px solid hsl(var(--border));
+}
+
+/* ============================================
+   SCROLLBAR PERSONALIZADA
+   ============================================ */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary));
+}
+
+/* ============================================
+   AJUSTES PARA TEMA ESCURO
+   ============================================ */
+.dark .text-muted {
+  color: hsl(var(--muted-foreground)) !important;
+  opacity: 0.8;
+}
+
+.dark .card {
+  background-color: hsl(var(--card));
+  border-color: hsl(var(--border));
+}
+
+.dark .bg-light {
+  background-color: hsl(var(--card)) !important;
+}
+
+.dark .hobby-icon {
+  background: hsl(var(--muted));
+}
+
+.dark .btn-outline-primary {
+  border-color: hsl(var(--primary));
+  color: hsl(var(--primary));
+}
+
+.dark .btn-outline-primary:hover {
+  background-color: hsl(var(--primary));
+  color: white;
+}
+
+.dark .form-check.card-check:hover {
+  background-color: hsl(var(--primary) / 0.1);
+}
+
+.dark .hobby-card.selected {
+  background: hsl(var(--primary) / 0.2);
+}
+
+.dark pre.bg-dark {
+  background-color: hsl(240 10% 5%) !important;
+}

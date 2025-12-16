@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desliga AI - Reconquiste Seu Tempo Digital</title>
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
+</head>
+<body>
+  <!-- Botão de alternar tema -->
+  <button id="themeToggle" class="theme-toggle btn btn-outline-secondary rounded-circle" aria-label="Alternar tema">
+    <i class="bi bi-sun theme-icon-sun"></i>
+    <i class="bi bi-moon theme-icon-moon"></i>
+  </button>
+
+  <!-- Main Content Container -->
+  <main class="container-fluid p-0">
+    <!-- ============================================ -->
+    <!-- PÁGINA PRINCIPAL - MAPA DE EMOÇÕES -->
+    <!-- ============================================ -->
+    
+    <!-- Header Especial do Mapa de Emoções -->
+    <section id="welcome-screen" class="emotion-map-header animate-fade-in">
+      <div class="emotion-map-orb orb-emotion-1"></div>
+      <div class="emotion-map-orb orb-emotion-2"></div>
+      
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-10 text-center emotion-map-content">
+            <!-- Logo/Nome Desliga AI -->
+            <h1 class="emotion-map-logo">
+              Desliga AI
+            </h1>
+            
+            <p class="emotion-map-subtitle">
+              Seu guia personalizado para o bem-estar digital e equilíbrio emocional
+            </p>
+            
+            <!-- Estatísticas em destaque -->
+            <div class="emotion-map-stats">
+              <div class="row">
+                <div class="col-md-4 emotion-map-stat-item">
+                  <div class="emotion-map-stat-value text-primary">🌱</div>
+                  <div class="emotion-map-stat-label">Crescimento Pessoal</div>
+                </div>
+                <div class="col-md-4 emotion-map-stat-item">
+                  <div class="emotion-map-stat-value text-info">🎯</div>
+                  <div class="emotion-map-stat-label">Foco no Essencial</div>
+                </div>
+                <div class="col-md-4 emotion-map-stat-item">
+                  <div class="emotion-map-stat-value text-success">⚖️</div>
+                  <div class="emotion-map-stat-label">Equilíbrio Digital</div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Chamada para ação -->
+            <div class="mt-5">
+              <h3 class="h2 mb-4">Vamos criar seu <span class="text-gradient">Mapa Emocional</span></h3>
+              <p class="lead mb-5">
+                Uma jornada de autoconhecimento em 4 passos para entender suas emoções,<br>
+                descobrir novos hobbies e criar um plano personalizado de bem-estar.
+              </p>
+              
+              <button class="btn emotion-nav-btn emotion-nav-btn-primary btn-lg px-5 py-3" onclick="startEmotionalMapping()">
+                <i class="bi bi-play-circle me-2"></i>Iniciar Minha Jornada
+              </button>
+              
+              <div class="mt-4">
+                <small class="text-muted">
+                  <i class="bi bi-shield-check me-1"></i>
+                  Seus dados são 100% privados e ficam apenas no seu navegador
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Barra de Progresso Personalizada -->
+    <div class="emotion-progress-container">
+      <div class="emotion-progress-bar" id="progress-bar"></div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- STEPS DO MAPA DE EMOÇÕES -->
+    <!-- ============================================ -->
+
+    <!-- Step 1: Emotional State -->
+    <section id="step-emotional-state" class="d-none animate-fade-in py-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <div class="card emotion-step-card border-0 shadow-lg mb-4">
+              <div class="emotion-step-header py-4">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div>
+                    <h2 class="h2 mb-1"><i class="bi bi-heart-pulse me-2"></i>Passo 1: Estado Emocional</h2>
+                    <p class="mb-0 opacity-75">Como você está se sentindo hoje?</p>
+                  </div>
+                  <span class="emotion-step-number">1/4</span>
+                </div>
+              </div>
+              <div class="card-body p-4">
+                <div class="mb-5">
+                  <h4 class="fw-bold mb-4">Nível das suas emoções (0 a 10)</h4>
+                  <div class="row g-4" id="emotional-levels">
+                    <!-- Emotional levels will be loaded here -->
+                  </div>
+                </div>
+
+                <div class="mb-5">
+                  <h4 class="fw-bold mb-4">Gatilhos emocionais frequentes</h4>
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <div class="form-check card-check">
+                        <input class="form-check-input" type="checkbox" id="trigger-overwork" name="trigger-overwork">
+                        <label class="form-check-label" for="trigger-overwork">
+                          <i class="bi bi-briefcase text-danger me-2"></i>Excesso de trabalho
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-check card-check">
+                        <input class="form-check-input" type="checkbox" id="trigger-loneliness" name="trigger-loneliness">
+                        <label class="form-check-label" for="trigger-loneliness">
+                          <i class="bi bi-person-x text-info me-2"></i>Solidão/Isolamento
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-check card-check">
+                        <input class="form-check-input" type="checkbox" id="trigger-comparison" name="trigger-comparison">
+                        <label class="form-check-label" for="trigger-comparison">
+                          <i class="bi bi-people text-warning me-2"></i>Comparação social
+                        </label>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-check card-check">
+                        <input class="form-check-input" type="checkbox" id="trigger-future" name="trigger-future">
+                        <label class="form-check-label" for="trigger-future">
+                          <i class="bi bi-clock-history text-primary me-2"></i>Incerteza sobre o futuro
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="text-center mt-5">
+                  <button class="btn emotion-nav-btn emotion-nav-btn-outline me-3" onclick="showWelcomeScreen()">
+                    <i class="bi bi-arrow-left me-2"></i>Voltar ao Início
+                  </button>
+                  <button class="btn emotion-nav-btn emotion-nav-btn-primary" onclick="goToStep2()">
+                    Próximo <i class="bi bi-arrow-right ms-2"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 2: Hobbies & Interests -->
+    <section id="step-hobbies-interests" class="d-none animate-fade-in py-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <div class="card emotion-step-card border-0 shadow-lg mb-4">
+              <div class="emotion-step-header py-4">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div>
+                    <h2 class="h2 mb-1"><i class="bi bi-stars me-2"></i>Passo 2: Hobbies & Interesses</h2>
+                    <p class="mb-0 opacity-75">O que você gosta de fazer no seu tempo livre?</p>
+                  </div>
+                  <span class="emotion-step-number">2/4</span>
+                </div>
+              </div>
+              <div class="card-body p-4">
+                <div class="mb-5">
+                  <h4 class="fw-bold mb-4">Atividades que você já faz regularmente</h4>
+                  <div class="row g-3" id="hobbies-usual">
+                    <!-- Usual hobbies will be loaded here -->
+                  </div>
+                </div>
+
+                <div class="mb-5">
+                  <h4 class="fw-bold mb-4">Atividades que gostaria de experimentar</h4>
+                  <div class="row g-3" id="hobbies-new">
+                    <!-- New hobbies will be loaded here -->
+                  </div>
+                </div>
+
+                <div class="mb-4">
+                  <label for="other-interests" class="form-label fw-bold">Outros interesses ou hobbies não listados:</label>
+                  <textarea class="form-control" id="other-interests" rows="3" placeholder="Ex: Fotografia, jardinagem, dança, culinária vegana..."></textarea>
+                </div>
+
+                <div class="text-center mt-5">
+                  <button class="btn emotion-nav-btn emotion-nav-btn-outline me-3" onclick="goToStep1()">
+                    <i class="bi bi-arrow-left me-2"></i>Voltar
+                  </button>
+                  <button class="btn emotion-nav-btn emotion-nav-btn-primary" onclick="goToStep3()">
+                    Próximo <i class="bi bi-arrow-right ms-2"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 3: Daily Routine -->
+    <section id="step-daily-routine" class="d-none animate-fade-in py-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <div class="card emotion-step-card border-0 shadow-lg mb-4">
+              <div class="emotion-step-header py-4">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div>
+                    <h2 class="h2 mb-1"><i class="bi bi-calendar-week me-2"></i>Passo 3: Rotina Diária</h2>
+                    <p class="mb-0 opacity-75">Como é o seu dia a dia?</p>
+                  </div>
+                  <span class="emotion-step-number">3/4</span>
+                </div>
+              </div>
+              <div class="card-body p-4">
+                <div class="mb-5">
+                  <h4 class="fw-bold mb-4">Tempo gasto em diferentes atividades</h4>
+                  <div class="row g-4" id="time-activities">
+                    <!-- Time activities will be loaded here -->
+                  </div>
+                </div>
+
+                <div class="mb-5">
+                  <h4 class="fw-bold mb-4">Padrões de sono e alimentação</h4>
+                  <div class="row g-4">
+                    <div class="col-md-6">
+                      <label for="sleep-quality" class="form-label">Qualidade do sono (1-10)</label>
+                      <div class="d-flex align-items-center">
+                        <span class="me-2">😴</span>
+                        <input type="range" class="form-range" min="1" max="10" value="7" id="sleep-quality">
+                        <span class="ms-2 fw-bold" id="sleep-value">7</span>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="nutrition-quality" class="form-label">Qualidade da alimentação (1-10)</label>
+                      <div class="d-flex align-items-center">
+                        <span class="me-2">🥗</span>
+                        <input type="range" class="form-range" min="1" max="10" value="6" id="nutrition-quality">
+                        <span class="ms-2 fw-bold" id="nutrition-value">6</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mb-4">
+                  <label for="routine-description" class="form-label fw-bold">Descreva brevemente sua rotina ideal:</label>
+                  <textarea class="form-control" id="routine-description" rows="3" placeholder="Como você gostaria que fosse seu dia perfeito?"></textarea>
+                </div>
+
+                <div class="text-center mt-5">
+                  <button class="btn emotion-nav-btn emotion-nav-btn-outline me-3" onclick="goToStep2()">
+                    <i class="bi bi-arrow-left me-2"></i>Voltar
+                  </button>
+                  <button class="btn emotion-nav-btn emotion-nav-btn-primary" onclick="goToStep4()">
+                    Próximo <i class="bi bi-arrow-right ms-2"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Step 4: Digital Habits & Goals -->
+    <section id="step-digital-goals" class="d-none animate-fade-in py-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <div class="card emotion-step-card border-0 shadow-lg mb-4">
+              <div class="emotion-step-header py-4">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div>
+                    <h2 class="h2 mb-1"><i class="bi bi-phone me-2"></i>Passo 4: Hábitos Digitais & Metas</h2>
+                    <p class="mb-0 opacity-75">Seus hábitos online e objetivos offline</p>
+                  </div>
+                  <span class="emotion-step-number">4/4</span>
+                </div>
+              </div>
+              <div class="card-body p-4">
+                <div class="mb-5">
+                  <h4 class="fw-bold mb-4">Uso de dispositivos digitais</h4>
+                  <div class="row g-4">
+                    <div class="col-md-6">
+                      <label for="screen-time" class="form-label">Tempo diário em telas (horas)</label>
+                      <select class="form-select" id="screen-time">
+                        <option value="1-2">1-2 horas</option>
+                        <option value="3-4" selected>3-4 horas</option>
+                        <option value="5-6">5-6 horas</option>
+                        <option value="7+">Mais de 7 horas</option>
+                      </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="distraction-level" class="form-label">Nível de distração digital (1-10)</label>
+                      <div class="d-flex align-items-center">
+                        <input type="range" class="form-range" min="1" max="10" value="6" id="distraction-level">
+                        <span class="ms-2 fw-bold" id="distraction-value">6</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mb-5">
+                  <h4 class="fw-bold mb-4">Metas pessoais para os próximos 3 meses</h4>
+                  <div class="row g-3" id="personal-goals">
+                    <!-- Personal goals will be loaded here -->
+                  </div>
+                </div>
+
+                <div class="mb-4">
+                  <label for="offline-goal" class="form-label fw-bold">Objetivo principal offline:</label>
+                  <textarea class="form-control" id="offline-goal" rows="2" placeholder="Ex: Reduzir o tempo no celular em 2 horas diárias..."></textarea>
+                </div>
+
+                <div class="text-center mt-5">
+                  <button class="btn emotion-nav-btn emotion-nav-btn-outline me-3" onclick="goToStep3()">
+                    <i class="bi bi-arrow-left me-2"></i>Voltar
+                  </button>
+                  <button class="btn emotion-nav-btn emotion-nav-btn-primary btn-lg" onclick="generateEmotionalMap()">
+                    <i class="bi bi-magic me-2"></i>Gerar Meu Mapa
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results Screen -->
+    <section id="results-screen" class="d-none animate-fade-in py-5">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <div class="card emotion-step-card border-0 shadow-lg mb-4">
+              <div class="emotion-step-header py-4" style="background: linear-gradient(135deg, hsl(142 76% 36%), hsl(142 76% 46%));">
+                <div class="d-flex align-items-center justify-content-between">
+                  <div>
+                    <h2 class="h2 mb-1"><i class="bi bi-trophy me-2"></i>Seu Mapa Emocional está Pronto!</h2>
+                    <p class="mb-0 opacity-75">Aqui está sua análise personalizada</p>
+                  </div>
+                  <span class="emotion-step-number">Completo</span>
+                </div>
+              </div>
+              <div class="card-body p-4">
+                <div class="row mb-5">
+                  <div class="col-md-6 mb-4">
+                    <div class="card h-100 border-0 bg-light">
+                      <div class="card-body">
+                        <h4 class="fw-bold mb-3"><i class="bi bi-graph-up text-primary me-2"></i>Resumo Emocional</h4>
+                        <div id="emotional-summary">
+                          <!-- Emotional summary will be loaded here -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-4">
+                    <div class="card h-100 border-0 bg-light">
+                      <div class="card-body">
+                        <h4 class="fw-bold mb-3"><i class="bi bi-lightbulb text-warning me-2"></i>Recomendações</h4>
+                        <div id="recommendations">
+                          <!-- Recommendations will be loaded here -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mb-5">
+                  <h4 class="fw-bold mb-4"><i class="bi bi-calendar-check text-success me-2"></i>Plano de Ação Semanal</h4>
+                  <div class="row g-3" id="action-plan">
+                    <!-- Action plan will be loaded here -->
+                  </div>
+                </div>
+
+                <div class="text-center mt-5">
+                  <button class="btn emotion-nav-btn emotion-nav-btn-outline me-3" onclick="showWelcomeScreen()">
+                    <i class="bi bi-arrow-repeat me-2"></i>Refazer Mapeamento
+                  </button>
+                  <button class="btn emotion-nav-btn emotion-nav-btn-primary" onclick="downloadResults()">
+                    <i class="bi bi-download me-2"></i>Baixar Relatório
+                  </button>
+                  <button class="btn emotion-nav-btn emotion-nav-btn-outline" onclick="viewJsonData()">
+                    <i class="bi bi-code-slash me-2"></i>Ver Dados JSON
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- JSON Preview Modal -->
+  <div class="modal fade" id="jsonModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header emotion-step-header">
+          <h5 class="modal-title"><i class="bi bi-code-slash me-2"></i>Dados do Mapa Emocional</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <pre class="bg-dark text-light p-3 rounded" style="max-height: 400px; overflow: auto;"><code id="json-preview"></code></pre>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn emotion-nav-btn emotion-nav-btn-outline" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn emotion-nav-btn emotion-nav-btn-primary" onclick="copyJsonData()">
+            <i class="bi bi-clipboard me-2"></i>Copiar JSON
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="py-5 border-top bg-muted">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mx-auto text-center">
+          <h3 class="h2 fw-bold text-gradient mb-3">Desliga AI</h3>
+          <p class="text-muted mb-4">
+            Feito para ajudar você a recuperar seu tempo e viver uma vida mais equilibrada, longe da dependência digital. Reconquiste sua atenção, produtividade e bem-estar.
+          </p>
+          <p class="text-muted mb-4">
+            © 2025 | Desliga AI - Todos os direitos reservados
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Custom JS -->
+  <script src="script.js"></script>
+</body>
+</html>

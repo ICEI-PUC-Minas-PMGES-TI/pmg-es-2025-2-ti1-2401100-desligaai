@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividades Offline Aleatórias - Desliga AI</title>
+    <meta name="description" content="Gere atividades offline aleatórias para se desconectar das redes sociais">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styleevy.css">
+</head>
+<body>
+    <!-- Botão de perfil -->
+    <button id="profileBtn" class="profile-btn btn btn-outline-secondary rounded-circle d-none" aria-label="Ir para perfil" onclick="goToProfile()">
+        <img id="profileImg" class="profile-img d-none" alt="Foto do usuário">
+        <i id="profileIcon" class="bi bi-person-fill"></i>
+    </button>
+
+    <!-- Botão de alternar tema -->
+    <button id="themeToggle" class="theme-toggle btn btn-outline-secondary rounded-circle" aria-label="Alternar tema">
+        <i class="bi bi-sun theme-icon-sun"></i>
+        <i class="bi bi-moon theme-icon-moon"></i>
+    </button>
+
+    <!-- Botão voltar -->
+    <button class="btn btn-outline-secondary" style="position: absolute; top: 20px; left: 20px; z-index: 10;" onclick="goBackToMain()">
+        <i class="bi bi-arrow-left me-1"></i> Voltar
+    </button>
+
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <!-- Título Principal -->
+                <div class="text-center mb-5">
+                    <h1 class="display-4 fw-bold mb-3">
+                        <i class="bi bi-dice-6-fill text-primary me-2"></i>
+                        <span class="text-gradient">Atividades Offline</span>
+                    </h1>
+                    <p class="lead text-muted">Descubra atividades aleatórias para fazer sem telas</p>
+                </div>
+
+                <!-- Seção de Gerenciamento -->
+                <div class="card shadow-lg mb-4">
+                    <div class="card-header">
+                        <h3 class="mb-0">
+                            <i class="bi bi-list-check text-primary me-2"></i>
+                            Gerenciar Atividades
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="crud-container">
+                            <div class="input-group mb-3">
+                                <input type="text" id="novaAtividade" class="form-control" placeholder="Digite uma atividade">
+                                <button id="btnAdicionar" class="btn btn-primary">
+                                    <i class="bi bi-plus-circle me-2"></i>Adicionar
+                                </button>
+                            </div>
+                            <button id="btnToggleLista" class="btn btn-outline-secondary w-100 mb-3">
+                                <i class="bi bi-eye me-2"></i>Exibir atividades
+                            </button>
+                            <ul id="listaAtividades" class="list-group"></ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Seção do Cubo e Geração -->
+                <div class="card shadow-lg mb-4">
+                    <div class="card-body">
+                        <div class="atividade-section">
+                            <div class="cubo-container">
+                                <div class="cubo" id="cubo">
+                                    <div class="face-frente"></div>
+                                    <div class="face-tras"></div>
+                                    <div class="face-esquerda"></div>
+                                    <div class="face-direita"></div>
+                                    <div class="face-cima"></div>
+                                    <div class="face-baixo"></div>
+                                </div>
+                            </div>
+
+                            <div class="d-flex gap-3 justify-content-center mt-4">
+                                <button id="btnPlay" class="btn btn-primary btn-lg">
+                                    <i class="bi bi-dice-6 me-2"></i>Mostrar Atividade
+                                </button>
+                                <button id="btnConcluir" class="btn btn-success btn-lg d-none mt-3">
+                                    <i class="bi bi-check-circle me-2"></i>Marcar como Concluída
+                                </button>
+                            </div>
+                            <div class="atividade-gerada mt-4" id="atividadeGerada">
+                                Aperte o botão para gerar uma atividade offline!
+                            </div>
+                            <small id="progressoText" class="text-muted mt-3 d-none text-center">
+                                <i class="bi bi-trophy me-1"></i>
+                                <span id="progressoCount">0/20</span> atividades diferentes experimentadas
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-5 border-top bg-muted">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h3 class="h2 fw-bold text-gradient mb-3">Desliga AI</h3>
+                    <p class="text-muted mb-4">
+                        Feito para ajudar você a recuperar seu tempo e viver uma vida mais equilibrada, longe da dependência digital. Reconquiste sua atenção, produtividade e bem-estar.
+                    </p>
+                    <p class="text-muted mb-4">
+                        © 2025 | Desliga AI - Todos os direitos reservados
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <audio id="somClique" src="mixkit-fast-small-sweep-transition-166.wav" preload="auto"></audio>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="atv.js"></script>
+</body>
+</html>
