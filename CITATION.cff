@@ -1,6 +1,6 @@
 cff-version: 1.0.1
 message: Please cite this software using these metadata.
-title: 
+title: Desliga Ai
 authors:
   - family-names: Alvarenga Santos
     given-names: João Pedro
@@ -33,4 +33,5 @@ keywords:
 repository-code: https://github.com/ICEI-PUC-Minas-PMGES-TI/pmg-es-2025-2-ti1-2401100-desligaai.git
 license: CC-BY-4.0
 version: 1.0.0
+
 date-released: 2025-12-13
